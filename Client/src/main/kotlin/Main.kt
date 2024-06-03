@@ -13,7 +13,7 @@ class Main: Application() {
         primaryStage.title="SKYJO"
         primaryStage.scene=scene
         primaryStage.show()
-        
+
     }
 }
 fun main(args: Array<String>) {
