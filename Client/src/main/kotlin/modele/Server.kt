@@ -94,4 +94,9 @@ class Server(IP:String) {
         val result : modele.serverData.Plateau = Json.decodeFromString(response)
         return result
     }
+
+    suspend fun getScore():Int{
+        val response = client.get("$IP/partie/$idPartie/score").body<String>()
+        TODO("je ne connais pas la forme des réponses")
+    }
 }
