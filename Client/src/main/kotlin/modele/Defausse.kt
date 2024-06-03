@@ -5,16 +5,20 @@ import kotlinx.coroutines.runBlocking
 class Defausse(server: Server,c: Carte): StockCarte() {
 
     private var server = server
+    private var cards : Carte?
+
+    init{
+        runBlocking { cards = Carte(server.getPartieState().carteSommetDefausse.valeur.toInt()) }
+    }
 
     fun prendre(colonne: Int,ligne: Int){
         runBlocking {
             server.echangedefausse(colonne,ligne)
         }
+        updateTopCard()
     }
 
-    fun defausser(colonne : Int,ligne : Int) {
-        runBlocking {
-            server.defaussePioche(colonne,ligne)
-        }
+    fun updateTopCard() {
+        runBlocking { cards = Carte(server.getPartieState().carteSommetDefausse.valeur.toInt()) }
     }
 }
