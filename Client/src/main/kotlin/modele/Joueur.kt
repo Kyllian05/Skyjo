@@ -19,12 +19,7 @@ class Joueur(nom: String, server: Server) {
         }
     }
 
-    fun startGame(): Int {
-        TODO()
-    }
-
     fun jouer(choix : String): Boolean {
         TODO()
     }
-
 }
