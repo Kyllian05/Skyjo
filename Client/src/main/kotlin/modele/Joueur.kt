@@ -3,11 +3,13 @@ package modele
 import javafx.scene.chart.CategoryAxis
 import kotlinx.coroutines.runBlocking
 
-class Joueur(nom: String, server: Server) {
+class Joueur(nom: String, server: Server,pioche:Pioche,defausse: Defausse) {
     val nom: String
     val currentPlayer: Boolean
     private val server: Server
     private var plateau : Plateau? = null
+    private var pioche : Pioche = pioche
+    private var defausse : Defausse = defausse
     var id: Int
 
     init {
@@ -26,8 +28,23 @@ class Joueur(nom: String, server: Server) {
         TODO()
     }
 
-    fun jouer(choix : String): Boolean {
-        TODO()
+    fun echangePioche(colonne : Int,ligne : Int){
+        runBlocking {
+            var card = pioche.piocher()
+            this@Joueur.plateau!!.remplacer((colonne.toString()+ligne.toString()).toInt(),card)
+            this@Joueur.server.echangePioche(colonne,ligne)
+        }
     }
 
+    fun defaussePioche(colonne: Int,ligne: Int){
+        defausse.prendre(colonne,ligne)
+        this.plateau!!.reveler((colonne.toString()+ligne.toString()).toInt())
+    }
+
+    fun echangedefausse(colonne: Int,ligne: Int){
+        runBlocking {
+            var card = defausse.prendre(colonne,ligne)
+            this@Joueur.plateau!!.remplacer((colonne.toString()+ligne.toString()).toInt(),card)
+        }
+    }
 }
