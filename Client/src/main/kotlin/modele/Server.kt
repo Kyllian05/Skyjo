@@ -8,8 +8,6 @@ import io.ktor.util.*
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
-import modele.serverData
-
 class Server(IP:String) {
     private val client = HttpClient(CIO)
     private val partyID : Int? = null
@@ -52,8 +50,9 @@ class Server(IP:String) {
         return result.nom
     }
 
-    suspend fun joinPartie(idPlayer : Int){
-        val response = client.get("$IP/partie/$idPartie/$idPlayer")
+    suspend fun joinPartie(idPlayer : Int,idPartie : Int){
+        this.idPartie = idPartie
+        val response = client.get("$IP/partie/$idPartie/$idPlayer/rejoint")
     }
 
     suspend fun pioche(idPlayer: Int):Array<Any>{
@@ -88,7 +87,7 @@ class Server(IP:String) {
         return result.idParties
     }
 
-    fun getPartieState():modele.serverData.Plateau{
+    suspend fun getPartieState():modele.serverData.Plateau{
         val response = client.get("$IP/partie/$idPartie").body<String>()
         val result : modele.serverData.Plateau = Json.decodeFromString(response)
         return result
