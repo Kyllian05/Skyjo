@@ -15,7 +15,15 @@ class Server(IP:String) {
     private val IP = IP
     private var idPartie : Int = 0
 
-    @OptIn(InternalAPI::class)
+    suspend fun getAllPlayers():IntArray{
+        @Serializable
+        class Result(val idJoueurs : IntArray)
+
+        val response = client.get("$IP/joueur").body<String>()
+        val result : Result = Json.decodeFromString(response)
+        return result.idJoueurs
+    }
+
     suspend fun createPlayer(name : String): Int{
         @Serializable
         class Result(val idJoueur : Int)
@@ -43,11 +51,11 @@ class Server(IP:String) {
         return result.nom
     }
 
-    fun joinPartie(idPlayer : Int){
+    suspend fun joinPartie(idPlayer : Int){
         val response = client.get("$IP/partie/$idPartie/$idPlayer")
     }
 
-    fun pioche(idPlayer: Int):Array<Any>{
+    suspend fun pioche(idPlayer: Int):Array<Any>{
         @Serializable
         class Result2(val valeur : Int,val couleur : String)
         @Serializable
@@ -58,5 +66,24 @@ class Server(IP:String) {
         return arrayOf<Any>(result.cartePiochee.valeur,result.cartePiochee.couleur)
     }
 
-    fun echangePioche()
+    suspend fun echangePioche(idJoueur : Int, colonneCarteEchangee : Int, ligneCarteEchangee : Int){
+        val response = client.get("$IP/partie/$idPartie/$idJoueur/echangepioche/$colonneCarteEchangee/$ligneCarteEchangee").body<String>()
+    }
+
+    suspend fun defaussePioche(idJoueur : Int, colonneCarteEchangee : Int, ligneCarteEchangee : Int){
+        val response = client.get("$IP/partie/$idPartie/$idJoueur/defaussepioche/$colonneCarteEchangee/$ligneCarteEchangee").body<String>()
+    }
+
+    suspend fun echangedefausse(idJoueur: Int, colonneCarteEchangee : Int, ligneCarteEchangee : Int){
+        val response = client.get("$IP/partie/$idPartie/$idJoueur/echangedefausse/$colonneCarteEchangee/$ligneCarteEchangee").body<String>()
+    }
+
+    suspend fun getAllParties():IntArray{
+        @Serializable
+        class Result(val idParties : IntArray)
+
+        val response = client.get("$IP/partie").body<String>()
+        val result : Result = Json.decodeFromString(response)
+        return result.idParties
+    }
 }
