@@ -1,16 +1,24 @@
 package modele
 
-class Defausse(c: Carte): StockCarte() {
+import kotlinx.coroutines.runBlocking
 
-    init {
+class Defausse(server: Server,c: Carte): StockCarte() {
 
+    private var server = server
+    private var cards : Carte?
+
+    init{
+        runBlocking { cards = Carte(server.getPartieState().carteSommetDefausse.valeur.toInt()) }
     }
 
-    fun prendre(): Carte {
-        TODO()
+    fun prendre(colonne: Int,ligne: Int){
+        runBlocking {
+            server.echangedefausse(colonne,ligne)
+        }
+        updateTopCard()
     }
 
-    fun defausser(c :Carte) {
-        TODO()
+    fun updateTopCard() {
+        runBlocking { cards = Carte(server.getPartieState().carteSommetDefausse.valeur.toInt()) }
     }
 }

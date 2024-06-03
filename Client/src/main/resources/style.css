@@ -1,0 +1,48 @@
+.Titre {
+    -fx-font-family: Public;
+    -fx-font-size: 100px;
+    -fx-font-weight: bolder;
+    -fx-text-fill: red;
+}
+
+.Titre1 {
+    -fx-font-family: Public;
+    -fx-font-size: 100px;
+    -fx-font-weight: bolder;
+    -fx-text-fill: orange;
+}
+
+.Titre2 {
+    -fx-font-family: Public;
+    -fx-font-size: 100px;
+    -fx-font-weight: bolder;
+    -fx-text-fill: yellow;
+}
+
+.Titre3 {
+    -fx-font-family: Public;
+    -fx-font-size: 100px;
+    -fx-font-weight: bolder;
+    -fx-text-fill: #51c251;
+}
+
+.Titre4 {
+    -fx-font-family: Public;
+    -fx-font-size: 100px;
+    -fx-font-weight: bolder;
+    -fx-text-fill: #4d4dff;
+}
+
+.Titre5 {
+    -fx-font-family: Public;
+    -fx-font-size: 100px;
+    -fx-font-weight: bolder;
+    -fx-text-fill: lightblue;
+}
+
+.Titre6 {
+    -fx-font-family: Public;
+    -fx-font-size: 100px;
+    -fx-font-weight: bolder;
+    -fx-text-fill: white;
+}

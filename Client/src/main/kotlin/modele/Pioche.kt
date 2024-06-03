@@ -1,16 +1,16 @@
 package modele
 
-class Pioche(cartes: Array<Carte>): StockCarte() {
+import io.ktor.client.engine.*
+import kotlinx.coroutines.runBlocking
 
-    init {
-
-    }
+class Pioche(serveur : Server): StockCarte() {
+    private var serveur = serveur
 
     fun piocher(): Carte {
-        TODO()
-    }
-
-    fun remplir(cartes: Array<Carte>) {
-        TODO()
+        var carte : Carte
+        runBlocking{
+             carte = serveur.pioche()
+        }
+        return carte
     }
 }
