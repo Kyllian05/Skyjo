@@ -9,7 +9,9 @@ import io.ktor.http.*
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
+import modele.serverData.NotExistingPlayerException
 import modele.serverData.Plateau
+import modele.serverData.Player
 import modele.serverData.ServerException
 
 class Server(IP: String) {
@@ -163,5 +165,15 @@ class Server(IP: String) {
         verifyResponse(response)
 
         TODO("je ne connais pas la forme des réponses")
+    }
+
+    suspend fun getCard(idPlayer: Int,colonne : Int,line : Int):Carte{
+        var result = getPartieState()
+        for (i in 0..result.plateaux.size){
+            if(result.plateaux[i].idJoueur == idPlayer){
+                return Carte((result.plateaux[i].colonnes[colonne][line].valeur as Int))
+            }
+        }
+        throw NotExistingPlayerException(idPlayer)
     }
 }
