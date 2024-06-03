@@ -19,7 +19,15 @@ class Plateau(serveur : Server,playerId : Int): StockCarte() {
     }
 
     fun calculerPoints(): Int {
-        TODO()
+        var sum = 0
+        for (i in 0..4){
+            for (x in 0..4){
+                if(this.contenu.containsKey((i.toString()+x.toString()).toInt())){
+                    sum += contenu[(i.toString()+x.toString()).toInt()]!!.nombre
+                }
+            }
+        }
+        return sum
     }
 
     fun supprimerColonne(colonne : Int){
