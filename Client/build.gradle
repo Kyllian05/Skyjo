@@ -4,6 +4,8 @@ plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.9.0'
     id 'application'
     id 'org.openjfx.javafxplugin'version '0.0.13'
+    id 'org.jetbrains.kotlin.plugin.serialization' version "1.9.0"
+
 }
 
 group = 'org.example'
@@ -17,6 +19,7 @@ dependencies {
     testImplementation 'org.jetbrains.kotlin:kotlin-test'
     implementation("io.ktor:ktor-client-core:$ktor_version")
     implementation("io.ktor:ktor-client-cio:$ktor_version")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
     implementation("org.controlsfx:controlsfx:11.1.2")
 }
 

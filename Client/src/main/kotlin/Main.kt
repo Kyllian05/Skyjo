@@ -1,5 +1,4 @@
-import modele.Carte
+import modele.Server
 
-fun main(args: Array<String>) {
-
+suspend fun main(args: Array<String>) {
 }
