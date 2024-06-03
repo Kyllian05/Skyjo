@@ -1,0 +1,4 @@
+package modele
+
+class Joueur {
+}

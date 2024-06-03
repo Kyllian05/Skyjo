@@ -1,0 +1,4 @@
+package vue
+
+class MainVue {
+}
