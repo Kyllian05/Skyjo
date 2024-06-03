@@ -13,6 +13,7 @@ class Server(IP:String) {
     private val client = HttpClient(CIO)
     private val partyID : Int? = null
     private val IP = IP
+    private var idPartie : Int = 0
 
     @OptIn(InternalAPI::class)
     suspend fun createPlayer(name : String): Int{
@@ -30,6 +31,7 @@ class Server(IP:String) {
 
         val response = client.get("$IP/partie/nouvelle/$playerId/$nbJoueur").body<String>()
         val result : Result = Json.decodeFromString(response)
+        this.idPartie = result.idNouvellePartie
         return result.idNouvellePartie
     }
 
@@ -41,11 +43,11 @@ class Server(IP:String) {
         return result.nom
     }
 
-    fun joinPartie(idPartie : Int,idPlayer : Int){
+    fun joinPartie(idPlayer : Int){
         val response = client.get("$IP/partie/$idPartie/$idPlayer")
     }
 
-    fun pioche(idPartie: Int,idPlayer: Int):Array<Any>{
+    fun pioche(idPlayer: Int):Array<Any>{
         @Serializable
         class Result2(val valeur : Int,val couleur : String)
         @Serializable
@@ -55,4 +57,6 @@ class Server(IP:String) {
         val result : Result1 = Json.decodeFromString(response)
         return arrayOf<Any>(result.cartePiochee.valeur,result.cartePiochee.couleur)
     }
+
+    fun echangePioche()
 }
