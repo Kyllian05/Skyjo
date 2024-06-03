@@ -1,0 +1,3 @@
+package modele
+class Server {
+}
