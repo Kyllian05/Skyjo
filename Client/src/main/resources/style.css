@@ -46,3 +46,11 @@
     -fx-font-weight: bolder;
     -fx-text-fill: white;
 }
+
+.ButtonAccueil {
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-font-size: 24px;
+    -fx-font-weight: bolder;
+    -fx-text-fill: linear-gradient(from 0% 0% to 100% 100%, #6600CC, #3366FF);
+}
