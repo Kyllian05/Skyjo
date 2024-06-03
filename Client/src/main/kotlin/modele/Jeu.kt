@@ -25,7 +25,7 @@ class Jeu(private val server: Server, player: Joueur) {
         }
         // Création de la partie avec le serveur
         runBlocking {
-            this@Jeu.id = this@Jeu.server.createPartie(this@Jeu.myPlayer.id, nbJoueur)
+            this@Jeu.id = this@Jeu.server.createPartie(this@Jeu.myPlayer.id)
         }
         this.joined = true
     }
@@ -39,4 +39,5 @@ class Jeu(private val server: Server, player: Joueur) {
             joueurs = this@Jeu.server.getAllPlayers()
         }
     }
+
 }
