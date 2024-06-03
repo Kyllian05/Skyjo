@@ -8,6 +8,7 @@ import io.ktor.util.*
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
+import modele.serverData
 
 class Server(IP:String) {
     private val client = HttpClient(CIO)
@@ -85,5 +86,11 @@ class Server(IP:String) {
         val response = client.get("$IP/partie").body<String>()
         val result : Result = Json.decodeFromString(response)
         return result.idParties
+    }
+
+    fun getPartieState():modele.serverData.Plateau{
+        val response = client.get("$IP/partie/$idPartie").body<String>()
+        val result : modele.serverData.Plateau = Json.decodeFromString(response)
+        return result
     }
 }
