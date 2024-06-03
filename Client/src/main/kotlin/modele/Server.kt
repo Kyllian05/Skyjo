@@ -57,7 +57,7 @@ class Server(IP:String) {
         val response = client.get("$IP/partie/$idPartie/$idPlayer/rejoint")
     }
 
-    suspend fun pioche():modele.serverData.VraiCarte{
+    suspend fun pioche():Carte{
         @Serializable
         class Result2(val valeur : Int,val couleur : String)
         @Serializable
@@ -65,15 +65,22 @@ class Server(IP:String) {
 
         val response = client.get("$IP/partie/$idPartie/$idPlayer/pioche").body<String>()
         val result : Result1 = Json.decodeFromString(response)
-        return modele.serverData.VraiCarte(result.cartePiochee.valeur,result.cartePiochee.couleur)
+        return Carte(result.cartePiochee.valeur)
     }
 
     suspend fun echangePioche(colonneCarteEchangee : Int, ligneCarteEchangee : Int){
         val response = client.get("$IP/partie/$idPartie/$idPlayer/echangepioche/$colonneCarteEchangee/$ligneCarteEchangee").body<String>()
     }
 
-    suspend fun defaussePioche(colonneCarteEchangee : Int, ligneCarteEchangee : Int){
+    suspend fun defaussePioche(colonneCarteEchangee : Int, ligneCarteEchangee : Int):Carte{
         val response = client.get("$IP/partie/$idPartie/$idPlayer/defaussepioche/$colonneCarteEchangee/$ligneCarteEchangee").body<String>()
+        val result : modele.serverData.Plateau = Json.decodeFromString(response)
+        for (i in 0..result.plateaux.size){
+            if(result.plateaux[i].idJoueur == this.idPlayer){
+                return Carte((result.plateaux[i].colonnes[colonneCarteEchangee][ligneCarteEchangee].valeur as Int))
+            }
+        }
+        return Carte(0)
     }
 
     suspend fun echangedefausse(colonneCarteEchangee : Int, ligneCarteEchangee : Int){
