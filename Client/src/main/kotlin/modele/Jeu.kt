@@ -38,6 +38,7 @@ class Jeu(private val server: Server, player: Joueur) {
         runBlocking {
             joueurs = this@Jeu.server.getAllPlayers()
         }
+        return false
     }
 
 }
