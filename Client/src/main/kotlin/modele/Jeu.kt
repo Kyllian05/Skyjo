@@ -1,4 +1,20 @@
 package modele
 
-class Jeu {
+class Jeu() {
+
+    init {
+
+    }
+
+    fun start() {
+
+    }
+
+    fun ajouterJoueur() {
+
+    }
+
+    fun supprimerJoueur() {
+
+    }
 }

@@ -1,4 +1,4 @@
 package modele
 
-class StockCarte {
+abstract class StockCarte {
 }
