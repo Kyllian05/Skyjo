@@ -139,7 +139,7 @@ class Server(IP: String) {
         class Result(val idParties : IntArray)
 
         val response = client.get("$IP/partie")
-        verifyRespone(response)
+        verifyResponse(response)
 
         val result : Result = Json.decodeFromString(response.body<String>())
         return result.idParties
