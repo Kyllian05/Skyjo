@@ -15,19 +15,16 @@ class Plateau(serveur : Server,playerId : Int): StockCarte() {
     }
 
     fun remplacer(xy: Int, c: Carte) {
-        TODO()
-    }
-
-    private fun verifColonne() {
-        TODO()
+        contenu[xy] = c
     }
 
     fun calculerPoints(): Int {
         TODO()
     }
 
-    fun  plateauDecouvert(): Boolean {
-        TODO()
+    fun supprimerColonne(colonne : Int){
+        for (i in 0..4){
+            this.contenu.remove((i.toString()+colonne.toString()).toInt())
+        }
     }
-
 }
