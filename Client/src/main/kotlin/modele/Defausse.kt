@@ -11,11 +11,12 @@ class Defausse(server: Server,c: Carte): StockCarte() {
         runBlocking { cards = Carte(server.getPartieState().carteSommetDefausse.valeur.toInt()) }
     }
 
-    fun prendre(colonne: Int,ligne: Int){
+    fun prendre(colonne: Int,ligne: Int): Carte{
         runBlocking {
             server.echangedefausse(colonne,ligne)
         }
         updateTopCard()
+        return cards!!
     }
 
     fun updateTopCard() {
