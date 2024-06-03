@@ -22,7 +22,12 @@ class Joueur(nom: String, server: Server) {
         this.plateau = Plateau(server,this.id)
     }
 
+    fun startGame(): Int {
+        TODO()
+    }
+
     fun jouer(choix : String): Boolean {
         TODO()
     }
+
 }
