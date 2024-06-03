@@ -23,7 +23,7 @@ class Joueur(nom: String, server: Server) {
         TODO()
     }
 
-    fun jouer(): Boolean {
+    fun jouer(choix : String): Boolean {
         TODO()
     }
 

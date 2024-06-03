@@ -57,7 +57,7 @@ class Server(IP:String) {
         val response = client.get("$IP/partie/$idPartie/$idPlayer/rejoint")
     }
 
-    suspend fun pioche():Array<Any>{
+    suspend fun pioche():modele.serverData.VraiCarte{
         @Serializable
         class Result2(val valeur : Int,val couleur : String)
         @Serializable
@@ -65,7 +65,7 @@ class Server(IP:String) {
 
         val response = client.get("$IP/partie/$idPartie/$idPlayer/pioche").body<String>()
         val result : Result1 = Json.decodeFromString(response)
-        return arrayOf<Any>(result.cartePiochee.valeur,result.cartePiochee.couleur)
+        return modele.serverData.VraiCarte(result.cartePiochee.valeur,result.cartePiochee.couleur)
     }
 
     suspend fun echangePioche(colonneCarteEchangee : Int, ligneCarteEchangee : Int){
