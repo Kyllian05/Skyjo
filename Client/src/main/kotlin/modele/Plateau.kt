@@ -19,10 +19,6 @@ class Plateau(contenu: HashMap<Int, Carte>): StockCarte() {
         TODO()
     }
 
-    private fun supprimerColonne(x: Int) {
-        TODO()
-    }
-
     fun calculerPoints(): Int {
         TODO()
     }

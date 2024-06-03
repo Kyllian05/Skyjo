@@ -119,6 +119,7 @@ class Server(IP: String) {
         verifyDef()
         val response = client.get("$IP/partie/$idPartie/$idPlayer/defaussepioche/$colonneCarteEchangee/$ligneCarteEchangee")
         verifyResponse(response)
+        val result : Plateau = Json.decodeFromString(response.body<String>())
         for (i in 0..result.plateaux.size){
             if(result.plateaux[i].idJoueur == this.idPlayer){
                 return Carte((result.plateaux[i].colonnes[colonneCarteEchangee][ligneCarteEchangee].valeur as Int))
@@ -138,7 +139,7 @@ class Server(IP: String) {
         class Result(val idParties : IntArray)
 
         val response = client.get("$IP/partie")
-        verifyResponse(response)
+        verifyRespone(response)
 
         val result : Result = Json.decodeFromString(response.body<String>())
         return result.idParties
