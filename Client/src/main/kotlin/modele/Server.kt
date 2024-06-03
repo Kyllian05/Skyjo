@@ -52,12 +52,20 @@ class Server(IP:String) {
         return result.nom
     }
 
+<<<<<<< Updated upstream
     suspend fun joinPartie(idPartie : Int){
         this.idPartie = idPartie
         val response = client.get("$IP/partie/$idPartie/$idPlayer/rejoint")
     }
 
     suspend fun pioche():Carte{
+=======
+    suspend fun joinPartie(idPlayer : Int){
+        val response = client.get("$IP/partie/$idPartie/$idPlayer")
+    }
+
+    suspend fun pioche(idPlayer: Int):Array<Any>{
+>>>>>>> Stashed changes
         @Serializable
         class Result2(val valeur : Int,val couleur : String)
         @Serializable
@@ -83,6 +91,7 @@ class Server(IP:String) {
         return Carte(0)
     }
 
+<<<<<<< Updated upstream
     suspend fun echangedefausse(colonneCarteEchangee : Int, ligneCarteEchangee : Int){
         val response = client.get("$IP/partie/$idPartie/$idPlayer/echangedefausse/$colonneCarteEchangee/$ligneCarteEchangee").body<String>()
     }
@@ -106,4 +115,7 @@ class Server(IP:String) {
         val response = client.get("$IP/partie/$idPartie/score").body<String>()
         TODO("je ne connais pas la forme des réponses")
     }
+=======
+    //fun echangePioche()
+>>>>>>> Stashed changes
 }
