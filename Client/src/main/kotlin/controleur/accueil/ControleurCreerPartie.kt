@@ -6,9 +6,9 @@ import javafx.event.EventHandler
 import javafx.scene.control.Alert
 import modele.Jeu
 import modele.serverData.ServerException
-import vue.VueCrée
+import vue.CreationPartie
 
-class ControleurCreerPartie(val vue : VueCrée,val jeu : Jeu): EventHandler<ActionEvent> {
+class ControleurCreerPartie(val vue : CreationPartie, val jeu : Jeu): EventHandler<ActionEvent> {
     override fun handle(event: ActionEvent) {
         val info = Alert(Alert.AlertType.INFORMATION)
         val error = Alert(Alert.AlertType.ERROR)

@@ -1,14 +1,7 @@
 import javafx.application.Application
 import javafx.scene.Scene
-import javafx.scene.image.Image
 import javafx.stage.Stage
-import modele.Defausse
-import modele.Jeu
-import modele.Pioche
-import vue.VueCrée
-import modele.Server
 import vue.Accueil
-import vue.Salon
 
 
 class TestVue(): Application() {

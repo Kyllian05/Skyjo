@@ -1,14 +1,14 @@
 import javafx.application.Application
 import javafx.scene.Scene
 import javafx.stage.Stage
-import vue.VueCrée
+import vue.CreationPartie
 
 class TestVue2(): Application() {
 
     override fun start(primaryStage: Stage) {
 
         // Vues
-        val vue = VueCrée()
+        val vue = CreationPartie()
 
         // Scène
         val scene = Scene(vue, 1920.0, 1080.0)

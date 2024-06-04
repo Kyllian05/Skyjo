@@ -4,12 +4,8 @@ import javafx.geometry.Insets
 import javafx.geometry.Pos
 import javafx.scene.control.*
 import javafx.scene.layout.*
-import javafx.scene.paint.Color
-import javafx.scene.text.Font
-import javafx.scene.text.FontPosture
-import javafx.scene.text.FontWeight
 
-class VueCrée : BorderPane() {
+class CreationPartie : BorderPane() {
     private val panneauCentre: VBox = VBox(15.0)
     private val panneauDroite: AnchorPane = AnchorPane()
 

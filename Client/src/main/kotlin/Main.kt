@@ -5,7 +5,7 @@ import javafx.application.Application
 import javafx.scene.Scene
 import javafx.stage.Stage
 import modele.Jeu
-import vue.VueCrée
+import vue.CreationPartie
 import modele.Server
 import vue.Accueil
 import vue.Salon
@@ -21,7 +21,7 @@ class Main(): Application() {
         // Vues
         val accueil = Accueil()
         val salon = Salon()
-        val creer = VueCrée()
+        val creer = CreationPartie()
 
         // Model
         val jeu = Jeu(server)
