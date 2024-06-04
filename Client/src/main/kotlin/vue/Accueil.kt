@@ -15,7 +15,7 @@ import javafx.scene.paint.Color
 
 class Accueil : GridPane() {
 
-    private val PanneauLeft : VBox
+    val PanneauLeft : VBox
     private val PanneauRight : AnchorPane
     val CreateBtn : Button
     val JoinBtn : Button
@@ -44,6 +44,8 @@ class Accueil : GridPane() {
         this.inputName = TextField()
         this.submitBtn = Button("Valider")
         this.progress = ProgressIndicator()
+
+        progress.styleClass.add("Progress")
 
         this.Accueils = arrayOf()
         this.Param = arrayOf("Titre", "Titre1", "Titre2", "Titre3", "Titre4", "Titre5", "Titre6")
@@ -124,6 +126,16 @@ class Accueil : GridPane() {
 
     fun fixeListener(b: Button, c: EventHandler<ActionEvent>) {
         b.addEventHandler(ActionEvent.ACTION, c)
+    }
+
+    fun showLoader() {
+        PanneauLeft.children.remove(submitBtn)
+        PanneauLeft.children.add(progress)
+    }
+
+    fun removeLoader() {
+        PanneauLeft.children.remove(progress)
+        PanneauLeft.children.add(submitBtn)
     }
 
 }
