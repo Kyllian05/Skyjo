@@ -1,8 +1,4 @@
-import controleur.accueil.BoutonRetour
-import controleur.accueil.ControleurBouttonNom
-import controleur.creationPartie.ControleurCreerPartie
-import controleur.accueil.ControleurFermerAppli
-import controleur.accueil.ControleurRejoindre
+import controleur.accueil.*
 import javafx.application.Application
 import javafx.scene.Scene
 import javafx.scene.image.Image
@@ -38,7 +34,7 @@ class Main(): Application() {
         accueil.fixeListener(accueil.JoinBtn, ControleurRejoindre(rejoindre, primaryStage))
         accueil.fixeListener(accueil.CreateBtn, controleur.accueil.ControleurCreerPartie(creer, primaryStage))
 
-        creer.boutonCree.onAction = ControleurCreerPartie(creer,jeu)
+        creer.boutonCree.onAction = controleur.creationPartie.ControleurCreerPartie(creer,jeu,primaryStage,salon)
         creer.boutonRetour.onAction = BoutonRetour(primaryStage,accueil)
         rejoindre.boutonRetour.onAction = BoutonRetour(primaryStage,accueil)
 

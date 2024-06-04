@@ -6,6 +6,7 @@ import io.ktor.client.engine.cio.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
+import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
@@ -175,5 +176,14 @@ class Server(IP: String) {
             }
         }
         throw NotExistingPlayerException(idPlayer)
+    }
+
+    suspend fun getAllPlayersInPartie():IntArray{
+        var result = intArrayOf()
+        var state = getPartieState()
+        for(i in 0..state.plateaux.size-1){
+            result += state.plateaux[i].idJoueur
+        }
+        return result
     }
 }

@@ -14,7 +14,7 @@ class Salon : GridPane() {
     val Salons: Array<Label>
     val Param : Array<String>
     val Loader : ProgressIndicator
-    val ListeJoueurs : ListView<String>
+    val ListeJoueurs = ListView<Int>()
 
     init {
         this.style = "-fx-background-color : linear-gradient(from 0% 0% to 100% 100%, #6600CC, #3366FF);"
@@ -58,7 +58,6 @@ class Salon : GridPane() {
         GridPane.setHalignment(labelAttente, HPos.CENTER)
 
         //Mise en place du ListView
-        this.ListeJoueurs = ListView()
 
         val stackPane = StackPane()
         stackPane.maxWidth = 500.0
