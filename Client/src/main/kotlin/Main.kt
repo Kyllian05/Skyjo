@@ -1,4 +1,5 @@
 import controleur.ControleurBouttonNom
+import controleur.ControleurFermerAppli
 import javafx.application.Application
 import javafx.scene.Scene
 import javafx.scene.image.Image
@@ -21,6 +22,7 @@ class Main(): Application() {
         // Controllers
         val controleurBouttonNom = ControleurBouttonNom(accueil)
         accueil.fixeListener(accueil.submitBtn, controleurBouttonNom)
+        accueil.fixeListener(accueil.ExitBtn,ControleurFermerAppli(primaryStage))
 
         // Scène
         val scene = Scene(accueil, 2000.0, 1000.0)
