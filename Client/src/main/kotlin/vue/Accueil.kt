@@ -6,6 +6,7 @@ import javafx.geometry.Insets
 import javafx.geometry.Pos
 import javafx.scene.control.Button
 import javafx.scene.control.Label
+import javafx.scene.control.ProgressIndicator
 import javafx.scene.control.TextArea
 import javafx.scene.control.TextField
 import javafx.scene.layout.*
@@ -28,6 +29,7 @@ class Accueil : GridPane() {
     val nameLabel : Label
     val inputName: TextField
     val submitBtn: Button
+    val progress: ProgressIndicator
 
 
     init {
@@ -43,6 +45,7 @@ class Accueil : GridPane() {
         this.nameLabel = Label("Entrez votre pseudo :")
         this.inputName = TextField()
         this.submitBtn = Button("Valider")
+        this.progress = ProgressIndicator()
 
         this.Accueils = arrayOf()
         this.Param = arrayOf("Titre", "Titre1", "Titre2", "Titre3", "Titre4", "Titre5", "Titre6")
