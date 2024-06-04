@@ -32,6 +32,7 @@ class Main(): Application() {
         accueil.fixeListener(accueil.CreateBtn, controleur.creationPartie.ControleurCreerPartie(creer, primaryStage))
 
         creer.boutonCree.onAction = ControleurCreerPartie(creer,jeu)
+        creer.boutonRetour.onAction = controleur.creationPartie.BoutonRetour(primaryStage,accueil)
 
         // Scène
         val scene = Scene(accueil, 2000.0, 1000.0)
