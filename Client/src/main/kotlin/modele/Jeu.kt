@@ -11,6 +11,8 @@ class Jeu(private val server: Server) {
     val partyListe = FXCollections.observableArrayList<Party>()
     val pioche: Pioche = Pioche(this.server)
     val defausse: Defausse = Defausse(this.server)
+    var listeJoueur = FXCollections.observableArrayList<Int>()
+    var maxPlayerPartie : Int? = null
 
     fun createPlayer(name: String) {
         this.myPlayer = Joueur(name, this.server, this.pioche, this.defausse)
@@ -28,6 +30,7 @@ class Jeu(private val server: Server) {
         if (joined) {
             throw Exception("Party already joined")
         }
+        maxPlayerPartie = nbJoueur
         // Création de la partie avec le serveur
         runBlocking {
             this@Jeu.id = this@Jeu.server.createPartie(nbJoueur)
@@ -39,8 +42,9 @@ class Jeu(private val server: Server) {
         if (joined) {
             throw Exception("Party already joined")
         }
-        var joueurs = IntArray(8)
         runBlocking {
+            maxPlayerPartie = server.getPartieState().nbJoueursMax
+            var joueurs = IntArray(maxPlayerPartie!!)
             joueurs = this@Jeu.server.getAllPlayers()
         }
         return false
@@ -64,6 +68,13 @@ class Jeu(private val server: Server) {
                this.partyListe.add(Party(max, p, joined))
            }
             Thread.sleep(5000)
+        }
+    }
+    suspend fun updateListeJoueur(){
+        var list = server.getAllPlayersInPartie()
+        this.listeJoueur.clear()
+        for(i in 0..list.size-1){
+            this.listeJoueur.add(list[i])
         }
     }
 }

@@ -12,7 +12,6 @@ class TestVue(): Application() {
         // Vues
         val salon = Salon()
 
-
         // Scène
         val scene = Scene(salon, 2000.0, 1000.0)
 
