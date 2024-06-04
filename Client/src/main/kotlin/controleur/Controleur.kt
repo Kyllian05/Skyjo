@@ -1,4 +1,0 @@
-package controleur
-
-class Controleur {
-}

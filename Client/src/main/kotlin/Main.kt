@@ -1,5 +1,7 @@
+import controleur.ControleurBouttonNom
 import javafx.application.Application
 import javafx.scene.Scene
+import javafx.scene.image.Image
 import javafx.stage.Stage
 import vue.VueCrée
 import modele.Server
@@ -14,13 +16,20 @@ class Main(): Application() {
         val server = Server(this.IP[0])
 
         // Vues
-        val Accueil = Accueil()
+        val accueil = Accueil()
+
+        // Controllers
+        val controleurBouttonNom = ControleurBouttonNom(accueil)
+        accueil.fixeListener(accueil.submitBtn, controleurBouttonNom)
 
         // Scène
-        val scene = Scene(Accueil, Double.MAX_VALUE, Double.MAX_VALUE)
+        val scene = Scene(accueil, 2000.0, 1000.0)
         scene.stylesheets.add(javaClass.getResource("style.css").toExternalForm())
         primaryStage.title="Skyjo"
         primaryStage.scene=scene
+        primaryStage.isMaximized = true
+        // Icon de l'application (ne fonctionne pas)
+        //primaryStage.icons.add(Image("/images/cartes/carteSKYJO.png"))
         primaryStage.show()
     }
 }

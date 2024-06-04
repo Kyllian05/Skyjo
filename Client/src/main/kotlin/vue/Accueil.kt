@@ -1,10 +1,13 @@
 package vue
 
+import javafx.event.ActionEvent
+import javafx.event.EventHandler
 import javafx.geometry.Insets
 import javafx.geometry.Pos
 import javafx.scene.control.Button
 import javafx.scene.control.Label
 import javafx.scene.control.TextArea
+import javafx.scene.control.TextField
 import javafx.scene.layout.*
 import javafx.scene.paint.Color
 
@@ -27,6 +30,9 @@ class Accueil : GridPane() {
     val Titre6 : Label
     val UpdateArea : TextArea
     val VersionLab : Label
+    val nameLabel : Label
+    val inputName: TextField
+    val submitBtn: Button
 
 
     init {
@@ -46,7 +52,9 @@ class Accueil : GridPane() {
         this.Titre6 = Label("SKYJO")
         this.UpdateArea = TextArea("Infos sur les dernières nouveautés")
         this.VersionLab = Label("V1.2.1")
-
+        this.nameLabel = Label("Entrez votre pseudo :")
+        this.inputName = TextField()
+        this.submitBtn = Button("Valider")
 
 
         val row1 = RowConstraints()
@@ -85,6 +93,17 @@ class Accueil : GridPane() {
         ExitBtn.setPrefSize(400.0, 100.0)
         this.ExitBtn.styleClass.add("ButtonAccueil")
 
+        // Intput for name
+        this.inputName.setMaxSize(400.0, 100.0)
+        this.inputName.setPrefSize(400.0, 80.0)
+        this.inputName.styleClass.add("input")
+
+        submitBtn.setPrefSize(400.0, 100.0)
+        this.submitBtn.styleClass.add("ButtonAccueil")
+
+        this.nameLabel.styleClass.add("labelAccueil")
+
+
         AnchorPane.setBottomAnchor(UpdateArea, 20.0)
         AnchorPane.setRightAnchor(UpdateArea, 10.0)
         AnchorPane.setBottomAnchor(VersionLab, 0.0)
@@ -103,19 +122,28 @@ class Accueil : GridPane() {
         this.Titre5.styleClass.add("Titre5")
         this.Titre6.styleClass.add("Titre6")
 
-        GridPane.setMargin(Titre, Insets(5.0, 300.0, 0.0, 300.0))
-        GridPane.setMargin(Titre1, Insets(20.0, 300.0, 0.0, 300.0))
-        GridPane.setMargin(Titre2, Insets(35.0, 300.0, 0.0, 300.0))
-        GridPane.setMargin(Titre3, Insets(50.0, 300.0, 0.0, 300.0))
-        GridPane.setMargin(Titre4, Insets(65.0, 300.0, 0.0, 300.0))
-        GridPane.setMargin(Titre5, Insets(80.0, 300.0, 0.0, 300.0))
-        GridPane.setMargin(Titre6, Insets(95.0, 300.0, 0.0, 300.0))
+        setMargin(Titre, Insets(5.0, 300.0, 0.0, 300.0))
+        setMargin(Titre1, Insets(20.0, 300.0, 0.0, 300.0))
+        setMargin(Titre2, Insets(35.0, 300.0, 0.0, 300.0))
+        setMargin(Titre3, Insets(50.0, 300.0, 0.0, 300.0))
+        setMargin(Titre4, Insets(65.0, 300.0, 0.0, 300.0))
+        setMargin(Titre5, Insets(80.0, 300.0, 0.0, 300.0))
+        setMargin(Titre6, Insets(95.0, 300.0, 0.0, 300.0))
 
 
-        PanneauLeft.children.addAll(CreateBtn, JoinBtn, SettingsBtn, ExitBtn)
+        PanneauLeft.children.addAll(nameLabel, inputName, submitBtn)
         PanneauHaut.children.addAll(Titre, Titre1, Titre2, Titre3, Titre4, Titre5, Titre6)
         PanneauRight.children.addAll(UpdateArea, VersionLab)
 
+    }
+
+    fun addButtons() {
+        PanneauLeft.children.removeAll(nameLabel, inputName, submitBtn)
+        PanneauLeft.children.addAll(CreateBtn, JoinBtn, SettingsBtn, ExitBtn)
+    }
+
+    fun fixeListener(b: Button, c: EventHandler<ActionEvent>) {
+        b.addEventHandler(ActionEvent.ACTION, c)
     }
 
 }
