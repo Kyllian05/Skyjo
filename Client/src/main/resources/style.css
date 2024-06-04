@@ -1,3 +1,4 @@
+
 .Titre {
     -fx-font-family: Public;
     -fx-font-size: 75px;
@@ -54,7 +55,7 @@
 .ButtonAccueil {
     -fx-background-radius: 10;
     -fx-border-radius: 10;
-    -fx-font-size: 24px;
+    -fx-font-size: 30px;
     -fx-font-weight: bolder;
     -fx-text-fill: linear-gradient(from 0% 0% to 100% 100%, #6600CC, #3366FF);
 }
@@ -62,12 +63,12 @@
 .input {
     -fx-background-radius: 10;
     -fx-border-radius: 10;
-    -fx-font-size: 24px;
+    -fx-font-size: 30px;
     -fx-font-weight: bolder;
 }
 
 .labelAccueil {
-    -fx-font-size: 24px;
+    -fx-font-size: 30px;
     -fx-font-weight: bolder;
     -fx-text-fill: #ffffff;
 }

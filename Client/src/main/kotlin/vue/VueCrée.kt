@@ -12,7 +12,9 @@ import javafx.scene.text.FontWeight
 class VueCrée : BorderPane() {
     private val panneauCentre: VBox = VBox(15.0)
     private val panneauDroite: AnchorPane = AnchorPane()
+
     val boutonCree: Button = Button("Crée la Partie")
+    val boutonRetour : Button = Button("<")
     val labelTop2 : Label
     val labelTop3 : Label
     val labelTop1 : Label
@@ -23,37 +25,49 @@ class VueCrée : BorderPane() {
     val labelComboBox1:Label
     val comboBox1 = ComboBox<String>()
 
+
     init {
         panneauCentre.padding = Insets(30.0)
         panneauCentre.alignment = Pos.CENTER_LEFT
 
         this.labelComboBox1 = Label("Nombre de joueurs :")
-        comboBox1.items.addAll("2", "3", "4", "5", "6", "7", "8")
+        val comboBox= ComboBox<String>()
+        comboBox.getItems().addAll("2", "3", "4", "5", "6", "7", "8")
+        comboBox.setValue("2");
+        comboBox.styleClass.add("textarea")
 
-        val inputStyle = "-fx-max-width: 300px; -fx-max-height: 100px;"
-        comboBox1.style = inputStyle
-
-
-        val vbox1 = VBox(5.0, labelComboBox1, comboBox1)
-
-
+        val vbox1 = VBox(5.0, labelComboBox1, comboBox)
         vbox1.alignment = Pos.CENTER_LEFT
 
-        this.labelComboBox1.styleClass.add("label")
-        this.boutonCree.styleClass.add("btn")
+        //Paramètrage ComboBox et son Label
+        this.labelComboBox1.styleClass.add("labelAccueil")
+        comboBox.setMaxSize(400.0, 100.0)
+        comboBox.setPrefSize(400.0, 80.0)
+        comboBox.styleClass.add("ButtonAccueil")
 
         panneauCentre.children.addAll(vbox1)
         panneauCentre.padding = Insets(0.0, 150.0, 75.0, 150.0)
 
-        boutonCree.style = "-fx-background-radius: 5px; -fx-background-color: white; -fx-text-fill: linear-gradient(from 0% 0% to 100% 100%, #6600CC, #3366FF); -fx-max-width: 300px; -fx-max-height: 100px;"
+        //Parametrage Boutton Crée
+        boutonCree.setPrefSize(400.0, 100.0)
+        boutonCree.setMaxSize(400.0, 80.0)
         AnchorPane.setRightAnchor(boutonCree, 100.0)
         AnchorPane.setBottomAnchor(boutonCree, 100.0)
         panneauDroite.children.add(boutonCree)
+        this.boutonCree.styleClass.add("ButtonAccueil")
 
         val stackPaneTop = StackPane()
-        stackPaneTop.padding = Insets(20.0, 0.0, 0.0, 50.0)
+        stackPaneTop.padding = Insets(0.0, 0.0, 0.0, 0.0)
         stackPaneTop.alignment = Pos.TOP_LEFT
 
+        //Paramètrage Boutton Retour
+        boutonRetour.setPrefSize(50.0, 50.0)
+        boutonRetour.setMaxSize(40.0, 40.0)
+        stackPaneTop.children.add(boutonRetour)
+        this.boutonRetour.styleClass.add("ButtonAccueil")
+        StackPane.setMargin(boutonRetour, Insets(10.0, 0.0, 0.0, 10.0))
+
+        //Parmètrage Titre
         this.labelTop1 = Label("Crée une Partie")
         this.labelTop2 = Label("Crée une Partie")
         this.labelTop3 = Label("Crée une Partie")
@@ -87,11 +101,4 @@ class VueCrée : BorderPane() {
         this.style = "-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #6600CC, #3366FF);"
     }
 
-    private fun createColoredLabel(text: String, color: Color, style: String): Label {
-        val label = Label(text)
-        label.font = Font.font("Sans", FontWeight.BOLD, FontPosture.REGULAR, 48.0)
-        label.textFill = color
-        label.style = style
-        return label
-    }
 }
