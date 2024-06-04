@@ -27,8 +27,8 @@ class Salon : GridPane() {
         var posSalon = 95.0
         for (i in 0 until 7) {
             val label = Label("Salon")
-            this.add(label, 0, 0)
-            setMargin(label, Insets(posSalon, 300.0, 0.0, 300.0))
+            this.add(label, 0, 0, 2, 1)
+            label.padding = Insets(posSalon, 0.0, 0.0, 300.0)
             label.styleClass.add(Param[i])
             this.Salons.plus(label)
             posSalon -= 15.0

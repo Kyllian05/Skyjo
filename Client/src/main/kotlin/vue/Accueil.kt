@@ -15,7 +15,6 @@ import javafx.scene.paint.Color
 
 class Accueil : GridPane() {
 
-    private val PanneauHaut : GridPane
     private val PanneauLeft : VBox
     private val PanneauRight : AnchorPane
     val CreateBtn : Button
@@ -33,7 +32,6 @@ class Accueil : GridPane() {
 
 
     init {
-        this.PanneauHaut = GridPane()
         this.PanneauLeft = VBox()
         this.PanneauRight = AnchorPane()
         this.CreateBtn = Button("Crée une partie")
@@ -52,28 +50,27 @@ class Accueil : GridPane() {
         var posAccueil = 5.0
         for (i in 0 until 7) {
             val label = Label("SKYJO")
-            this.add(label, 0, 0)
-            GridPane.setMargin(label, Insets(posAccueil, 300.0, 0.0, 300.0))
+            this.add(label, 0, 0, 2, 1)
+            label.padding = Insets(posAccueil, 0.0, 0.0, 300.0)
             label.styleClass.add(Param[i])
             this.Accueils.plus(label)
             posAccueil += 15.0
         }
 
         val row1 = RowConstraints()
-        row1.percentHeight = 30.0  // 20% de la hauteur pour le panneau haut
+        row1.percentHeight = 30.0
         val row2 = RowConstraints()
-        row2.percentHeight = 70.0  // 80% de la hauteur pour les panneaux gauche et droit
+        row2.percentHeight = 70.0
         this.rowConstraints.addAll(row1, row2)
 
         val col1 = ColumnConstraints()
-        col1.percentWidth = 60.0  // 80% de la largeur pour le panneau gauche
+        col1.percentWidth = 60.0
         val col2 = ColumnConstraints()
-        col2.percentWidth = 40.0  // 20% de la largeur pour le panneau droit
+        col2.percentWidth = 40.0
         this.columnConstraints.addAll(col1, col2)
 
         this.style = "-fx-background-color : linear-gradient(from 0% 0% to 100% 100%, #6600CC, #3366FF);"
 
-        this.add(PanneauHaut, 0, 0, 2, 1)
         this.add(PanneauLeft, 0, 1)
         this.add(PanneauRight, 1, 1)
 
