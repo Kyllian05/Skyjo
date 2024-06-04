@@ -2,6 +2,7 @@ import javafx.application.Application
 import javafx.scene.Scene
 import javafx.stage.Stage
 import vue.Accueil
+import vue.Salon
 
 
 class TestVue(): Application() {
@@ -9,7 +10,7 @@ class TestVue(): Application() {
 
 
         // Vues
-        val salon = Accueil()
+        val salon = Salon()
 
 
         // Scène

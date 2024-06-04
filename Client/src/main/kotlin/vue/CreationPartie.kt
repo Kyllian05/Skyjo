@@ -7,7 +7,6 @@ import javafx.scene.layout.*
 
 class CreationPartie : BorderPane() {
     private val panneauCentre: VBox = VBox(15.0)
-    private val panneauDroite: AnchorPane = AnchorPane()
 
     val boutonCree: Button = Button("Crée la Partie")
     val boutonRetour : Button = Button("<")
@@ -24,7 +23,7 @@ class CreationPartie : BorderPane() {
 
     init {
         panneauCentre.padding = Insets(30.0)
-        panneauCentre.alignment = Pos.CENTER_LEFT
+        panneauCentre.alignment = Pos.CENTER
 
         this.labelComboBox1 = Label("Nombre de joueurs :")
         val comboBox= ComboBox<String>()
@@ -32,8 +31,8 @@ class CreationPartie : BorderPane() {
         comboBox.setValue("2");
         comboBox.styleClass.add("textarea")
 
-        val vbox1 = VBox(5.0, labelComboBox1, comboBox)
-        vbox1.alignment = Pos.CENTER_LEFT
+        val vbox1 = VBox(10.0, labelComboBox1, comboBox)
+        vbox1.alignment = Pos.CENTER
 
         //Paramètrage ComboBox et son Label
         this.labelComboBox1.styleClass.add("labelAccueil")
@@ -47,10 +46,9 @@ class CreationPartie : BorderPane() {
         //Parametrage Boutton Crée
         boutonCree.setPrefSize(400.0, 100.0)
         boutonCree.setMaxSize(400.0, 80.0)
-        AnchorPane.setRightAnchor(boutonCree, 100.0)
-        AnchorPane.setBottomAnchor(boutonCree, 100.0)
-        panneauDroite.children.add(boutonCree)
         this.boutonCree.styleClass.add("ButtonAccueil")
+        panneauCentre.children.add(boutonCree)
+        panneauCentre.spacing = 50.0
 
         val stackPaneTop = StackPane()
         stackPaneTop.padding = Insets(0.0, 0.0, 0.0, 0.0)
@@ -92,7 +90,6 @@ class CreationPartie : BorderPane() {
 
         this.top = stackPaneTop
         this.center = panneauCentre
-        this.right = panneauDroite
 
         this.style = "-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #6600CC, #3366FF);"
     }
