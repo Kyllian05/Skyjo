@@ -1,4 +1,4 @@
-package controleur.salon
+package controleur.creationPartie
 
 import javafx.event.ActionEvent
 import javafx.event.EventHandler
