@@ -11,7 +11,7 @@ class Jeu(private val server: Server) {
     val partyListe = FXCollections.observableArrayList<Party>()
     val pioche: Pioche = Pioche(this.server)
     val defausse: Defausse = Defausse(this.server)
-    var listeJoueur = FXCollections.observableArrayList<Int>()
+    var listeJoueur = FXCollections.observableArrayList<String>()
     var maxPlayerPartie : Int? = null
 
     fun createPlayer(name: String) {
@@ -74,7 +74,7 @@ class Jeu(private val server: Server) {
         var list = server.getAllPlayersInPartie()
         this.listeJoueur.clear()
         for(i in 0..list.size-1){
-            this.listeJoueur.add(list[i])
+            this.listeJoueur.add(server.getName(list[i]))
         }
     }
 }

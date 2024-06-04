@@ -14,7 +14,7 @@ class Salon : GridPane() {
     val Salons: Array<Label>
     val Param : Array<String>
     val Loader : ProgressIndicator
-    val ListeJoueurs = ListView<Int>()
+    val ListeJoueurs = ListView<String>()
 
     init {
         this.style = "-fx-background-color : linear-gradient(from 0% 0% to 100% 100%, #6600CC, #3366FF);"
