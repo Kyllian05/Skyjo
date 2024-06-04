@@ -1,4 +1,4 @@
-package controleur.creationPartie
+package controleur.accueil
 
 import javafx.event.ActionEvent
 import javafx.event.EventHandler

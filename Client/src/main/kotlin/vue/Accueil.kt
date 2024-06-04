@@ -19,7 +19,7 @@ class Accueil : GridPane() {
     private val PanneauRight : AnchorPane
     val CreateBtn : Button
     val JoinBtn : Button
-    val SettingsBtn : Button
+    //val SettingsBtn : Button
     val ExitBtn : Button
     val Accueils: Array<Label>
     val Param : Array<String>
@@ -36,7 +36,7 @@ class Accueil : GridPane() {
         this.PanneauRight = AnchorPane()
         this.CreateBtn = Button("Crée une partie")
         this.JoinBtn = Button("Rejoindre une partie")
-        this.SettingsBtn = Button("Paramètres")
+        //this.SettingsBtn = Button("Paramètres")
         this.ExitBtn = Button("Quitter")
         this.UpdateArea = TextArea("Infos sur les dernières nouveautés")
         this.VersionLab = Label("V1.2.1")
@@ -88,8 +88,8 @@ class Accueil : GridPane() {
         JoinBtn.setPrefSize(400.0, 100.0)
         this.JoinBtn.styleClass.add("ButtonAccueil")
 
-        SettingsBtn.setPrefSize(400.0, 100.0)
-        this.SettingsBtn.styleClass.add("ButtonAccueil")
+        //SettingsBtn.setPrefSize(400.0, 100.0)
+        //this.SettingsBtn.styleClass.add("ButtonAccueil")
 
         ExitBtn.setPrefSize(400.0, 100.0)
         this.ExitBtn.styleClass.add("ButtonAccueil")
@@ -121,7 +121,7 @@ class Accueil : GridPane() {
 
     fun addButtons() {
         PanneauLeft.children.removeAll(nameLabel, inputName, submitBtn)
-        PanneauLeft.children.addAll(CreateBtn, JoinBtn, SettingsBtn, ExitBtn)
+        PanneauLeft.children.addAll(CreateBtn, JoinBtn, ExitBtn)
     }
 
     fun fixeListener(b: Button, c: EventHandler<ActionEvent>) {

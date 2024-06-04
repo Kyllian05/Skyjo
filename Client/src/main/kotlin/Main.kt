@@ -1,6 +1,8 @@
+import controleur.accueil.BoutonRetour
 import controleur.accueil.ControleurBouttonNom
-import controleur.accueil.ControleurCreerPartie
+import controleur.creationPartie.ControleurCreerPartie
 import controleur.accueil.ControleurFermerAppli
+import controleur.accueil.ControleurRejoindre
 import javafx.application.Application
 import javafx.scene.Scene
 import javafx.stage.Stage
@@ -8,6 +10,7 @@ import modele.Jeu
 import vue.CreationPartie
 import modele.Server
 import vue.Accueil
+import vue.Rejoindre
 import vue.Salon
 
 
@@ -22,6 +25,7 @@ class Main(): Application() {
         val accueil = Accueil()
         val salon = Salon()
         val creer = CreationPartie()
+        val rejoindre = Rejoindre()
 
         // Model
         val jeu = Jeu(server)
@@ -29,10 +33,12 @@ class Main(): Application() {
         // Controllers
         accueil.fixeListener(accueil.submitBtn, ControleurBouttonNom(accueil, jeu))
         accueil.fixeListener(accueil.ExitBtn, ControleurFermerAppli(primaryStage))
-        accueil.fixeListener(accueil.CreateBtn, controleur.creationPartie.ControleurCreerPartie(creer, primaryStage))
+        accueil.fixeListener(accueil.JoinBtn, ControleurRejoindre(rejoindre, primaryStage))
+        accueil.fixeListener(accueil.CreateBtn, controleur.accueil.ControleurCreerPartie(creer, primaryStage))
 
         creer.boutonCree.onAction = ControleurCreerPartie(creer,jeu)
-        creer.boutonRetour.onAction = controleur.creationPartie.BoutonRetour(primaryStage,accueil)
+        creer.boutonRetour.onAction = BoutonRetour(primaryStage,accueil)
+        rejoindre.boutonRetour.onAction = BoutonRetour(primaryStage,accueil)
 
         // Scène
         val scene = Scene(accueil, 2000.0, 1000.0)
