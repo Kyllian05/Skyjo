@@ -1,14 +1,10 @@
-import controleur.ControleurBoutonCreerPartieRedirection
-import controleur.ControleurBouttonNom
-import controleur.ControleurCreerPartie
-import controleur.ControleurFermerAppli
+import controleur.accueil.ControleurBouttonNom
+import controleur.accueil.ControleurCreerPartie
+import controleur.accueil.ControleurFermerAppli
 import javafx.application.Application
 import javafx.scene.Scene
-import javafx.scene.image.Image
 import javafx.stage.Stage
-import modele.Defausse
 import modele.Jeu
-import modele.Pioche
 import vue.VueCrée
 import modele.Server
 import vue.Accueil
@@ -32,8 +28,8 @@ class Main(): Application() {
 
         // Controllers
         accueil.fixeListener(accueil.submitBtn, ControleurBouttonNom(accueil, jeu))
-        accueil.fixeListener(accueil.ExitBtn,ControleurFermerAppli(primaryStage))
-        accueil.fixeListener(accueil.CreateBtn,ControleurBoutonCreerPartieRedirection(creer,primaryStage))
+        accueil.fixeListener(accueil.ExitBtn, ControleurFermerAppli(primaryStage))
+        accueil.fixeListener(accueil.CreateBtn,controleur.salon.ControleurCreerPartie(creer,primaryStage))
 
         creer.boutonCree.onAction = ControleurCreerPartie(creer,jeu)
 

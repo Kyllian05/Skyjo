@@ -1,12 +1,10 @@
-package controleur
+package controleur.accueil
 
 import io.ktor.client.plugins.*
 import javafx.event.ActionEvent
 import javafx.event.EventHandler
 import javafx.scene.control.Alert
-import modele.Defausse
 import modele.Jeu
-import modele.Pioche
 import modele.serverData.ServerException
 import vue.Accueil
 
