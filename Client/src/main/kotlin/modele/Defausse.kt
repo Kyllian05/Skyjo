@@ -2,14 +2,10 @@ package modele
 
 import kotlinx.coroutines.runBlocking
 
-class Defausse(server: Server,c: Carte): StockCarte() {
+class Defausse(server: Server): StockCarte() {
 
     private var server = server
-    private var cards : Carte?
-
-    init{
-        runBlocking { cards = Carte(server.getPartieState().carteSommetDefausse.valeur.toInt()) }
-    }
+    private var cards : Carte? = null
 
     fun prendre(colonne: Int,ligne: Int): Carte{
         runBlocking {

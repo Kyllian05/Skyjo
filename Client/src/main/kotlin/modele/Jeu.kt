@@ -2,13 +2,15 @@ package modele
 
 import kotlinx.coroutines.runBlocking
 
-class Jeu(private val server: Server, player: Joueur) {
+class Jeu(private val server: Server) {
     private var id: Int? = null
-    private val myPlayer: Joueur
+    private var myPlayer: Joueur? = null
     private var joined: Boolean = false
+    val pioche: Pioche = Pioche(this.server)
+    val defausse: Defausse = Defausse(this.server)
 
-    init {
-        this.myPlayer = player
+    fun createPlayer(name: String) {
+        this.myPlayer = Joueur(name, this.server, this.pioche, this.defausse)
     }
 
     fun start() {
@@ -25,7 +27,7 @@ class Jeu(private val server: Server, player: Joueur) {
         }
         // Création de la partie avec le serveur
         runBlocking {
-            this@Jeu.id = this@Jeu.server.createPartie(this@Jeu.myPlayer.id)
+            this@Jeu.id = this@Jeu.server.createPartie(nbJoueur)
         }
         this.joined = true
     }

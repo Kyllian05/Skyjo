@@ -3,7 +3,7 @@ package modele
 import javafx.scene.chart.CategoryAxis
 import kotlinx.coroutines.runBlocking
 
-class Joueur(nom: String, server: Server,pioche:Pioche,defausse: Defausse) {
+class Joueur(nom: String, server: Server, pioche:Pioche, defausse: Defausse) {
     val nom: String
     val currentPlayer: Boolean
     private val server: Server

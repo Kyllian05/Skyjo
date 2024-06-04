@@ -4,6 +4,9 @@ import javafx.application.Application
 import javafx.scene.Scene
 import javafx.scene.image.Image
 import javafx.stage.Stage
+import modele.Defausse
+import modele.Jeu
+import modele.Pioche
 import vue.VueCrée
 import modele.Server
 import vue.Accueil
@@ -19,9 +22,11 @@ class Main(): Application() {
         // Vues
         val accueil = Accueil()
 
+        // Model
+        val jeu = Jeu(server)
+
         // Controllers
-        val controleurBouttonNom = ControleurBouttonNom(accueil)
-        accueil.fixeListener(accueil.submitBtn, controleurBouttonNom)
+        accueil.fixeListener(accueil.submitBtn, ControleurBouttonNom(accueil, jeu))
         accueil.fixeListener(accueil.ExitBtn,ControleurFermerAppli(primaryStage))
 
         // Scène
