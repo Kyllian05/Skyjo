@@ -13,7 +13,7 @@ import vue.Accueil
 
 
 class Main(): Application() {
-    val IP = arrayOf("172.26.82.23", "172.26.82.18", "172.26.82.13")
+    val IP = arrayOf("http://172.26.82.23", "http://172.26.82.18", "http://172.26.82.13")
 
     override fun start(primaryStage: Stage) {
         // Création du serveur
