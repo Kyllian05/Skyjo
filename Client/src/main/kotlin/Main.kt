@@ -42,7 +42,7 @@ class Main(): Application() {
 
         scene.stylesheets.add(javaClass.getResource("style.css").toExternalForm())
         primaryStage.title="Skyjo"
-        primaryStage.scene=scene
+        primaryStage.scene = scene
         primaryStage.isMaximized = true
         // Icon de l'application (ne fonctionne pas)
         //primaryStage.icons.add(Image("/images/cartes/carteSKYJO.png"))
