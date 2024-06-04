@@ -5,6 +5,7 @@ import controleur.accueil.ControleurFermerAppli
 import controleur.accueil.ControleurRejoindre
 import javafx.application.Application
 import javafx.scene.Scene
+import javafx.scene.image.Image
 import javafx.stage.Stage
 import modele.Jeu
 import vue.CreationPartie
@@ -12,6 +13,7 @@ import modele.Server
 import vue.Accueil
 import vue.Rejoindre
 import vue.Salon
+import java.io.FileInputStream
 
 
 class Main(): Application() {
@@ -47,8 +49,7 @@ class Main(): Application() {
         primaryStage.title="Skyjo"
         primaryStage.scene = scene
         primaryStage.isMaximized = true
-        // Icon de l'application (ne fonctionne pas)
-        //primaryStage.icons.add(Image("/images/cartes/carteSKYJO.png"))
+        primaryStage.icons.add(Image(FileInputStream("images/cartes/carteSKYJO.png")))
         primaryStage.show()
     }
 }
