@@ -10,12 +10,12 @@ class Game(val nbJoueur: Int) : GridPane() {
     init {
         this.Cartes = arrayOf()
 
-        for (i in 0 until 13) {
+        /*for (i in 0 until 13) {
             val carte : Button
             label.padding = Insets(posAccueil, 0.0, 0.0, 300.0)
             label.styleClass.add(Param[i])
             this.Cartes.plus(carte)
 
-        }
+        }*/
     }
 }
