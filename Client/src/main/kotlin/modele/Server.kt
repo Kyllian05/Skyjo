@@ -30,7 +30,7 @@ class Server(IP: String) {
     }
 
     suspend fun verifyResponse(res: HttpResponse) {
-        if (res.status != HttpStatusCode.OK) {
+        if (res.status.value !in 200..299) {
             throw ServerException(res.status, res.body<String>())
         }
     }
