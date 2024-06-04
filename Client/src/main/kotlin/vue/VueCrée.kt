@@ -4,70 +4,67 @@ import javafx.geometry.Insets
 import javafx.geometry.Pos
 import javafx.scene.control.*
 import javafx.scene.layout.*
-import javafx.scene.paint.Color
-import javafx.scene.text.Font
-import javafx.scene.text.FontPosture
-import javafx.scene.text.FontWeight
 
 class VueCrée : BorderPane() {
     private val panneauCentre: VBox = VBox(15.0)
     private val panneauDroite: AnchorPane = AnchorPane()
     private val boutonCree: Button = Button("Crée la Partie")
+    val labelTop2 : Label
+    val labelTop3 : Label
+    val labelTop1 : Label
+    val labelTop4 : Label
+    val labelTop5 : Label
+    val labelTop6 : Label
+    val labelTop7 : Label
+    val labelComboBox1:Label
 
     init {
         panneauCentre.padding = Insets(30.0)
         panneauCentre.alignment = Pos.CENTER_LEFT
 
-        val labelComboBox1 = Label("Nombre de joueurs :")
+        this.labelComboBox1 = Label("Nombre de joueurs :")
         val comboBox1 = ComboBox<String>()
         comboBox1.items.addAll("2", "3", "4", "5", "6", "7", "8")
 
-        val labelComboBox2 = Label("Temps par tour :")
-        val comboBox2 = ComboBox<String>()
-        comboBox2.items.addAll("5s", "10s", "15s", "20s")
-
-        val labelTextField = Label("Nom de la Partie :")
-        val textField: TextField = TextField()
-
-        val labelStyle = "-fx-font-size: 20px; -fx-text-fill: white;"
-        labelComboBox1.style = labelStyle
-        labelComboBox2.style = labelStyle
-        labelTextField.style = labelStyle
-
-        val inputStyle = "-fx-pref-width: 300px; -fx-pref-height: 40px;"
+        val inputStyle = "-fx-max-width: 300px; -fx-max-height: 100px;"
         comboBox1.style = inputStyle
-        comboBox2.style = inputStyle
-        textField.style = inputStyle
+
 
         val vbox1 = VBox(5.0, labelComboBox1, comboBox1)
-        val vbox2 = VBox(5.0, labelComboBox2, comboBox2)
-        val vbox3 = VBox(5.0, labelTextField, textField)
+
 
         vbox1.alignment = Pos.CENTER_LEFT
-        vbox2.alignment = Pos.CENTER_LEFT
-        vbox3.alignment = Pos.CENTER_LEFT
 
-        panneauCentre.children.addAll(vbox1, vbox2, vbox3)
-        panneauCentre.padding = Insets(100.0, 150.0, 100.0, 150.0)
+        this.labelComboBox1.styleClass.add("label")
+        this.boutonCree.styleClass.add("btn")
 
-        boutonCree.style = "-fx-background-radius: 5px; -fx-background-color: white; -fx-text-fill: linear-gradient(from 0% 0% to 100% 100%, #6600CC, #3366FF); -fx-pref-width: 250px; -fx-pref-height: 40px;"
-        AnchorPane.setRightAnchor(boutonCree, 150.0)
+        panneauCentre.children.addAll(vbox1)
+        panneauCentre.padding = Insets(0.0, 150.0, 75.0, 150.0)
+
+        boutonCree.style = "-fx-background-radius: 5px; -fx-background-color: white; -fx-text-fill: linear-gradient(from 0% 0% to 100% 100%, #6600CC, #3366FF); -fx-max-width: 300px; -fx-max-height: 100px;"
+        AnchorPane.setRightAnchor(boutonCree, 100.0)
         AnchorPane.setBottomAnchor(boutonCree, 100.0)
         panneauDroite.children.add(boutonCree)
 
         val stackPaneTop = StackPane()
-        stackPaneTop.padding = Insets(20.0, 0.0, 0.0, 50.0)
+        stackPaneTop.padding = Insets(20.0, 0.0, 0.0, 0.0)
         stackPaneTop.alignment = Pos.TOP_LEFT
 
-        // Styles pour les labels en haut
-        val labelTopStyle = "-fx-font-size: 48px; -fx-font-weight: bold;"
-        val labelTop1 = createColoredLabel("Crée une Partie", Color.RED, labelTopStyle)
-        val labelTop2 = createColoredLabel("Crée une Partie", Color.ORANGE, labelTopStyle)
-        val labelTop3 = createColoredLabel("Crée une Partie", Color.YELLOW, labelTopStyle)
-        val labelTop4 = createColoredLabel("Crée une Partie", Color.GREEN, labelTopStyle)
-        val labelTop5 = createColoredLabel("Crée une Partie", Color.BLUE, labelTopStyle)
-        val labelTop6 = createColoredLabel("Crée une Partie", Color.CYAN, labelTopStyle)
-        val labelTop7 = createColoredLabel("Crée une Partie", Color.WHITE, labelTopStyle)
+        this.labelTop1 = Label("Crée une Partie")
+        this.labelTop2 = Label("Crée une Partie")
+        this.labelTop3 = Label("Crée une Partie")
+        this.labelTop4 = Label("Crée une Partie")
+        this.labelTop5 = Label("Crée une Partie")
+        this.labelTop6 = Label("Crée une Partie")
+        this.labelTop7 = Label("Crée une Partie")
+
+        this.labelTop1.styleClass.add("Titre")
+        this.labelTop2.styleClass.add("Titre1")
+        this.labelTop3.styleClass.add("Titre2")
+        this.labelTop4.styleClass.add("Titre3")
+        this.labelTop5.styleClass.add("Titre4")
+        this.labelTop6.styleClass.add("Titre5")
+        this.labelTop7.styleClass.add("Titre6")
 
         StackPane.setMargin(labelTop1, Insets(50.0, 0.0, 0.0, 150.0))
         StackPane.setMargin(labelTop2, Insets(50.0, 0.0, 0.0, 155.0))
@@ -86,11 +83,4 @@ class VueCrée : BorderPane() {
         this.style = "-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #6600CC, #3366FF);"
     }
 
-    private fun createColoredLabel(text: String, color: Color, style: String): Label {
-        val label = Label(text)
-        label.font = Font.font("Sans", FontWeight.BOLD, FontPosture.REGULAR, 48.0)
-        label.textFill = color
-        label.style = style
-        return label
-    }
 }
