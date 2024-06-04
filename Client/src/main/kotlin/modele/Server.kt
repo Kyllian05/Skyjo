@@ -147,13 +147,12 @@ class Server(IP: String) {
         return result.idParties
     }
 
-    suspend fun getPartieState(): modele.serverData.Plateau {
-        if (this.idPartie == null) {
-            throw Exception("No party joined")
+    suspend fun getPartieState(id: Int? = this.idPartie): modele.serverData.Plateau {
+        if (id == null) {
+            throw Exception("Aucune partie donnée")
         }
-        val response = client.get("$IP/partie/$idPartie")
+        val response = client.get("$IP/partie/$id")
         verifyResponse(response)
-
         return Json.decodeFromString<Plateau>(response.body<String>())
     }
 
@@ -168,12 +167,16 @@ class Server(IP: String) {
     }
 
     suspend fun getCard(idPlayer: Int,colonne : Int,line : Int):Carte{
-        var result = getPartieState()
-        for (i in 0..result.plateaux.size){
-            if(result.plateaux[i].idJoueur == idPlayer){
-                return Carte((result.plateaux[i].colonnes[colonne][line].valeur as Int))
+        if (this.idPartie == null) {
+            throw Exception("No party joined")
+        } else {
+            var result = getPartieState(idPartie!!)
+            for (i in 0..result.plateaux.size){
+                if(result.plateaux[i].idJoueur == idPlayer){
+                    return Carte((result.plateaux[i].colonnes[colonne][line].valeur as Int))
+                }
             }
+            throw NotExistingPlayerException(idPlayer)
         }
-        throw NotExistingPlayerException(idPlayer)
     }
 }

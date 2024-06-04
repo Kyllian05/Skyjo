@@ -10,6 +10,7 @@ import javafx.scene.paint.Color
 import javafx.scene.text.Font
 import javafx.scene.text.FontPosture
 import javafx.scene.text.FontWeight
+import modele.data.Party
 
 class Rejoindre : BorderPane() {
     private val panneauCentre: VBox = VBox(15.0)
@@ -25,7 +26,7 @@ class Rejoindre : BorderPane() {
     val labelTop6 : Label
     val labelTop7 : Label
     val labelPartie:Label
-    val ListePartie = ListView<String>()
+    val ListePartie = ListView<Party>()
 
 
     init {

@@ -35,7 +35,7 @@ class Main(): Application() {
         // Controllers
         accueil.fixeListener(accueil.submitBtn, ControleurBouttonNom(accueil, jeu))
         accueil.fixeListener(accueil.ExitBtn, ControleurFermerAppli(primaryStage))
-        accueil.fixeListener(accueil.JoinBtn, ControleurRejoindre(rejoindre, primaryStage))
+        accueil.fixeListener(accueil.JoinBtn, ControleurRejoindre(rejoindre, primaryStage, jeu))
         accueil.fixeListener(accueil.CreateBtn, controleur.accueil.ControleurCreerPartie(creer, primaryStage))
 
         creer.boutonCree.onAction = ControleurCreerPartie(creer,jeu)

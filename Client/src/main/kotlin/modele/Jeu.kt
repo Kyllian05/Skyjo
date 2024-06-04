@@ -1,11 +1,14 @@
 package modele
 
+import javafx.collections.FXCollections
 import kotlinx.coroutines.runBlocking
+import modele.data.Party
 
 class Jeu(private val server: Server) {
     private var id: Int? = null
     private var myPlayer: Joueur? = null
     private var joined: Boolean = false
+    val partyListe = FXCollections.observableArrayList<Party>()
     val pioche: Pioche = Pioche(this.server)
     val defausse: Defausse = Defausse(this.server)
 
@@ -43,4 +46,24 @@ class Jeu(private val server: Server) {
         return false
     }
 
+    /**
+     * Contacte le serveur toutes les 5sec pour découvrir les nouvelles parties
+     */
+    fun discoverParty() {
+        while (!joined) {
+            val parties = runBlocking {
+                return@runBlocking this@Jeu.server.getAllParties()
+            }
+            this.partyListe.remove(0, this.partyListe.size)
+           for (p in parties) {
+               val state = runBlocking {
+                   return@runBlocking this@Jeu.server.getPartieState(p)
+               }
+               val max = state.nbJoueursMax
+               val joined = state.plateaux.size
+               this.partyListe.add(Party(max, p, joined))
+           }
+            Thread.sleep(5000)
+        }
+    }
 }
