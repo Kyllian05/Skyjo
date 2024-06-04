@@ -7,7 +7,7 @@ import javafx.stage.Stage
 import vue.Accueil
 import vue.VueCrée
 
-class ControleurBoutonCreerPartie(val vue: VueCrée,val stage: Stage):EventHandler<ActionEvent> {
+class ControleurBoutonCreerPartieRedirection(val vue: VueCrée,val stage: Stage):EventHandler<ActionEvent> {
     override fun handle(p0: ActionEvent) {
         stage.scene.root = vue
     }

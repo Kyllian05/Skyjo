@@ -4,11 +4,15 @@ import javafx.geometry.Insets
 import javafx.geometry.Pos
 import javafx.scene.control.*
 import javafx.scene.layout.*
+import javafx.scene.paint.Color
+import javafx.scene.text.Font
+import javafx.scene.text.FontPosture
+import javafx.scene.text.FontWeight
 
 class VueCrée : BorderPane() {
     private val panneauCentre: VBox = VBox(15.0)
     private val panneauDroite: AnchorPane = AnchorPane()
-    private val boutonCree: Button = Button("Crée la Partie")
+    val boutonCree: Button = Button("Crée la Partie")
     val labelTop2 : Label
     val labelTop3 : Label
     val labelTop1 : Label
@@ -17,13 +21,13 @@ class VueCrée : BorderPane() {
     val labelTop6 : Label
     val labelTop7 : Label
     val labelComboBox1:Label
+    val comboBox1 = ComboBox<String>()
 
     init {
         panneauCentre.padding = Insets(30.0)
         panneauCentre.alignment = Pos.CENTER_LEFT
 
         this.labelComboBox1 = Label("Nombre de joueurs :")
-        val comboBox1 = ComboBox<String>()
         comboBox1.items.addAll("2", "3", "4", "5", "6", "7", "8")
 
         val inputStyle = "-fx-max-width: 300px; -fx-max-height: 100px;"
@@ -47,7 +51,7 @@ class VueCrée : BorderPane() {
         panneauDroite.children.add(boutonCree)
 
         val stackPaneTop = StackPane()
-        stackPaneTop.padding = Insets(20.0, 0.0, 0.0, 0.0)
+        stackPaneTop.padding = Insets(20.0, 0.0, 0.0, 50.0)
         stackPaneTop.alignment = Pos.TOP_LEFT
 
         this.labelTop1 = Label("Crée une Partie")
@@ -83,4 +87,11 @@ class VueCrée : BorderPane() {
         this.style = "-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #6600CC, #3366FF);"
     }
 
+    private fun createColoredLabel(text: String, color: Color, style: String): Label {
+        val label = Label(text)
+        label.font = Font.font("Sans", FontWeight.BOLD, FontPosture.REGULAR, 48.0)
+        label.textFill = color
+        label.style = style
+        return label
+    }
 }

@@ -1,5 +1,6 @@
-import controleur.ControleurBoutonCreerPartie
+import controleur.ControleurBoutonCreerPartieRedirection
 import controleur.ControleurBouttonNom
+import controleur.ControleurCreerPartie
 import controleur.ControleurFermerAppli
 import javafx.application.Application
 import javafx.scene.Scene
@@ -24,6 +25,7 @@ class Main(): Application() {
         // Vues
         val accueil = Accueil()
         val salon = Salon()
+        val creer = VueCrée()
 
         // Model
         val jeu = Jeu(server)
@@ -31,7 +33,9 @@ class Main(): Application() {
         // Controllers
         accueil.fixeListener(accueil.submitBtn, ControleurBouttonNom(accueil, jeu))
         accueil.fixeListener(accueil.ExitBtn,ControleurFermerAppli(primaryStage))
-        accueil.fixeListener(accueil.CreateBtn,ControleurBoutonCreerPartie(VueCrée(),primaryStage))
+        accueil.fixeListener(accueil.CreateBtn,ControleurBoutonCreerPartieRedirection(creer,primaryStage))
+
+        creer.boutonCree.onAction = ControleurCreerPartie(creer,jeu)
 
         // Scène
         val scene = Scene(accueil, 2000.0, 1000.0)
