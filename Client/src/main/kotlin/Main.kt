@@ -1,3 +1,4 @@
+import controleur.ControleurBoutonCreerPartie
 import controleur.ControleurBouttonNom
 import controleur.ControleurFermerAppli
 import javafx.application.Application
@@ -28,6 +29,7 @@ class Main(): Application() {
         // Controllers
         accueil.fixeListener(accueil.submitBtn, ControleurBouttonNom(accueil, jeu))
         accueil.fixeListener(accueil.ExitBtn,ControleurFermerAppli(primaryStage))
+        accueil.fixeListener(accueil.CreateBtn,ControleurBoutonCreerPartie(VueCrée(),primaryStage))
 
         // Scène
         val scene = Scene(accueil, 2000.0, 1000.0)
