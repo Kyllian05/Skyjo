@@ -21,13 +21,8 @@ class Accueil : GridPane() {
     val JoinBtn : Button
     val SettingsBtn : Button
     val ExitBtn : Button
-    val Titre : Label
-    val Titre1 : Label
-    val Titre2 : Label
-    val Titre3 : Label
-    val Titre4 : Label
-    val Titre5 : Label
-    val Titre6 : Label
+    val Accueils: Array<Label>
+    val Param : Array<String>
     val UpdateArea : TextArea
     val VersionLab : Label
     val nameLabel : Label
@@ -43,19 +38,23 @@ class Accueil : GridPane() {
         this.JoinBtn = Button("Rejoindre une partie")
         this.SettingsBtn = Button("Paramètres")
         this.ExitBtn = Button("Quitter")
-        this.Titre = Label("SKYJO")
-        this.Titre1 = Label("SKYJO")
-        this.Titre2 = Label("SKYJO")
-        this.Titre3 = Label("SKYJO")
-        this.Titre4= Label("SKYJO")
-        this.Titre5 = Label("SKYJO")
-        this.Titre6 = Label("SKYJO")
         this.UpdateArea = TextArea("Infos sur les dernières nouveautés")
         this.VersionLab = Label("V1.2.1")
         this.nameLabel = Label("Entrez votre pseudo :")
         this.inputName = TextField()
         this.submitBtn = Button("Valider")
 
+        this.Accueils = arrayOf()
+        this.Param = arrayOf("Titre", "Titre1", "Titre2", "Titre3", "Titre4", "Titre5", "Titre6")
+        var posAccueil = 5.0
+        for (i in 0 until 7) {
+            val label = Label("SKYJO")
+            this.add(label, 0, 0)
+            GridPane.setMargin(label, Insets(posAccueil, 300.0, 0.0, 300.0))
+            label.styleClass.add(Param[i])
+            this.Accueils.plus(label)
+            posAccueil += 15.0
+        }
 
         val row1 = RowConstraints()
         row1.percentHeight = 30.0  // 20% de la hauteur pour le panneau haut
@@ -113,26 +112,7 @@ class Accueil : GridPane() {
         UpdateArea.isWrapText = true
         VersionLab.style = "-fx-text-fill: darkblue;"
 
-
-        this.Titre.styleClass.add("Titre")
-        this.Titre1.styleClass.add("Titre1")
-        this.Titre2.styleClass.add("Titre2")
-        this.Titre3.styleClass.add("Titre3")
-        this.Titre4.styleClass.add("Titre4")
-        this.Titre5.styleClass.add("Titre5")
-        this.Titre6.styleClass.add("Titre6")
-
-        setMargin(Titre, Insets(5.0, 300.0, 0.0, 300.0))
-        setMargin(Titre1, Insets(20.0, 300.0, 0.0, 300.0))
-        setMargin(Titre2, Insets(35.0, 300.0, 0.0, 300.0))
-        setMargin(Titre3, Insets(50.0, 300.0, 0.0, 300.0))
-        setMargin(Titre4, Insets(65.0, 300.0, 0.0, 300.0))
-        setMargin(Titre5, Insets(80.0, 300.0, 0.0, 300.0))
-        setMargin(Titre6, Insets(95.0, 300.0, 0.0, 300.0))
-
-
         PanneauLeft.children.addAll(nameLabel, inputName, submitBtn)
-        PanneauHaut.children.addAll(Titre, Titre1, Titre2, Titre3, Titre4, Titre5, Titre6)
         PanneauRight.children.addAll(UpdateArea, VersionLab)
 
     }

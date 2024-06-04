@@ -47,6 +47,10 @@
     -fx-text-fill: white;
 }
 
+.Progress {
+    -fx-progress-color: white;
+}
+
 .ButtonAccueil {
     -fx-background-radius: 10;
     -fx-border-radius: 10;

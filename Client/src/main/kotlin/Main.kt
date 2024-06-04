@@ -11,6 +11,7 @@ import modele.Pioche
 import vue.VueCrée
 import modele.Server
 import vue.Accueil
+import vue.Salon
 
 
 class Main(): Application() {
@@ -22,6 +23,7 @@ class Main(): Application() {
 
         // Vues
         val accueil = Accueil()
+        val salon = Salon()
 
         // Model
         val jeu = Jeu(server)
@@ -33,6 +35,7 @@ class Main(): Application() {
 
         // Scène
         val scene = Scene(accueil, 2000.0, 1000.0)
+
         scene.stylesheets.add(javaClass.getResource("style.css").toExternalForm())
         primaryStage.title="Skyjo"
         primaryStage.scene=scene
