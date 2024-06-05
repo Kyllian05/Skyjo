@@ -1,6 +1,6 @@
 package controleur.creationPartie
 
-import controleur.Salon.FetchingPlayer
+import controleur.salon.FetchingPlayer
 import io.ktor.client.plugins.*
 import javafx.event.ActionEvent
 import javafx.event.EventHandler

@@ -1,4 +1,5 @@
 import controleur.accueil.*
+import controleur.rejoindrePartie.ControleurActualiser
 import javafx.application.Application
 import javafx.scene.Scene
 import javafx.scene.image.Image
@@ -37,6 +38,7 @@ class Main(): Application() {
         creer.boutonCree.onAction = controleur.creationPartie.ControleurCreerPartie(creer,jeu,primaryStage,salon)
         creer.boutonRetour.onAction = BoutonRetour(primaryStage,accueil)
         rejoindre.boutonRetour.onAction = BoutonRetour(primaryStage,accueil)
+        rejoindre.boutonActualiser.onAction = ControleurActualiser(jeu, rejoindre)
 
         // Scène
         val scene = Scene(accueil, 2000.0, 1000.0)

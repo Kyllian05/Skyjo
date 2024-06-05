@@ -17,7 +17,9 @@ class Rejoindre : BorderPane() {
     private val panneauDroite: AnchorPane = AnchorPane()
 
     val boutonRejoindre: Button = Button("Rejoindre la Partie")
+    val boutonActualiser: Button = Button("Actualiser")
     val boutonRetour : Button = Button("<")
+    val loader: ProgressIndicator = ProgressIndicator()
     val labelTop2 : Label
     val labelTop3 : Label
     val labelTop1 : Label
@@ -27,6 +29,7 @@ class Rejoindre : BorderPane() {
     val labelTop7 : Label
     val labelPartie:Label
     val ListePartie = ListView<Party>()
+    val vbox1: VBox
 
 
     init {
@@ -35,18 +38,20 @@ class Rejoindre : BorderPane() {
 
         this.labelPartie = Label("Parties:")
 
-
-        val vbox1 = VBox(5.0, labelPartie, ListePartie)
+        boutonActualiser.styleClass.add("ButtonAccueil")
+        loader.styleClass.add("Progress")
+        boutonRejoindre.setPrefSize(300.0, 50.0)
+        this.vbox1 = VBox(5.0, labelPartie, ListePartie, boutonActualiser)
         vbox1.alignment = Pos.CENTER_LEFT
 
-        //Paramètrage ComboBox et son Label
+        //Paramétrage ComboBox et son Label
         this.labelPartie.styleClass.add("labelAccueil")
         ListePartie.styleClass.add("ButtonAccueil")
 
         panneauCentre.children.addAll(vbox1)
         panneauCentre.padding = Insets(0.0, 150.0, 75.0, 150.0)
 
-        //Parametrage Boutton Crée
+        //Paramétrage Boutton Crée
         boutonRejoindre.setPrefSize(400.0, 100.0)
         boutonRejoindre.setMaxSize(400.0, 80.0)
         AnchorPane.setRightAnchor(boutonRejoindre, 100.0)
@@ -99,5 +104,14 @@ class Rejoindre : BorderPane() {
         this.style = "-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #6600CC, #3366FF);"
     }
 
+    fun showActualiser() {
+        this.vbox1.children.remove(this.loader)
+        this.vbox1.children.add(this.boutonActualiser)
+    }
+
+    fun hideActualiser() {
+        this.vbox1.children.remove(this.boutonActualiser)
+        this.vbox1.children.add(this.loader)
+    }
 }
 

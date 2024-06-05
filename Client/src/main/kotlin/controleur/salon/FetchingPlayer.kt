@@ -1,4 +1,4 @@
-package controleur.Salon
+package controleur.salon
 
 import javafx.concurrent.Task
 import kotlinx.coroutines.runBlocking
