@@ -1,15 +1,13 @@
 import controleur.accueil.*
+import controleur.rejoindrePartie.ControleurBoutonRejoindrePartie
 import controleur.rejoindrePartie.ControleurActualiser
 import javafx.application.Application
 import javafx.scene.Scene
 import javafx.scene.image.Image
 import javafx.stage.Stage
 import modele.Jeu
-import vue.CreationPartie
 import modele.Server
-import vue.Accueil
-import vue.Rejoindre
-import vue.Salon
+import vue.*
 import java.io.FileInputStream
 
 
@@ -25,6 +23,7 @@ class Main(): Application() {
         val salon = Salon()
         val creer = CreationPartie()
         val rejoindre = Rejoindre()
+        val game : Game? = null
 
         // Model
         val jeu = Jeu(server)
@@ -35,9 +34,11 @@ class Main(): Application() {
         accueil.fixeListener(accueil.JoinBtn, ControleurRejoindre(rejoindre, primaryStage, jeu))
         accueil.fixeListener(accueil.CreateBtn, controleur.accueil.ControleurCreerPartie(creer, primaryStage))
 
-        creer.boutonCree.onAction = controleur.creationPartie.ControleurCreerPartie(creer,jeu,primaryStage,salon)
+        creer.boutonCree.onAction = controleur.creationPartie.ControleurCreerPartie(creer,jeu,primaryStage,salon,game)
         creer.boutonRetour.onAction = BoutonRetour(primaryStage,accueil)
+
         rejoindre.boutonRetour.onAction = BoutonRetour(primaryStage,accueil)
+        rejoindre.boutonRejoindre.onAction = ControleurBoutonRejoindrePartie(primaryStage,salon,jeu,game,rejoindre)
         rejoindre.boutonActualiser.onAction = ControleurActualiser(jeu, rejoindre)
 
         // Scène

@@ -9,9 +9,10 @@ import javafx.stage.Stage
 import modele.Jeu
 import modele.serverData.ServerException
 import vue.CreationPartie
+import vue.Game
 import vue.Salon
 
-class ControleurCreerPartie(val vue : CreationPartie, val jeu : Jeu,val stage : Stage,val salon : Salon): EventHandler<ActionEvent> {
+class ControleurCreerPartie(val vue : CreationPartie, val jeu : Jeu,val stage : Stage,val salon : Salon,val game : Game?): EventHandler<ActionEvent> {
     override fun handle(event: ActionEvent) {
         val info = Alert(Alert.AlertType.INFORMATION)
         val error = Alert(Alert.AlertType.ERROR)
@@ -19,7 +20,7 @@ class ControleurCreerPartie(val vue : CreationPartie, val jeu : Jeu,val stage : 
             jeu.creerPartie(vue.comboBox.value)
             salon.ListeJoueurs.items = jeu.listeJoueur
             stage.scene.root = salon
-            FetchingPlayer(jeu,salon).startWaiting()
+            FetchingPlayer(jeu,salon,game,stage).startWaiting()
         } catch (e: ServerException) {
             error.title = "Erreur serveur"
             error.headerText = "Code : ${e.code}, ${e.message}"
