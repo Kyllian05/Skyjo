@@ -43,9 +43,11 @@ class Jeu(private val server: Server) {
             throw Exception("Party already joined")
         }
         runBlocking {
+            server.joinPartie(idParty)
             maxPlayerPartie = server.getPartieState().nbJoueursMax
             var joueurs = IntArray(maxPlayerPartie!!)
             joueurs = this@Jeu.server.getAllPlayers()
+            joined = true
         }
         return false
     }
