@@ -27,6 +27,7 @@ class Main(): Application() {
 
         // Model
         val jeu = Jeu(server)
+        salon.ListeJoueurs.items = jeu.listeJoueur
 
         // Controllers
         accueil.fixeListener(accueil.submitBtn, ControleurBouttonNom(accueil, jeu))

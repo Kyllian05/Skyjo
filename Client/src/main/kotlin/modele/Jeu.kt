@@ -1,6 +1,7 @@
 package modele
 
 import javafx.collections.FXCollections
+import javafx.collections.ObservableList
 import kotlinx.coroutines.runBlocking
 import modele.data.Party
 import modele.serverData.ServerException
@@ -80,10 +81,12 @@ class Jeu(private val server: Server) {
     }
 
     suspend fun updateListeJoueur(){
-        var list = server.getAllPlayersInPartie()
-        this.listeJoueur.clear()
-        for(i in 0..list.size-1){
-            this.listeJoueur.add(server.getName(list[i]))
-        }
+         var list = server.getAllPlayersInPartie()
+         var result = FXCollections.observableArrayList<String>()
+         for(i in 0..list.size-1){
+             result.add(server.getName(list[i]))
+         }
+         this@Jeu.listeJoueur.clear()
+         this@Jeu.listeJoueur.addAll(result)
     }
 }
