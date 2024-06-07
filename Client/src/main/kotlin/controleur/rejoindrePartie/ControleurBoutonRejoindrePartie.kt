@@ -1,6 +1,7 @@
 package controleur.rejoindrePartie
 
 import controleur.salon.FetchingPlayer
+import javafx.concurrent.Task
 import javafx.event.ActionEvent
 import javafx.event.EventHandler
 import javafx.stage.Stage

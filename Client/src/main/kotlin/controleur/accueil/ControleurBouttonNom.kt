@@ -12,6 +12,7 @@ import kotlinx.coroutines.runBlocking
 import modele.Jeu
 import modele.serverData.ServerException
 import vue.Accueil
+import java.util.concurrent.TimeoutException
 
 class ControleurBouttonNom(private val vue: Accueil, private val j: Jeu): EventHandler<ActionEvent> {
     override fun handle(event: ActionEvent?) {

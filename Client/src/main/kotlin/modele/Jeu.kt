@@ -3,7 +3,6 @@ package modele
 import javafx.collections.FXCollections
 import kotlinx.coroutines.runBlocking
 import modele.data.Party
-import modele.serverData.ServerException
 
 class Jeu(private val server: Server) {
     private var id: Int? = null
@@ -51,32 +50,6 @@ class Jeu(private val server: Server) {
             joined = true
         }
         return false
-    }
-
-    /**
-     * Contacte le serveur toutes les 5sec pour découvrir les nouvelles parties
-     */
-    suspend fun discoverParty() {
-        val parties = this.server.getAllParties()
-        this.partyListe.remove(0, this.partyListe.size)
-        for (p in parties) {
-            val state = this.server.getPartieState(p)
-            val max = state.nbJoueursMax
-            val joined = state.plateaux.size
-            if (max == joined) {
-                continue
-            }
-            try {
-                val createdBy = this.server.getName(state.plateaux[0].idJoueur)
-                this.partyListe.add(Party(max, p, joined, createdBy))
-            } catch (e: ServerException) {
-                if (e.code.value == 404) {
-                    continue
-                } else {
-                    throw e
-                }
-            }
-        }
     }
 
     suspend fun updateListeJoueur(){
