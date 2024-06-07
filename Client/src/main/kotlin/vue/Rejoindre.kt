@@ -17,7 +17,6 @@ class Rejoindre : BorderPane() {
     private val panneauDroite: AnchorPane = AnchorPane()
 
     val boutonRejoindre: Button = Button("Rejoindre la Partie")
-    val boutonActualiser: Button = Button("Actualiser")
     val boutonRetour : Button = Button("<")
     val loader: ProgressIndicator = ProgressIndicator()
     val labelTop2 : Label
@@ -38,10 +37,9 @@ class Rejoindre : BorderPane() {
 
         this.labelPartie = Label("Parties:")
 
-        boutonActualiser.styleClass.add("ButtonAccueil")
         loader.styleClass.add("Progress")
         boutonRejoindre.setPrefSize(300.0, 50.0)
-        this.vbox1 = VBox(5.0, labelPartie, ListePartie, boutonActualiser)
+        this.vbox1 = VBox(5.0, labelPartie, ListePartie, loader)
         vbox1.alignment = Pos.CENTER_LEFT
 
         //Paramétrage ComboBox et son Label
@@ -106,14 +104,8 @@ class Rejoindre : BorderPane() {
         this.style = "-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #6600CC, #3366FF);"
     }
 
-    fun showActualiser() {
+    fun hideLoader() {
         this.vbox1.children.remove(this.loader)
-        this.vbox1.children.add(this.boutonActualiser)
-    }
-
-    fun hideActualiser() {
-        this.vbox1.children.remove(this.boutonActualiser)
-        this.vbox1.children.add(this.loader)
     }
 }
 
