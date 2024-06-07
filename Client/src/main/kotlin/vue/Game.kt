@@ -23,7 +23,8 @@ import java.io.FileInputStream
 
 class Game(nbJoueur: Int) : GridPane() {
     val PanneauCentre = VBox(10.0)
-    val PanneauOpponent = VBox(10.0)
+
+
     var nbJoueur : Int
     val param : Array<String>
     var playersName = arrayOf<String>()
@@ -82,7 +83,7 @@ class Game(nbJoueur: Int) : GridPane() {
         if (nbJoueur == 2) {
 
             setupCenterPanel()
-            setupOpponentPanel()
+            val PanneauOpponnent = setupOpponentPanel("right")
 
             val PanneauPiocheDefausse = HBox()
             PanneauPiocheDefausse.alignment = Pos.CENTER
@@ -92,7 +93,7 @@ class Game(nbJoueur: Int) : GridPane() {
             PanneauPiocheDefausse.spacing = 300.0
             PanneauPiocheDefausse.alignment = Pos.CENTER
 
-            GridPane.setMargin(PanneauOpponent, Insets(0.0, 0.0, 0.0, -60.0))
+            GridPane.setMargin(PanneauOpponnent, Insets(0.0, 0.0, 0.0, -60.0))
             GridPane.setMargin(PanneauCentre, Insets(0.0, -180.0, 0.0, 0.0))
 
             // Setting constraints to make the panels fill the height of their grid cells
@@ -109,12 +110,12 @@ class Game(nbJoueur: Int) : GridPane() {
                 this@Game.rowConstraints.add(this)
             }
 
-            this.add(PanneauOpponent, 0, 0)
+            this.add(PanneauOpponnent, 0, 0)
             this.add(PanneauPiocheDefausse, 0, 1)
             this.add(PanneauCentre, 0, 2)
 
 
-            VBox.setVgrow(PanneauOpponent, Priority.ALWAYS)
+            VBox.setVgrow(PanneauOpponnent, Priority.ALWAYS)
             VBox.setVgrow(PanneauCentre, Priority.ALWAYS)
             VBox.setVgrow(PanneauPiocheDefausse, Priority.ALWAYS)
 
@@ -132,8 +133,15 @@ class Game(nbJoueur: Int) : GridPane() {
         }
 
         if (nbJoueur == 5) {
-            setupCenterPanel()
-            setupOpponentPanel()
+            val joueur1 = setupOpponentPanel("right")
+            val joueur2 = setupOpponentPanel("left")
+            val joueur3 = setupOpponentPanel("right")
+            val joueur4 = setupOpponentPanel("left")
+
+            this.add(joueur1, 0, 0)
+            this.add(joueur2, 0, 1)
+            this.add(joueur3, 0, 2)
+            this.add(joueur4, 0, 3)
 
         }
     }
@@ -170,10 +178,11 @@ class Game(nbJoueur: Int) : GridPane() {
         PanneauCentre.children.add(hBox)
     }
 
-    private fun setupOpponentPanel() {
-        PanneauOpponent.alignment = Pos.CENTER
-        PanneauOpponent.spacing = 20.0
-        PanneauOpponent.padding = Insets(10.0)
+    private fun setupOpponentPanel(coté : String): VBox {
+        val panneau = VBox(10.0)
+        panneau.alignment = Pos.CENTER
+        panneau.spacing = 20.0
+        panneau.padding = Insets(10.0)
 
         val gridPane = createGridPane(3, 4, 60.0, 85.0)
         playerLabel.font = Font.font("Arial", FontWeight.BOLD, 20.0)
@@ -182,24 +191,24 @@ class Game(nbJoueur: Int) : GridPane() {
         scoreLabel.font = Font.font("Arial", FontWeight.BOLD, 30.0)
         scoreLabel.textFill = Color.WHITE
 
-        val labelVBox = VBox(10.0, playerLabel, scoreLabel)
-        labelVBox.alignment = Pos.CENTER_RIGHT
+        if (coté == "right") {
+            val labelVBox = VBox(10.0, playerLabel, scoreLabel)
+            labelVBox.alignment = Pos.CENTER_RIGHT
 
-        val hBox = HBox(10.0, labelVBox, gridPane)
-        hBox.alignment = Pos.CENTER
+            val hBox = HBox(10.0, labelVBox, gridPane)
+            hBox.alignment = Pos.CENTER
+            panneau.children.add(hBox)
+        }
 
+        if (coté == "left") {
+            val labelVBox = VBox(10.0, playerLabel, scoreLabel)
+            labelVBox.alignment = Pos.CENTER_LEFT
 
-        //for (i in 0 until 4) {
-        //    for (j in 0 until 3) {
-                //val newImageView = ImageView(Image(FileInputStream("./images/cartes/carteSKYJO.png")))
-                //newImageView.fitWidth = 45.0
-                //newImageView.fitHeight = 70.0
-        //        gridPane.add(newImageView, i, j)
-        //    }
-        //}
-
-
-        PanneauOpponent.children.add(hBox)
+            val hBox = HBox(10.0, gridPane, labelVBox)
+            hBox.alignment = Pos.CENTER
+            panneau.children.add(hBox)
+        }
+        return panneau
     }
 
     private fun createGridPane(rows: Int, cols: Int, tileWidth: Double, tileHeight: Double): GridPane {
