@@ -1,5 +1,6 @@
 package modele
 
+import javafx.application.Platform
 import javafx.collections.FXCollections
 import javafx.collections.ObservableList
 import kotlinx.coroutines.runBlocking
@@ -60,6 +61,6 @@ class Jeu(private val server: Server) {
              result.add(server.getName(list[i]))
          }
          this@Jeu.listeJoueur.clear()
-         this@Jeu.listeJoueur.addAll(result)
+         Platform.runLater { this@Jeu.listeJoueur.addAll(result) }
     }
 }
