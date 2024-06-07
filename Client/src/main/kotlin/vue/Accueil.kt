@@ -21,7 +21,6 @@ class Accueil : GridPane() {
     val JoinBtn : Button
     //val SettingsBtn : Button
     val ExitBtn : Button
-    val Accueils: Array<Label>
     val Param : Array<String>
     val UpdateArea : TextArea
     val VersionLab : Label
@@ -47,7 +46,6 @@ class Accueil : GridPane() {
 
         progress.styleClass.add("Progress")
 
-        this.Accueils = arrayOf()
         this.Param = arrayOf("Titre", "Titre1", "Titre2", "Titre3", "Titre4", "Titre5", "Titre6")
         var posAccueil = 5.0
         for (i in 0 until 7) {
@@ -55,7 +53,6 @@ class Accueil : GridPane() {
             this.add(label, 0, 0, 2, 1)
             label.padding = Insets(posAccueil, 0.0, 0.0, 300.0)
             label.styleClass.add(Param[i])
-            this.Accueils.plus(label)
             posAccueil += 15.0
         }
 

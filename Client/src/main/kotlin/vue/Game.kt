@@ -17,10 +17,28 @@ class Game(nbJoueur: Int) : GridPane() {
     val PanneauCentre = VBox(10.0)
     val PanneauOpponent = VBox(10.0)
     var nbJoueur : Int
-
+    val param : Array<String>
 
     init {
         this.nbJoueur = nbJoueur
+
+        val Titre = GridPane()
+        val Titre1 = GridPane()
+        this.style = "-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #6600CC, #3366FF);"
+
+        this.param = arrayOf("Titre", "Titre1", "Titre2", "Titre3", "Titre4", "Titre5", "Titre6")
+        var posAccueil = 5.0
+        for (i in 0 until 7) {
+            val label = Label("SKYJO")
+            val label1 = Label("SKYJO")
+            Titre.add(label, 0, 0)
+            Titre1.add(label1, 0, 0)
+            label.padding = Insets(posAccueil, 0.0, 0.0, 0.0)
+            label.styleClass.add(param[i])
+            label1.padding = Insets(posAccueil, 0.0, 0.0, 0.0)
+            label1.styleClass.add(param[i])
+            posAccueil += 15.0
+        }
 
         if (nbJoueur == 0) {
             val cartes: Array<Button> = Array(12) { Button() }
@@ -53,8 +71,6 @@ class Game(nbJoueur: Int) : GridPane() {
 
         if (nbJoueur == 2) {
 
-            this.style = "-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #6600CC, #3366FF);"
-
             setupCenterPanel()
             setupOpponentPanel()
 
@@ -62,8 +78,9 @@ class Game(nbJoueur: Int) : GridPane() {
             PanneauPiocheDefausse.alignment = Pos.CENTER
             val Pilejoueur = createPileCarte()
             val PileOpponent = createPileCarte()
-            PanneauPiocheDefausse.children.addAll(PileOpponent, Pilejoueur)
-            PanneauPiocheDefausse.spacing = 100.0
+            PanneauPiocheDefausse.children.addAll(Titre, PileOpponent, Pilejoueur, Titre1)
+            PanneauPiocheDefausse.spacing = 300.0
+            PanneauPiocheDefausse.alignment = Pos.CENTER
 
             GridPane.setMargin(PanneauOpponent, Insets(0.0, 0.0, 0.0, -60.0))
             GridPane.setMargin(PanneauCentre, Insets(0.0, -180.0, 0.0, 0.0))
@@ -101,6 +118,12 @@ class Game(nbJoueur: Int) : GridPane() {
         }
 
         if (nbJoueur == 4) {
+
+        }
+
+        if (nbJoueur == 5) {
+            setupCenterPanel()
+            setupOpponentPanel()
 
         }
     }
