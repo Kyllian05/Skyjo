@@ -73,3 +73,12 @@
     -fx-text-fill: #ffffff;
 }
 
+.carteBouton {
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-pref-width: 100px;
+    -fx-pref-height: 50px;
+}
+
+
+

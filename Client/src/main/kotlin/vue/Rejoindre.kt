@@ -69,6 +69,7 @@ class Rejoindre : BorderPane() {
         StackPane.setMargin(boutonRetour, Insets(10.0, 0.0, 0.0, 10.0))
 
         //Parmètrage Titre
+
         this.labelTop1 = Label("Rejoindre une partie")
         this.labelTop2 = Label("Rejoindre une partie")
         this.labelTop3 = Label("Rejoindre une partie")
@@ -76,6 +77,7 @@ class Rejoindre : BorderPane() {
         this.labelTop5 = Label("Rejoindre une partie")
         this.labelTop6 = Label("Rejoindre une partie")
         this.labelTop7 = Label("Rejoindre une partie")
+
 
         this.labelTop1.styleClass.add("Titre")
         this.labelTop2.styleClass.add("Titre1")

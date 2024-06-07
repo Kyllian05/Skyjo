@@ -27,6 +27,7 @@ class Main(): Application() {
 
         // Model
         val jeu = Jeu(server)
+        salon.ListeJoueurs.items = jeu.listeJoueur
 
         // Fetch
         val fetchGames = Actualiser(jeu, rejoindre, server).fetch()

@@ -1,4 +1,4 @@
-package controleur.salon
+package controleur
 
 import javafx.concurrent.Task
 import javafx.stage.Stage
