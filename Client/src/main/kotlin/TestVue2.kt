@@ -1,19 +1,14 @@
 import javafx.application.Application
 import javafx.scene.Scene
 import javafx.stage.Stage
-import vue.CreationPartie
-import vue.Trois
-
 import vue.Accueil
-import vue.Salon
-import vue.Rejoindre
 
 class TestVue2(): Application() {
 
     override fun start(primaryStage: Stage) {
 
         // Vues
-        val vue = Trois()
+        val vue = Accueil()
 
 
         // Scène
