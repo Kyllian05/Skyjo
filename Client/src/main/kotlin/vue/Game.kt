@@ -1,5 +1,13 @@
 package vue
 
+import javafx.beans.property.Property
+import javafx.beans.property.ReadOnlyProperty
+import javafx.beans.property.ReadOnlyStringProperty
+import javafx.beans.property.StringProperty
+import javafx.beans.property.StringPropertyBase
+import javafx.beans.value.ObservableStringValue
+import javafx.collections.FXCollections
+import javafx.collections.ObservableList
 import javafx.geometry.Insets
 import javafx.geometry.Pos
 import javafx.scene.control.Button
@@ -18,6 +26,8 @@ class Game(nbJoueur: Int) : GridPane() {
     val PanneauOpponent = VBox(10.0)
     var nbJoueur : Int
     val param : Array<String>
+    var playersName = arrayOf<String>()
+    var playerLabel = Label("None")
 
     init {
         this.nbJoueur = nbJoueur
@@ -134,14 +144,14 @@ class Game(nbJoueur: Int) : GridPane() {
         PanneauCentre.padding = Insets(10.0)
 
         val gridPane = createGridPane(3, 4, 80.0, 115.0)
-        val playerLabel = Label("Vous")
-        playerLabel.font = Font.font("Arial", FontWeight.BOLD, 20.0)
-        playerLabel.textFill = Color.WHITE
+        val playerLabelVous = Label("Vous")
+        playerLabelVous.font = Font.font("Arial", FontWeight.BOLD, 20.0)
+        playerLabelVous.textFill = Color.WHITE
         val scoreLabel = Label("Score:")
         scoreLabel.font = Font.font("Arial", FontWeight.BOLD, 30.0)
         scoreLabel.textFill = Color.WHITE
 
-        val labelVBox = VBox(10.0, playerLabel, scoreLabel)
+        val labelVBox = VBox(10.0, playerLabelVous, scoreLabel)
         labelVBox.alignment = Pos.BOTTOM_LEFT
 
 
@@ -166,7 +176,6 @@ class Game(nbJoueur: Int) : GridPane() {
         PanneauOpponent.padding = Insets(10.0)
 
         val gridPane = createGridPane(3, 4, 60.0, 85.0)
-        val playerLabel = Label("Joueur 1")
         playerLabel.font = Font.font("Arial", FontWeight.BOLD, 20.0)
         playerLabel.textFill = Color.WHITE
         val scoreLabel = Label("Score:")
@@ -246,5 +255,9 @@ class Game(nbJoueur: Int) : GridPane() {
         return stackPane
     }
 
-
+    fun defineName(allNames : Array<String>){
+        if(nbJoueur == 2){
+            this.playerLabel.text = allNames[1]
+        }
+    }
 }

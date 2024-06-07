@@ -1,5 +1,6 @@
 package controleur
 
+import controleur.game.LinkName
 import javafx.concurrent.Task
 import javafx.stage.Stage
 import kotlinx.coroutines.runBlocking
@@ -14,8 +15,11 @@ class FetchingPlayer(val jeu : Jeu,val vue : vue.Salon,var game : Game?,val stag
                     runBlocking{jeu.updateListeJoueur()}
                     Thread.sleep(3000)
                 }
-                stage.scene.root = game
+                println("cacakipu1")
                 game = Game(jeu.maxPlayerPartie!!)
+                println("cacakipu2")
+                LinkName(game!!,jeu)
+                println("cacakipu3")
                 stage.scene.root = game
             }
         }
