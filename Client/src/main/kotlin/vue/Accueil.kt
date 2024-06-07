@@ -94,7 +94,7 @@ class Accueil : GridPane() {
         ExitBtn.setPrefSize(400.0, 100.0)
         this.ExitBtn.styleClass.add("ButtonAccueil")
 
-        // Intput for name
+        // Intput for named
         this.inputName.setMaxSize(400.0, 100.0)
         this.inputName.setPrefSize(400.0, 80.0)
         this.inputName.styleClass.add("input")
