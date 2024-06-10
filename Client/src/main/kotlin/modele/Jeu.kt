@@ -42,18 +42,16 @@ class Jeu(private val server: Server) {
         this.joined = true
     }
 
-    fun rejoindrePartie(idParty: Int): Boolean {
+    fun rejoindrePartie(idParty: Int) {
         if (joined) {
             throw Exception("Party already joined")
         }
         runBlocking {
             server.joinPartie(idParty)
             maxPlayerPartie = server.getPartieState().nbJoueursMax
-            var joueurs = IntArray(maxPlayerPartie!!)
-            joueurs = this@Jeu.server.getAllPlayers()
-            joined = true
+            this@Jeu.joined = true
+            this@Jeu.id = idParty
         }
-        return false
     }
 
     suspend fun updateListeJoueur(){
