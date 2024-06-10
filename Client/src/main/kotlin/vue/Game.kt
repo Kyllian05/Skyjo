@@ -145,9 +145,9 @@ class Game(nbJoueur: Int) : GridPane() {
             PanneauPiocheDefausse.spacing = 100.0
 
             this.add(joueur1, 0, 1, 1, 1)
-            this.add(joueur1, 4, 1, 1, 1)
-            this.add(PanneauPiocheDefausse, 2, 1, 1, 1)
-            this.add(PanneauCentre, 2, 2, 1, 1)
+            this.add(joueur2, 2, 1, 1, 1)
+            this.add(PanneauPiocheDefausse, 1, 1, 1, 1)
+            this.add(PanneauCentre, 1, 2, 1, 1)
             this.isGridLinesVisible = true
 
 
@@ -195,11 +195,11 @@ class Game(nbJoueur: Int) : GridPane() {
             PanneauPiocheDefausse.spacing = 100.0
 
 
-            this.add(joueur1, 2, 0, 1, 1)
+            this.add(joueur1, 1, 0, 1, 1)
             this.add(joueur2, 0, 1, 1, 1)
-            this.add(PanneauPiocheDefausse, 2, 1, 1, 1)
-            this.add(joueur3, 4, 1, 1, 1)
-            this.add(PanneauCentre, 2, 2, 1, 1)
+            this.add(PanneauPiocheDefausse, 1, 1, 1, 1)
+            this.add(joueur3, 2, 1, 1, 1)
+            this.add(PanneauCentre, 1, 2, 1, 1)
             this.isGridLinesVisible = true
 
 
