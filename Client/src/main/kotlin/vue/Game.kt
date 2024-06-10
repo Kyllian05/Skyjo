@@ -93,7 +93,6 @@ class Game(nbJoueur: Int) : GridPane() {
             val PanneauOpponnent = setupOpponentPanel("right")
 
             val PanneauPiocheDefausse = HBox()
-            PanneauPiocheDefausse.alignment = Pos.CENTER
             val Pilejoueur = createPileCarte()
             val PileOpponent = createPileCarte()
             val currentPlayerLabel = Label("")
@@ -248,11 +247,52 @@ class Game(nbJoueur: Int) : GridPane() {
             val joueur2 = setupOpponentPanel("left")
             val joueur3 = setupOpponentPanel("right")
             val joueur4 = setupOpponentPanel("left")
+            setupCenterPanel()
 
-            this.add(joueur1, 0, 0)
-            this.add(joueur2, 0, 1)
-            this.add(joueur3, 0, 2)
-            this.add(joueur4, 0, 3)
+            val PanneauPiocheDefausse = HBox()
+            val Pilejoueur = createPileCarte()
+            val PileOpponent = createPileCarte()
+            PanneauPiocheDefausse.children.addAll(PileOpponent, Pilejoueur)
+            PanneauPiocheDefausse.spacing = 100.0
+
+
+            this.add(joueur1, 1, 0,1,1)
+            this.add(joueur2, 3, 0,1,1)
+            this.add(PanneauPiocheDefausse,2,1,1,1)
+            this.add(joueur3, 4, 2,1,1)
+            this.add(joueur4, 0, 2,1,1)
+            this.add(PanneauCentre,2,2,1,1)
+            this.isGridLinesVisible = true
+
+
+            RowConstraints().apply {
+                vgrow = Priority.ALWAYS
+                this@Game.rowConstraints.add(this)
+            }
+            RowConstraints().apply {
+                vgrow = Priority.ALWAYS
+                this@Game.rowConstraints.add(this)
+            }
+            RowConstraints().apply {
+                vgrow = Priority.ALWAYS
+                this@Game.rowConstraints.add(this)
+            }
+
+            // Ajoutez les contraintes de colonne pour centrer le panneau de pioche
+            ColumnConstraints().apply {
+                hgrow = Priority.ALWAYS
+                this@Game.columnConstraints.add(this)
+            }
+            ColumnConstraints().apply {
+                hgrow = Priority.ALWAYS
+                this@Game.columnConstraints.add(this)
+            }
+            ColumnConstraints().apply {
+                hgrow = Priority.ALWAYS
+                this@Game.columnConstraints.add(this)
+            }
+
+
         }
     }
 
