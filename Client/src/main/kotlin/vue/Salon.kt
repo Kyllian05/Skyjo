@@ -15,6 +15,8 @@ class Salon : GridPane() {
     val Param : Array<String>
     val Loader : ProgressIndicator
     val ListeJoueurs = ListView<String>()
+    var maxPlayer : Int = 0
+    var playerCountLabel = Label(ListeJoueurs.items.size.toString()+" / "+maxPlayer.toString())
 
     init {
         this.style = "-fx-background-color : linear-gradient(from 0% 0% to 100% 100%, #6600CC, #3366FF);"
@@ -40,6 +42,7 @@ class Salon : GridPane() {
         val PanneauProgress = HBox()
         PanneauProgress.children.add(Loader)
         HBox.setHgrow(Loader, Priority.ALWAYS)
+        PanneauProgress.children.add(playerCountLabel)
         PanneauProgress.alignment = Pos.CENTER
 
         this.add(PanneauProgress, 0, 1)
@@ -70,5 +73,9 @@ class Salon : GridPane() {
         GridPane.setHalignment(stackPane, HPos.CENTER)
         GridPane.setMargin(stackPane, Insets(75.0,0.0,0.0,0.0))
 
+    }
+
+    fun updatePlayer(maxPlayer : Int){
+        this.playerCountLabel.text = (ListeJoueurs.items.size.toString()+"/"+maxPlayer.toString())
     }
 }

@@ -31,6 +31,7 @@ class Game(nbJoueur: Int) : GridPane() {
     val param : Array<String>
     var playersName = arrayOf<String>()
     var playerLabel = Label("None")
+    var playerCount = 0
 
     init {
         this.nbJoueur = nbJoueur
@@ -276,7 +277,8 @@ class Game(nbJoueur: Int) : GridPane() {
         val gridPane = createGridPane(3, 4, 60.0, 85.0)
         var plateau: Array<Rectangle> = arrayOf()
         this.plateaux.plus(plateau)
-        val playerLabel = Label("Joueur 1")
+        val playerLabel = Label(playersName[playerCount])
+        playerCount += 1
         playerLabel.font = Font.font("Arial", FontWeight.BOLD, 20.0)
         playerLabel.textFill = Color.WHITE
         val scoreLabel = Label("Score:")
