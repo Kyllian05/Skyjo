@@ -255,16 +255,21 @@ class Game(nbJoueur: Int) : GridPane() {
             PanneauPiocheDefausse.children.addAll(PileOpponent, Pilejoueur)
             PanneauPiocheDefausse.spacing = 100.0
 
+            this.add(joueur1, 0, 0, 4, 1)
+            this.add(joueur2, 0, 0, 4, 1)
+            this.add(PanneauPiocheDefausse, 1, 1, 4, 1)
+            this.add(joueur3, 3, 2, 1, 1)
+            this.add(joueur4, 0, 2, 1, 1)
+            this.add(PanneauCentre, 2, 2, 1, 1)
 
-            this.add(joueur1, 1, 0,1,1)
-            this.add(joueur2, 3, 0,1,1)
-            this.add(PanneauPiocheDefausse,2,1,1,1)
-            this.add(joueur3, 4, 2,1,1)
-            this.add(joueur4, 0, 2,1,1)
-            this.add(PanneauCentre,2,2,1,1)
-            this.isGridLinesVisible = true
+            GridPane.setMargin(joueur1, Insets(0.0, 800.0,0.0,0.0))
+            GridPane.setMargin(joueur2, Insets(0.0, 0.0,0.0,800.0))
+            GridPane.setMargin(PanneauPiocheDefausse, Insets(0.0, 0.0,0.0,170.0))
+            GridPane.setMargin(PanneauCentre, Insets(0.0,50.0,0.0,0.0))
 
+            PanneauPiocheDefausse.spacing = 200.0
 
+            // Ajoutez les contraintes de ligne
             RowConstraints().apply {
                 vgrow = Priority.ALWAYS
                 this@Game.rowConstraints.add(this)
@@ -278,7 +283,7 @@ class Game(nbJoueur: Int) : GridPane() {
                 this@Game.rowConstraints.add(this)
             }
 
-            // Ajoutez les contraintes de colonne pour centrer le panneau de pioche
+            // Ajoutez les contraintes de colonne
             ColumnConstraints().apply {
                 hgrow = Priority.ALWAYS
                 this@Game.columnConstraints.add(this)
@@ -291,9 +296,12 @@ class Game(nbJoueur: Int) : GridPane() {
                 hgrow = Priority.ALWAYS
                 this@Game.columnConstraints.add(this)
             }
-
-
+            ColumnConstraints().apply {
+                hgrow = Priority.ALWAYS
+                this@Game.columnConstraints.add(this)
+            }
         }
+
     }
 
     private fun setupCenterPanel() {
