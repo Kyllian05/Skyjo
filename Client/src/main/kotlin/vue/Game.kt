@@ -1,51 +1,53 @@
 package vue
 
-import javafx.beans.property.Property
-import javafx.beans.property.ReadOnlyProperty
-import javafx.beans.property.ReadOnlyStringProperty
+import javafx.beans.property.ObjectProperty
+import javafx.beans.property.SimpleObjectProperty
 import javafx.beans.property.SimpleStringProperty
 import javafx.beans.property.StringProperty
-import javafx.beans.property.StringPropertyBase
-import javafx.beans.value.ObservableStringValue
-import javafx.collections.FXCollections
-import javafx.collections.ObservableList
 import javafx.geometry.Insets
 import javafx.geometry.Pos
-import javafx.scene.Node
 import javafx.scene.control.Button
 import javafx.scene.control.Label
 import javafx.scene.image.Image
 import javafx.scene.image.ImageView
 import javafx.scene.layout.*
-import javafx.scene.paint.Color
-import javafx.scene.shape.Rectangle
-import javafx.scene.text.Font
-import javafx.scene.text.FontWeight
+import javafx.scene.text.TextAlignment
 import java.io.FileInputStream
 
 class Game(nbJoueur: Int) : GridPane() {
-    val PanneauCentre = VBox(10.0)
-
-    val PanneauOpponent = VBox(10.0)
-    var nbJoueur : Int
-    val plateaux: Array<Array<Rectangle>> = arrayOf()
-    val param : Array<String>
+    // Propriétés
+    private val defaultImg = Image(FileInputStream("images/cartes/carteSKYJO.png"))
+    private var nbJoueur : Int = nbJoueur
+    private val param : Array<String>
+    var plateaux = arrayOf<Array<ObjectProperty<Image>>>()
+    var defausse = arrayOf<ObjectProperty<Image>>()
     var playersName = arrayOf<StringProperty>()
     var playerCount = 0
     val currentPlayer : StringProperty = SimpleStringProperty("Ce n'est pas à vous de jouer")
-    val Pilejoueur = createPileCarte()
-    val PileOpponent = createPileCarte()
+
+    // UI
+    val PanneauCentre = VBox(10.0)
+    val pileDefausse = createPileCarte(isDefausse = true)
+    val pilePioche = createPileCarte()
 
     init {
-        this.nbJoueur = nbJoueur
-        for(i in 0..<nbJoueur){
-            playersName += SimpleStringProperty("Thomas")
-        }
-
-        val Titre = GridPane()
-        val Titre1 = GridPane()
+        // Background
         this.style = "-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #6600CC, #3366FF);"
 
+        // Players name
+        for(i in 0..<this.nbJoueur){
+            playersName += SimpleStringProperty("")
+        }
+
+        val currentPlayerLabel = Label("")
+        currentPlayerLabel.style = "-fx-font-size: 20px; -fx-font-weight: bolder; -fx-text-fill: #ffffff;"
+        currentPlayerLabel.isWrapText = true
+        currentPlayerLabel.textAlignment = TextAlignment.CENTER
+        currentPlayerLabel.textProperty().bind(currentPlayer)
+
+        // Titres
+        val Titre = GridPane()
+        val Titre1 = GridPane()
         this.param = arrayOf("Titre", "Titre1", "Titre2", "Titre3", "Titre4", "Titre5", "Titre6")
         var posAccueil = 5.0
         for (i in 0 until 7) {
@@ -59,9 +61,10 @@ class Game(nbJoueur: Int) : GridPane() {
             label1.styleClass.add(param[i])
             posAccueil += 15.0
         }
-        val currentPlayerLabel = Label("")
-        currentPlayerLabel.textProperty().bind(currentPlayer)
 
+        /**
+         * Vue pour 0 joueurs (test)
+         */
         if (nbJoueur == 0) {
             val cartes: Array<Button> = Array(12) { Button() }
 
@@ -91,20 +94,21 @@ class Game(nbJoueur: Int) : GridPane() {
             this.padding = Insets(10.0)
         }
 
+        /**
+         * Vue pour 2 joueurs
+         */
         if (nbJoueur == 2) {
-
             setupCenterPanel()
+
             val PanneauOpponnent = setupOpponentPanel("right")
 
             val PanneauPiocheDefausse = HBox()
-
-            PanneauPiocheDefausse.children.addAll(Titre, PileOpponent, Pilejoueur, Titre1,currentPlayerLabel)
+            PanneauPiocheDefausse.children.addAll(Titre, pilePioche, currentPlayerLabel, pileDefausse, Titre1)
             PanneauPiocheDefausse.spacing = 300.0
             PanneauPiocheDefausse.alignment = Pos.CENTER
 
             GridPane.setMargin(PanneauOpponnent, Insets(0.0, 0.0, 0.0, -60.0))
             GridPane.setMargin(PanneauCentre, Insets(0.0, -180.0, 0.0, 0.0))
-
 
             RowConstraints().apply {
                 vgrow = Priority.ALWAYS
@@ -123,24 +127,25 @@ class Game(nbJoueur: Int) : GridPane() {
             this.add(PanneauPiocheDefausse, 0, 1)
             this.add(PanneauCentre, 0, 2)
 
-
             VBox.setVgrow(PanneauOpponnent, Priority.ALWAYS)
             VBox.setVgrow(PanneauCentre, Priority.ALWAYS)
             VBox.setVgrow(PanneauPiocheDefausse, Priority.ALWAYS)
 
             this.vgap = 20.0
             this.alignment = Pos.CENTER
-
         }
 
+        /**
+         * Vue pour 3 joueurs
+         */
         if (nbJoueur == 3) {
+            setupCenterPanel()
+
             val joueur1 = setupOpponentPanel("right")
             val joueur2 = setupOpponentPanel("left")
 
-            setupCenterPanel()
-
             val PanneauPiocheDefausse = HBox()
-            PanneauPiocheDefausse.children.addAll(PileOpponent, Pilejoueur,currentPlayerLabel)
+            PanneauPiocheDefausse.children.addAll(pilePioche, currentPlayerLabel, pileDefausse)
             PanneauPiocheDefausse.spacing = 100.0
 
             this.add(joueur1, 0, 1, 1, 1)
@@ -151,8 +156,6 @@ class Game(nbJoueur: Int) : GridPane() {
             GridPane.setMargin(PanneauPiocheDefausse, Insets(100.0,0.0,0.0,170.0))
             GridPane.setMargin(PanneauCentre, Insets(0.0,0.0,0.0,70.0))
 
-
-
             RowConstraints().apply {
                 vgrow = Priority.ALWAYS
                 this@Game.rowConstraints.add(this)
@@ -178,22 +181,21 @@ class Game(nbJoueur: Int) : GridPane() {
                 hgrow = Priority.ALWAYS
                 this@Game.columnConstraints.add(this)
             }
-
-
         }
 
-
+        /**
+         * Vue pour 4 joueurs
+         */
         if (nbJoueur == 4) {
+            setupCenterPanel()
+
             val joueur1 = setupOpponentPanel("right")
             val joueur2 = setupOpponentPanel("right")
             val joueur3 = setupOpponentPanel("left")
 
-            setupCenterPanel()
-
             val PanneauPiocheDefausse = HBox()
-            PanneauPiocheDefausse.children.addAll(PileOpponent, Pilejoueur,currentPlayerLabel)
+            PanneauPiocheDefausse.children.addAll(pilePioche, currentPlayerLabel, pileDefausse)
             PanneauPiocheDefausse.spacing = 100.0
-
 
             this.add(joueur1, 1, 0, 1, 1)
             this.add(joueur2, 0, 1, 1, 1)
@@ -201,8 +203,6 @@ class Game(nbJoueur: Int) : GridPane() {
             this.add(joueur3, 2, 1, 1, 1)
             this.add(PanneauCentre, 1, 2, 1, 1)
 
-
-
             RowConstraints().apply {
                 vgrow = Priority.ALWAYS
                 this@Game.rowConstraints.add(this)
@@ -228,21 +228,21 @@ class Game(nbJoueur: Int) : GridPane() {
                 hgrow = Priority.ALWAYS
                 this@Game.columnConstraints.add(this)
             }
-
-
         }
 
-
-
+        /**
+         * Vue pour 5 joueurs
+         */
         if (nbJoueur == 5) {
+            setupCenterPanel()
+
             val joueur1 = setupOpponentPanel("right")
             val joueur2 = setupOpponentPanel("left")
             val joueur3 = setupOpponentPanel("right")
             val joueur4 = setupOpponentPanel("left")
-            setupCenterPanel()
 
             val PanneauPiocheDefausse = HBox()
-            PanneauPiocheDefausse.children.addAll(PileOpponent, Pilejoueur,currentPlayerLabel)
+            PanneauPiocheDefausse.children.addAll(pilePioche, currentPlayerLabel, pileDefausse)
             PanneauPiocheDefausse.spacing = 100.0
 
             this.add(joueur1, 0, 0, 4, 1)
@@ -256,7 +256,6 @@ class Game(nbJoueur: Int) : GridPane() {
             GridPane.setMargin(joueur2, Insets(0.0, 0.0,0.0,800.0))
             GridPane.setMargin(PanneauPiocheDefausse, Insets(0.0, 0.0,0.0,170.0))
             GridPane.setMargin(PanneauCentre, Insets(0.0,50.0,0.0,0.0))
-
 
             PanneauPiocheDefausse.spacing = 200.0
 
@@ -293,16 +292,20 @@ class Game(nbJoueur: Int) : GridPane() {
             }
         }
 
+        /**
+         * Vue pour 6 joueurs
+         */
         if (nbJoueur == 6) {
+            setupCenterPanel()
+
             val joueur1 = setupOpponentPanel("left")
             val joueur2 = setupOpponentPanel("left")
             val joueur3 = setupOpponentPanel("right")
             val joueur4 = setupOpponentPanel("right")
             val joueur5 = setupOpponentPanel("right")
-            setupCenterPanel()
 
             val PanneauPiocheDefausse = HBox()
-            PanneauPiocheDefausse.children.addAll(PileOpponent, Pilejoueur,currentPlayerLabel)
+            PanneauPiocheDefausse.children.addAll(pilePioche, currentPlayerLabel, pileDefausse)
             PanneauPiocheDefausse.spacing = 100.0
 
             this.add(joueur1, 0, 0)
@@ -316,7 +319,6 @@ class Game(nbJoueur: Int) : GridPane() {
             GridPane.setMargin(joueur3, Insets(0.0,110.0,0.0,0.0))
             GridPane.setMargin(PanneauCentre, Insets(0.0,0.0,0.0,70.0))
             GridPane.setMargin(PanneauPiocheDefausse, Insets(40.0,0.0,0.0,170.0))
-
 
             // Ajoutez les contraintes de ligne
             RowConstraints().apply {
@@ -345,20 +347,23 @@ class Game(nbJoueur: Int) : GridPane() {
                 hgrow = Priority.ALWAYS
                 this@Game.columnConstraints.add(this)
             }
-
         }
 
+        /**
+         * Vue pour 7 joueurs
+         */
         if (nbJoueur == 7) {
+            setupCenterPanel()
+
             val joueur1 = setupOpponentPanel("left")
             val joueur2 = setupOpponentPanel("left")
             val joueur3 = setupOpponentPanel("left")
             val joueur4 = setupOpponentPanel("right")
             val joueur5 = setupOpponentPanel("right")
             val joueur6 = setupOpponentPanel("right")
-            setupCenterPanel()
 
             val PanneauPiocheDefausse = HBox()
-            PanneauPiocheDefausse.children.addAll(PileOpponent, Pilejoueur,currentPlayerLabel)
+            PanneauPiocheDefausse.children.addAll(pilePioche, currentPlayerLabel, pileDefausse)
             PanneauPiocheDefausse.spacing = 100.0
 
             this.add(joueur1, 0, 0)
@@ -404,12 +409,13 @@ class Game(nbJoueur: Int) : GridPane() {
                 hgrow = Priority.ALWAYS
                 this@Game.columnConstraints.add(this)
             }
-
-
         }
 
+        /**
+         * Vue pour 8 joueurs
+         */
         if (nbJoueur == 8) {
-
+            TODO()
         }
 
     }
@@ -418,41 +424,39 @@ class Game(nbJoueur: Int) : GridPane() {
         PanneauCentre.alignment = Pos.CENTER
         PanneauCentre.spacing = 20.0
         PanneauCentre.padding = Insets(10.0)
-
-        val gridPane = createGridPane(3, 4, 80.0, 115.0)
+        // Player label
         val playerLabelVous = Label("Vous")
-        playerLabelVous.font = Font.font("Arial", FontWeight.BOLD, 20.0)
-        playerLabelVous.textFill = Color.WHITE
+        playerLabelVous.style = "-fx-font-size: 20px; -fx-font-weight: bolder; -fx-text-fill: #ffffff;"
+        // Score label
         val scoreLabel = Label("Score:")
-        scoreLabel.font = Font.font("Arial", FontWeight.BOLD, 30.0)
-        scoreLabel.textFill = Color.WHITE
-
+        scoreLabel.style = "-fx-font-size: 30px; -fx-font-weight: bolder; -fx-text-fill: #ffffff;"
+        // Box des labels
         val labelVBox = VBox(10.0, playerLabelVous, scoreLabel)
         labelVBox.alignment = Pos.BOTTOM_LEFT
+        // GridPane pour les cartes
+        val gridPane = createGridPane(3, 4, 80.0, 115.0)
 
         val hBox = HBox(10.0, gridPane, labelVBox)
         hBox.alignment = Pos.CENTER
-
         PanneauCentre.children.add(hBox)
     }
 
     private fun setupOpponentPanel(coté : String): VBox {
+        // Setup Vbox
         val panneau = VBox(10.0)
         panneau.alignment = Pos.CENTER
         panneau.spacing = 20.0
         panneau.padding = Insets(10.0)
+        // Setup cards
         val gridPane = createGridPane(3, 4, 60.0, 85.0)
-        var plateau: Array<Rectangle> = arrayOf()
-        this.plateaux.plus(plateau)
+        // Player label
         val playerLabel = Label("")
         playerLabel.textProperty().bind(playersName[playerCount])
-
+        playerLabel.style = "-fx-font-size: 20px; -fx-font-weight: bolder; -fx-text-fill: #ffffff;"
         playerCount += 1
-        playerLabel.font = Font.font("Arial", FontWeight.BOLD, 20.0)
-        playerLabel.textFill = Color.WHITE
+        // Score label
         val scoreLabel = Label("Score:")
-        scoreLabel.font = Font.font("Arial", FontWeight.BOLD, 30.0)
-        scoreLabel.textFill = Color.WHITE
+        scoreLabel.style = "-fx-font-size: 30px; -fx-font-weight: bolder; -fx-text-fill: #ffffff;"
 
         if (coté == "right") {
             val labelVBox = VBox(10.0, playerLabel, scoreLabel)
@@ -466,6 +470,7 @@ class Game(nbJoueur: Int) : GridPane() {
         if (coté == "left") {
             val labelVBox = VBox(10.0, playerLabel, scoreLabel)
             labelVBox.alignment = Pos.CENTER_LEFT
+
             val hBox = HBox(10.0, gridPane, labelVBox)
             hBox.alignment = Pos.CENTER
             panneau.children.add(hBox)
@@ -473,62 +478,67 @@ class Game(nbJoueur: Int) : GridPane() {
         return panneau
     }
 
+    /**
+     * Permet de créer le plateau d'un joueur avec toutes ses cartes
+     * @return GridPane
+     */
     private fun createGridPane(rows: Int, cols: Int, tileWidth: Double, tileHeight: Double): GridPane {
+        // Setup stockage properties
+        var currentPlateau =  arrayOf<ObjectProperty<Image>>()
+        // Setup grid
         val gridPane = GridPane()
         gridPane.hgap = 10.0
         gridPane.vgap = 10.0
         gridPane.alignment = Pos.CENTER
-
-
+        // Create cards
         for (row in 0 until rows) {
             for (col in 0 until cols) {
-//                val input = FileInputStream("images/cartes/carteSKYJO.png")
-//                val img = Image(input)
-//                val tile = ImageView(img)
-//                tile.fitWidth = tileWidth
-//                tile.fitHeight = tileHeight
-                val tile = Rectangle(tileWidth, tileHeight)
-                tile.setArcWidth(10.0);
-                tile.setArcHeight(10.0);
-                tile.fill = Color.WHITE
-                gridPane.add(tile, col, row)
+                val p = SimpleObjectProperty(this.defaultImg)
+                gridPane.add(createRectangleWithImage(tileWidth, tileHeight, p), col, row)
+                currentPlateau += p
             }
         }
+        this.plateaux += currentPlateau
         return gridPane
     }
 
-    private fun createPileCarte(): Pane {
+    /**
+     * Permet de créer les piles de cartes pour la défausse et la pioche
+     * @return Pane
+     */
+    private fun createPileCarte(isDefausse: Boolean = false): Pane {
         val pane = Pane()
-
-       // val image = Image(FileInputStream("./images/cartes/carteSKYJO.png"))
-
-        val rect1 = createRectangleWithImage(45.0, 70.0)
-        val rect2 = createRectangleWithImage(45.0, 70.0)
-        val rect3 = createRectangleWithImage(45.0, 70.0)
-
+        // Création des properties
+        var tmpPile = arrayOf<ObjectProperty<Image>>()
+        for (i in 0..3) {
+            tmpPile += SimpleObjectProperty(this.defaultImg)
+        }
+        // Création des cartes
+        val rect1 = createRectangleWithImage(45.0, 70.0, tmpPile[0])
+        val rect2 = createRectangleWithImage(45.0, 70.0, tmpPile[1])
+        val rect3 = createRectangleWithImage(45.0, 70.0, tmpPile[2])
+        // Stockage éventuel
+        if (isDefausse) {
+            this.defausse = tmpPile
+        }
+        // Positionnement
         rect1.relocate(50.0, 50.0)
         rect2.relocate(55.0, 45.0)
         rect3.relocate(60.0, 40.0)
-
         pane.children.addAll(rect3, rect2, rect1)
-
         return pane
     }
 
-    private fun createRectangleWithImage(width: Double, height: Double): StackPane {
-        val stackPane = StackPane()
-
-        val rectangle = Rectangle(width, height)
-        rectangle.arcWidth = 10.0
-        rectangle.arcHeight = 10.0
-        rectangle.fill = Color.WHITE
-
-        //val imageView = ImageView(image)
-        //imageView.fitWidth = width
-        //imageView.fitHeight = height
-
-        stackPane.children.addAll(rectangle)
-
-        return stackPane
+    /**
+     * Permet de créer une carte avec une image.
+     * La carte de base est la carte face cachée.
+     * @return ImageView
+     */
+    private fun createRectangleWithImage(width: Double, height: Double, p: ObjectProperty<Image>): ImageView {
+        val tile = ImageView()
+        tile.imageProperty().bind(p)
+        tile.fitWidth = width
+        tile.fitHeight = height
+        return tile
     }
 }

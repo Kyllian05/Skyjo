@@ -1,15 +1,21 @@
 package controleur.game
 
+import javafx.beans.property.SimpleObjectProperty
 import javafx.concurrent.Task
+import javafx.scene.image.Image
 import kotlinx.coroutines.runBlocking
 import modele.Jeu
 import modele.serverData.Plateau
 import vue.Game
+import java.io.FileInputStream
 
 class GameBackgound(val jeu : Jeu,val game : Game) {
     fun startWaiting(){
         val task = object : Task<Unit>() {
             override fun call() {
+                // TEST : Modif carte
+                game.defausse[0].value = Image(FileInputStream("images/cartes/carte0.png"))
+                // ---
                 do{
                     var data : Plateau?
                     runBlocking {
@@ -23,7 +29,7 @@ class GameBackgound(val jeu : Jeu,val game : Game) {
                         }
                     }
                     Thread.sleep(3000)
-                }while (data!!.etape != "PARTIE_TERMINEE")
+                } while (data!!.etape != "PARTIE_TERMINEE")
             }
         }
         val thread = Thread(task)
