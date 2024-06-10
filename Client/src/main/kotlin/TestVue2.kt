@@ -2,25 +2,27 @@ import javafx.application.Application
 import javafx.scene.Scene
 import javafx.stage.Stage
 import vue.Accueil
+import vue.Game
+import vue.Salon
+
 
 class TestVue2(): Application() {
-
     override fun start(primaryStage: Stage) {
 
-        // Vues
-        val vue = Accueil()
 
+        // Vues
+        val salon = Game(3)
 
         // Scène
-        val scene = Scene(vue, 1920.0, 1080.0)
+        val scene = Scene(salon, 2000.0, 1000.0)
 
         scene.stylesheets.add(javaClass.getResource("style.css").toExternalForm())
-        primaryStage.title="Rejoindre"
+        primaryStage.title="Skyjo"
         primaryStage.scene=scene
         primaryStage.isMaximized = true
         primaryStage.show()
     }
 }
 fun main(args: Array<String>) {
-    Application.launch(TestVue2::class.java)
+    Application.launch(TestVue::class.java)
 }

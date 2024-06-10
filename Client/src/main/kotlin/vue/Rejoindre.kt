@@ -42,14 +42,12 @@ class Rejoindre : BorderPane() {
         this.vbox1 = VBox(5.0, labelPartie, ListePartie, loader)
         vbox1.alignment = Pos.CENTER_LEFT
 
-        //Paramétrage ComboBox et son Label
         this.labelPartie.styleClass.add("labelAccueil")
         ListePartie.styleClass.add("ButtonAccueil")
 
         panneauCentre.children.addAll(vbox1)
         panneauCentre.padding = Insets(0.0, 150.0, 75.0, 150.0)
 
-        //Paramétrage Boutton Crée
         boutonRejoindre.setPrefSize(400.0, 100.0)
         boutonRejoindre.setMaxSize(400.0, 80.0)
         AnchorPane.setRightAnchor(boutonRejoindre, 100.0)
