@@ -17,6 +17,7 @@ class Jeu(private val server: Server) {
     var listeJoueur = FXCollections.observableArrayList<String>()
     var maxPlayerPartie : Int? = null
     var currentState: Plateau? = null
+    var myturnToPlay : Boolean = false
 
     fun createPlayer(name: String) {
         this.myPlayer = Joueur(name, this.server, this.pioche, this.defausse)

@@ -33,6 +33,8 @@ class Game(nbJoueur: Int) : GridPane() {
     var playersName = arrayOf<StringProperty>()
     var playerCount = 0
     val currentPlayer : StringProperty = SimpleStringProperty("Ce n'est pas à vous de jouer")
+    val Pilejoueur = createPileCarte()
+    val PileOpponent = createPileCarte()
 
     init {
         this.nbJoueur = nbJoueur
@@ -95,8 +97,6 @@ class Game(nbJoueur: Int) : GridPane() {
             val PanneauOpponnent = setupOpponentPanel("right")
 
             val PanneauPiocheDefausse = HBox()
-            val Pilejoueur = createPileCarte()
-            val PileOpponent = createPileCarte()
 
             PanneauPiocheDefausse.children.addAll(Titre, PileOpponent, Pilejoueur, Titre1,currentPlayerLabel)
             PanneauPiocheDefausse.spacing = 300.0
@@ -140,8 +140,6 @@ class Game(nbJoueur: Int) : GridPane() {
             setupCenterPanel()
 
             val PanneauPiocheDefausse = HBox()
-            val Pilejoueur = createPileCarte()
-            val PileOpponent = createPileCarte()
             PanneauPiocheDefausse.children.addAll(PileOpponent, Pilejoueur,currentPlayerLabel)
             PanneauPiocheDefausse.spacing = 100.0
 
@@ -193,8 +191,6 @@ class Game(nbJoueur: Int) : GridPane() {
             setupCenterPanel()
 
             val PanneauPiocheDefausse = HBox()
-            val Pilejoueur = createPileCarte()
-            val PileOpponent = createPileCarte()
             PanneauPiocheDefausse.children.addAll(PileOpponent, Pilejoueur,currentPlayerLabel)
             PanneauPiocheDefausse.spacing = 100.0
 
@@ -246,8 +242,6 @@ class Game(nbJoueur: Int) : GridPane() {
             setupCenterPanel()
 
             val PanneauPiocheDefausse = HBox()
-            val Pilejoueur = createPileCarte()
-            val PileOpponent = createPileCarte()
             PanneauPiocheDefausse.children.addAll(PileOpponent, Pilejoueur,currentPlayerLabel)
             PanneauPiocheDefausse.spacing = 100.0
 
@@ -308,9 +302,7 @@ class Game(nbJoueur: Int) : GridPane() {
             setupCenterPanel()
 
             val PanneauPiocheDefausse = HBox()
-            val Pilejoueur = createPileCarte()
-            val PileOpponent = createPileCarte()
-            PanneauPiocheDefausse.children.addAll(PileOpponent, Pilejoueur)
+            PanneauPiocheDefausse.children.addAll(PileOpponent, Pilejoueur,currentPlayerLabel)
             PanneauPiocheDefausse.spacing = 100.0
 
             this.add(joueur1, 0, 0)
@@ -366,8 +358,6 @@ class Game(nbJoueur: Int) : GridPane() {
             setupCenterPanel()
 
             val PanneauPiocheDefausse = HBox()
-            val Pilejoueur = createPileCarte()
-            val PileOpponent = createPileCarte()
             PanneauPiocheDefausse.children.addAll(PileOpponent, Pilejoueur,currentPlayerLabel)
             PanneauPiocheDefausse.spacing = 100.0
 

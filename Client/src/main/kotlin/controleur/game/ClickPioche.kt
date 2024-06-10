@@ -10,7 +10,10 @@ import vue.Game
 class ClickPioche (val game : Game,val jeu : Jeu) : EventHandler<MouseEvent>{
     override fun handle(e: MouseEvent) {
         if(e.eventType == MouseEvent.MOUSE_CLICKED){
-
+            if(!jeu.myturnToPlay){
+                return
+            }
+            //TODO
         }
     }
 }
