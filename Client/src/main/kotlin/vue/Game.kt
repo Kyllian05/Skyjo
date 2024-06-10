@@ -311,6 +311,11 @@ class Game(nbJoueur: Int) : GridPane() {
 
         for (row in 0 until rows) {
             for (col in 0 until cols) {
+//                val input = FileInputStream("images/cartes/carteSKYJO.png")
+//                val img = Image(input)
+//                val tile = ImageView(img)
+//                tile.fitWidth = tileWidth
+//                tile.fitHeight = tileHeight
                 val tile = Rectangle(tileWidth, tileHeight)
                 tile.setArcWidth(10.0);
                 tile.setArcHeight(10.0);

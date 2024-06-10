@@ -5,6 +5,7 @@ import javafx.collections.FXCollections
 import javafx.collections.ObservableList
 import kotlinx.coroutines.runBlocking
 import modele.data.Party
+import modele.serverData.Plateau
 
 class Jeu(private val server: Server) {
     private var id: Int? = null
@@ -15,14 +16,15 @@ class Jeu(private val server: Server) {
     val defausse: Defausse = Defausse(this.server)
     var listeJoueur = FXCollections.observableArrayList<String>()
     var maxPlayerPartie : Int? = null
+    var currentState: Plateau? = null
 
     fun createPlayer(name: String) {
         this.myPlayer = Joueur(name, this.server, this.pioche, this.defausse)
     }
 
     fun start() {
-        if (joined) {
-            TODO()
+        if (joined && this.id != null) {
+            this.currentState = runBlocking { return@runBlocking this@Jeu.server.getPartieState() }
         } else {
             throw Exception("No party joined")
         }
