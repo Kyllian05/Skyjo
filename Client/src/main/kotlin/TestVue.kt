@@ -9,9 +9,8 @@ import vue.Salon
 class TestVue(): Application() {
     override fun start(primaryStage: Stage) {
 
-
         // Vues
-        val salon = Game(5)
+        val salon = Game(2)
 
         // Scène
         val scene = Scene(salon, 2000.0, 1000.0)
