@@ -3,6 +3,7 @@ package vue
 import javafx.beans.property.Property
 import javafx.beans.property.ReadOnlyProperty
 import javafx.beans.property.ReadOnlyStringProperty
+import javafx.beans.property.SimpleStringProperty
 import javafx.beans.property.StringProperty
 import javafx.beans.property.StringPropertyBase
 import javafx.beans.value.ObservableStringValue
@@ -29,12 +30,14 @@ class Game(nbJoueur: Int) : GridPane() {
     var nbJoueur : Int
     val plateaux: Array<Array<Rectangle>> = arrayOf()
     val param : Array<String>
-    var playersName = arrayOf<String>()
-    var playerLabel = Label("None")
+    var playersName = arrayOf<StringProperty>()
     var playerCount = 0
 
     init {
         this.nbJoueur = nbJoueur
+        for(i in 0..<nbJoueur){
+            playersName += SimpleStringProperty("Thomas")
+        }
 
         val Titre = GridPane()
         val Titre1 = GridPane()
@@ -280,7 +283,8 @@ class Game(nbJoueur: Int) : GridPane() {
         val gridPane = createGridPane(3, 4, 60.0, 85.0)
         var plateau: Array<Rectangle> = arrayOf()
         this.plateaux.plus(plateau)
-        val playerLabel = Label(playersName[playerCount])
+        val playerLabel = Label("")
+        playerLabel.textProperty().bind(playersName[playerCount])
         playerCount += 1
         playerLabel.font = Font.font("Arial", FontWeight.BOLD, 20.0)
         playerLabel.textFill = Color.WHITE
@@ -364,11 +368,5 @@ class Game(nbJoueur: Int) : GridPane() {
         stackPane.children.addAll(rectangle)
 
         return stackPane
-    }
-
-    fun defineName(allNames : Array<String>){
-        if(nbJoueur == 2){
-            this.playerLabel.text = allNames[1]
-        }
     }
 }

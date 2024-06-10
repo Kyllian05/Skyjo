@@ -15,7 +15,6 @@ class FetchingPlayer(val jeu : Jeu,val vue : vue.Salon,var game : Game?,val stag
                 while (jeu.listeJoueur.size != jeu.maxPlayerPartie){
                     runBlocking{jeu.updateListeJoueur()}
                     javafx.application.Platform.runLater { vue.updatePlayer(jeu.maxPlayerPartie!!) }
-                    vue.updatePlayer(jeu.maxPlayerPartie!!)
                     Thread.sleep(3000)
                 }
                 game = Game(jeu.maxPlayerPartie!!)
