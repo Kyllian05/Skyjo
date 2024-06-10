@@ -32,6 +32,7 @@ class Game(nbJoueur: Int) : GridPane() {
     val param : Array<String>
     var playersName = arrayOf<StringProperty>()
     var playerCount = 0
+    val currentPlayer : StringProperty = SimpleStringProperty("Ce n'est pas à vous de jouer")
 
     init {
         this.nbJoueur = nbJoueur
@@ -95,7 +96,9 @@ class Game(nbJoueur: Int) : GridPane() {
             PanneauPiocheDefausse.alignment = Pos.CENTER
             val Pilejoueur = createPileCarte()
             val PileOpponent = createPileCarte()
-            PanneauPiocheDefausse.children.addAll(Titre, PileOpponent, Pilejoueur, Titre1)
+            val currentPlayerLabel = Label("")
+            currentPlayerLabel.textProperty().bind(currentPlayer)
+            PanneauPiocheDefausse.children.addAll(Titre, PileOpponent, Pilejoueur, Titre1,currentPlayerLabel)
             PanneauPiocheDefausse.spacing = 300.0
             PanneauPiocheDefausse.alignment = Pos.CENTER
 

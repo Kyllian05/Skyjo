@@ -1,5 +1,6 @@
 package controleur
 
+import controleur.game.GameBackgound
 import controleur.game.LinkName
 import javafx.concurrent.Task
 import javafx.stage.Stage
@@ -19,6 +20,7 @@ class FetchingPlayer(val jeu : Jeu,val vue : vue.Salon,var game : Game?,val stag
                 }
                 game = Game(jeu.maxPlayerPartie!!)
                 LinkName(game!!,jeu)
+                GameBackgound(jeu, game!!).startWaiting()
                 stage.scene.root = game
             }
         }
