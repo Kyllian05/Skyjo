@@ -13,6 +13,10 @@ class ClickPioche (val game : Game,val jeu : Jeu) : EventHandler<MouseEvent>{
             if(!jeu.myturnToPlay){
                 return
             }
+            if(jeu.playingChoice == null){
+                jeu.playingChoice = "Pioche"
+                return
+            }
             //TODO
         }
     }

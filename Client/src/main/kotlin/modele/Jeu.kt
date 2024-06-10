@@ -18,6 +18,7 @@ class Jeu(private val server: Server) {
     var maxPlayerPartie : Int? = null
     var currentState: Plateau? = null
     var myturnToPlay : Boolean = false
+    var playingChoice : String? = null
 
     fun createPlayer(name: String) {
         this.myPlayer = Joueur(name, this.server, this.pioche, this.defausse)
