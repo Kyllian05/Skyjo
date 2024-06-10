@@ -148,7 +148,10 @@ class Game(nbJoueur: Int) : GridPane() {
             this.add(joueur2, 2, 1, 1, 1)
             this.add(PanneauPiocheDefausse, 1, 1, 1, 1)
             this.add(PanneauCentre, 1, 2, 1, 1)
-            this.isGridLinesVisible = true
+
+            GridPane.setMargin(PanneauPiocheDefausse, Insets(100.0,0.0,0.0,170.0))
+            GridPane.setMargin(PanneauCentre, Insets(0.0,0.0,0.0,70.0))
+
 
 
             RowConstraints().apply {
@@ -200,7 +203,7 @@ class Game(nbJoueur: Int) : GridPane() {
             this.add(PanneauPiocheDefausse, 1, 1, 1, 1)
             this.add(joueur3, 2, 1, 1, 1)
             this.add(PanneauCentre, 1, 2, 1, 1)
-            this.isGridLinesVisible = true
+
 
 
             RowConstraints().apply {
