@@ -10,11 +10,9 @@ class TestVue2(): Application() {
     override fun start(primaryStage: Stage) {
 
 
-        // Vues
-        val salon = Game(3)
+        val Accueil = Game(2)
 
-        // Scène
-        val scene = Scene(salon, 2000.0, 1000.0)
+        val scene = Scene(Accueil, 2000.0, 1000.0)
 
         scene.stylesheets.add(javaClass.getResource("style.css").toExternalForm())
         primaryStage.title="Skyjo"

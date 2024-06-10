@@ -9,7 +9,7 @@ import modele.serverData.Plateau
 
 class Jeu(private val server: Server) {
     private var id: Int? = null
-    private var myPlayer: Joueur? = null
+    var myPlayer: Joueur? = null
     var joined: Boolean = false
     val partyListe = FXCollections.observableArrayList<Party>()
     val pioche: Pioche = Pioche(this.server)
@@ -17,6 +17,8 @@ class Jeu(private val server: Server) {
     var listeJoueur = FXCollections.observableArrayList<String>()
     var maxPlayerPartie : Int? = null
     var currentState: Plateau? = null
+    var myturnToPlay : Boolean = false
+    var playingChoice : String? = null
 
     fun createPlayer(name: String) {
         this.myPlayer = Joueur(name, this.server, this.pioche, this.defausse)
@@ -62,5 +64,9 @@ class Jeu(private val server: Server) {
          }
          this@Jeu.listeJoueur.clear()
          Platform.runLater { this@Jeu.listeJoueur.addAll(result) }
+    }
+
+    suspend fun getPartieState(): modele.serverData.Plateau{
+        return server.getPartieState()
     }
 }
