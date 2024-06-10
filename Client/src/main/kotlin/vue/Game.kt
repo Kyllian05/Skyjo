@@ -99,7 +99,7 @@ class Game(nbJoueur: Int) : GridPane() {
             GridPane.setMargin(PanneauOpponnent, Insets(0.0, 0.0, 0.0, -60.0))
             GridPane.setMargin(PanneauCentre, Insets(0.0, -180.0, 0.0, 0.0))
 
-            // Setting constraints to make the panels fill the height of their grid cells
+
             RowConstraints().apply {
                 vgrow = Priority.ALWAYS
                 this@Game.rowConstraints.add(this)
@@ -137,7 +137,7 @@ class Game(nbJoueur: Int) : GridPane() {
             panneauPiocheDefausse.alignment = Pos.CENTER
             val Pilejoueur = createPileCarte()
             val PileOpponent = createPileCarte()
-            panneauPiocheDefausse.children.addAll(Titre, PileOpponent, Pilejoueur, Titre1)
+            panneauPiocheDefausse.children.addAll(PileOpponent, Pilejoueur)
             panneauPiocheDefausse.spacing = 300.0
             panneauPiocheDefausse.alignment = Pos.CENTER
 
@@ -146,26 +146,23 @@ class Game(nbJoueur: Int) : GridPane() {
                 rowConstraints.addAll(
                     RowConstraints().apply { vgrow = Priority.ALWAYS },
                     RowConstraints().apply { vgrow = Priority.ALWAYS },
-                    RowConstraints().apply { vgrow = Priority.ALWAYS }
+                   RowConstraints().apply { vgrow = Priority.ALWAYS }
                 )
                 columnConstraints.addAll(
-                    ColumnConstraints().apply { hgrow = Priority.ALWAYS },
-                    ColumnConstraints().apply { hgrow = Priority.ALWAYS },
-                    ColumnConstraints().apply { hgrow = Priority.ALWAYS }
+                   ColumnConstraints().apply { hgrow = Priority.ALWAYS },
+                   ColumnConstraints().apply { hgrow = Priority.ALWAYS },
+                   ColumnConstraints().apply { hgrow = Priority.ALWAYS }
                 )
 
 
-                add(panneauOpponent1, 1, 1)
-                add(panneauPiocheDefausse, 0, 1)
-                add(panneauOpponent2, -1, 1)
-                add(PanneauCentre, 0, 2)
+                add(panneauOpponent1, 2, 1)
+                add(panneauPiocheDefausse, 1, 1)
+                add(panneauOpponent2, 0, 1)
+                add(PanneauCentre, 1, 2)
 
 
-                GridPane.setMargin(panneauOpponent1, Insets(0.0, 0.0, 0.0, 0.0))
-                GridPane.setMargin(panneauOpponent2, Insets(0.0, 0.0, 0.0, 0.0))
-                GridPane.setMargin(PanneauCentre, Insets(0.0, 0.0, 0.0, 0.0))
+
             }
-
 
             VBox.setVgrow(panneauOpponent1, Priority.ALWAYS)
             VBox.setVgrow(panneauOpponent2, Priority.ALWAYS)
@@ -178,6 +175,8 @@ class Game(nbJoueur: Int) : GridPane() {
                 vgap = 20.0
                 alignment = Pos.CENTER
             }
+
+
         }
 
 
@@ -198,7 +197,7 @@ class Game(nbJoueur: Int) : GridPane() {
             panneauPiocheDefausse.spacing = 300.0
             panneauPiocheDefausse.alignment = Pos.CENTER
 
-            val gridPane = GridPane().apply {
+            val gridPane1 = GridPane().apply {
                 rowConstraints.addAll(
                     RowConstraints().apply { vgrow = Priority.ALWAYS },
                     RowConstraints().apply { vgrow = Priority.ALWAYS },
@@ -219,7 +218,7 @@ class Game(nbJoueur: Int) : GridPane() {
 
 
                 GridPane.setMargin(panneauOpponent1, Insets(0.0, 0.0, 0.0, 0.0))
-                GridPane.setMargin(PanneauCentre, Insets(0.0, 0.0, 0.0, 0.0))
+                //GridPane.setMargin(PanneauCentre, Insets(0.0, 0.0, 0.0, 0.0))
             }
 
 
@@ -231,7 +230,7 @@ class Game(nbJoueur: Int) : GridPane() {
 
 
             this.apply {
-                children.add(gridPane)
+                children.add(gridPane1)
                 vgap = 20.0
                 alignment = Pos.CENTER
             }
@@ -267,6 +266,10 @@ class Game(nbJoueur: Int) : GridPane() {
         val labelVBox = VBox(10.0, playerLabelVous, scoreLabel)
         labelVBox.alignment = Pos.BOTTOM_LEFT
 
+        val hBox = HBox(10.0, gridPane, labelVBox)
+        hBox.alignment = Pos.CENTER
+
+        PanneauCentre.children.add(hBox)
     }
 
     private fun setupOpponentPanel(coté : String): VBox {
