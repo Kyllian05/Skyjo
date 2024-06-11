@@ -25,14 +25,7 @@ class GameBackgound(val jeu : Jeu,val game : Game) {
                             UpdatePlaying(game,false)
                             jeu.myturnToPlay = false
                         }
-                        /*for (i in 0..12) {
-                            game.plateaux[0][i].value = Image(FileInputStream("images/cartes/carte$i.png"))
-                        }*/
-                        try{
-                            gameState.update()
-                        } catch (e: Exception) {
-                            println(e)
-                        }
+                        gameState.update()
                     }
                     Thread.sleep(3000)
                 } while (data!!.etape != "PARTIE_TERMINEE")

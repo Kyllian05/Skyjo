@@ -13,6 +13,12 @@ class LinkName(val vue : Game,val jeu:Jeu) {
                 break
             }
         }
+        // Réduire le nom des joueurs
+        for (i in 0 until jeu.listeJoueur.size) {
+            if (jeu.listeJoueur[i].length > 15) {
+                jeu.listeJoueur[i] = jeu.listeJoueur[i].substring(0, 10) + "..."
+            }
+        }
         // Placer les noms des joueurs après le nôtre
         var index = 0
         for (i in pos+1 until jeu.listeJoueur.size){
