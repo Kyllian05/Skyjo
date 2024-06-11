@@ -39,37 +39,43 @@ class Salon : GridPane() {
         //Mise en place du Loader dans une Hbox et Ajout de contrainte
         this.Loader = ProgressIndicator()
 
-        val PanneauProgress = HBox()
+        val PanneauProgress = VBox()
         PanneauProgress.children.add(Loader)
-        HBox.setHgrow(Loader, Priority.ALWAYS)
-        PanneauProgress.children.add(playerCountLabel)
+        VBox.setVgrow(Loader, Priority.ALWAYS)
+        this.add(playerCountLabel, 0,3)
+        playerCountLabel.style = "-fx-text-fill: white; -fx-font-size: 20px;"
         PanneauProgress.alignment = Pos.CENTER
+        GridPane.setHalignment(playerCountLabel, HPos.CENTER)
+        GridPane.setMargin(playerCountLabel, Insets(40.0,0.0,0.0,0.0))
+
+
+        ListeJoueurs.styleClass.add("ButtonAccueil")
 
         this.add(PanneauProgress, 0, 1)
         GridPane.setHalignment(PanneauProgress, HPos.CENTER)
-        GridPane.setMargin(PanneauProgress, Insets(100.0, 0.0, 0.0,0.0))
+        GridPane.setMargin(PanneauProgress, Insets(50.0, 0.0, 0.0,0.0))
 
         val columnConstraints = ColumnConstraints()
         columnConstraints.hgrow = Priority.ALWAYS
         this.columnConstraints.add(columnConstraints)
 
-        Loader.styleClass.add("Progress")
+        Loader.styleClass.add("ProgressSalon")
 
         val labelAttente = Label("En attente de joueurs")
-        labelAttente.style = "-fx-text-fill: white;"
-        this.add(labelAttente, 0, 3)
+        labelAttente.style = "-fx-text-fill: white; -fx-font-size: 20px;"
+        this.add(labelAttente, 0, 4)
         GridPane.setHalignment(labelAttente, HPos.CENTER)
 
         //Mise en place du ListView
 
         val stackPane = StackPane()
-        stackPane.maxWidth = 500.0
-        stackPane.maxHeight = 200.0
+        stackPane.maxWidth = 600.0
+        stackPane.maxHeight = 300.0
 
         stackPane.children.add(ListeJoueurs)
         StackPane.setAlignment(ListeJoueurs, Pos.CENTER)
 
-        this.add(stackPane, 0, 4)
+        this.add(stackPane, 0, 5)
         GridPane.setHalignment(stackPane, HPos.CENTER)
         GridPane.setMargin(stackPane, Insets(75.0,0.0,0.0,0.0))
 
