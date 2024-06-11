@@ -51,6 +51,12 @@
 .Progress {
     -fx-progress-color: white;
 }
+.ProgressSalon {
+    -fx-progress-color: white;
+    -fx-scale-x: 2;
+    -fx-scale-y: 2;
+}
+
 
 .ButtonAccueil {
     -fx-background-radius: 10;

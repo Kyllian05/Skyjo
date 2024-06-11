@@ -1,6 +1,8 @@
 package modele
 
 import javafx.application.Platform
+import javafx.beans.property.SimpleStringProperty
+import javafx.beans.property.StringProperty
 import javafx.collections.FXCollections
 import javafx.collections.ObservableList
 import kotlinx.coroutines.runBlocking
@@ -19,6 +21,7 @@ class Jeu(private val server: Server) {
     var currentState: Plateau? = null
     var myturnToPlay : Boolean = false
     var playingChoice : String? = null
+    var playingText : StringProperty = SimpleStringProperty("Ce n'est pas à vous de jouer")
 
     fun createPlayer(name: String) {
         this.myPlayer = Joueur(name, this.server, this.pioche, this.defausse)
@@ -69,5 +72,17 @@ class Jeu(private val server: Server) {
     suspend fun getPartieState(): modele.serverData.Plateau? {
         this.currentState = server.getPartieState()
         return this.currentState
+    }
+
+    suspend fun echangedefausse(colonne : Int,row : Int){
+        return server.echangedefausse(colonne,row)
+    }
+
+    fun changePlayingText(){
+        if(playingText.value == "C'est à vous de jouer"){
+            playingText.value = "Ce n'est pas à vous de jouer"
+        }else{
+            playingText.value = "C'est à vous de jouer"
+        }
     }
 }

@@ -15,7 +15,6 @@ class ClickDefausse (val game : Game, val jeu : Jeu) : EventHandler<MouseEvent> 
                 jeu.playingChoice = "Defausse"
                 return
             }
-            //TODO
         }
     }
 }

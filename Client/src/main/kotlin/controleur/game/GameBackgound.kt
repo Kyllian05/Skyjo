@@ -19,18 +19,23 @@ class GameBackgound(val jeu : Jeu,val game : Game) {
                     runBlocking {
                         data = jeu.getPartieState()
                         if(data!!.plateaux[data!!.indexJoueurCourant].idJoueur == jeu.myPlayer!!.id){
-                            UpdatePlaying(game,true)
+                            javafx.application.Platform.runLater { UpdatePlaying(game, true, jeu) }
                             jeu.myturnToPlay = true
                         }else{
-                            UpdatePlaying(game,false)
+                            javafx.application.Platform.runLater { UpdatePlaying(game, false, jeu) }
                             jeu.myturnToPlay = false
                         }
-                        gameState.update()
+                        try{
+                            gameState.update()
+                        } catch (e: Exception) {
+                            println(e)
+                        }
                     }
                     Thread.sleep(3000)
                 } while (data!!.etape != "PARTIE_TERMINEE")
             }
         }
+        game.currentPlayerLabel.textProperty().bind(jeu.playingText)
         val thread = Thread(task)
         thread.start()
     }

@@ -1,9 +1,6 @@
 package controleur
 
-import controleur.game.ClickDefausse
-import controleur.game.ClickPioche
-import controleur.game.GameBackgound
-import controleur.game.LinkName
+import controleur.game.*
 import javafx.concurrent.Task
 import javafx.scene.control.Alert
 import javafx.stage.Stage
@@ -27,8 +24,9 @@ class FetchingPlayer(val jeu : Jeu,val vue : vue.Salon,var game : Game?,val stag
             game = Game(jeu.maxPlayerPartie!!)
             LinkName(game!!,jeu)
             GameBackgound(jeu, game!!).startWaiting()
-            game!!.pileDefausse.onMouseClicked = ClickPioche(game!!,jeu)
-            game!!.pilePioche.onMouseClicked = ClickDefausse(game!!,jeu)
+            ClickCard(game!!.myCards!!,jeu,game!!)
+            game!!.pileDefausse.onMouseClicked = ClickDefausse(game!!,jeu)
+            game!!.pilePioche.onMouseClicked = ClickPioche(game!!,jeu)
             stage.scene.root = game
         }
 
