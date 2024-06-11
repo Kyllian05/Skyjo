@@ -23,12 +23,13 @@ class Game(nbJoueur: Int) : GridPane() {
     var defausse = arrayOf<ObjectProperty<Image>>()
     var playersName = arrayOf<StringProperty>()
     var playerCount = 0
-    val currentPlayer : StringProperty = SimpleStringProperty("Ce n'est pas à vous de jouer")
+    val currentPlayerLabel = Label("")
 
     // UI
     val PanneauCentre = VBox(10.0)
     val pileDefausse = createPileCarte(isDefausse = true)
     val pilePioche = createPileCarte()
+    var myCards : GridPane? = null
 
     init {
         // Background
@@ -39,11 +40,10 @@ class Game(nbJoueur: Int) : GridPane() {
             playersName += SimpleStringProperty("")
         }
 
-        val currentPlayerLabel = Label("")
+
         currentPlayerLabel.style = "-fx-font-size: 20px; -fx-font-weight: bolder; -fx-text-fill: #ffffff;"
         currentPlayerLabel.isWrapText = true
         currentPlayerLabel.textAlignment = TextAlignment.CENTER
-        currentPlayerLabel.textProperty().bind(currentPlayer)
 
         // Titres
         val Titre = GridPane()
@@ -495,7 +495,7 @@ class Game(nbJoueur: Int) : GridPane() {
         val labelVBox = VBox(10.0, playerLabelVous, scoreLabel)
         labelVBox.alignment = Pos.BOTTOM_LEFT
         // GridPane pour les cartes
-        val gridPane = createGridPane(3, 4, 80.0, 115.0)
+        val gridPane = createGridPane(3, 4, 80.0, 115.0, myPane = true)
 
         val hBox = HBox(10.0, gridPane, labelVBox)
         hBox.alignment = Pos.CENTER
@@ -543,7 +543,7 @@ class Game(nbJoueur: Int) : GridPane() {
      * Permet de créer le plateau d'un joueur avec toutes ses cartes
      * @return GridPane
      */
-    private fun createGridPane(rows: Int, cols: Int, tileWidth: Double, tileHeight: Double): GridPane {
+    private fun createGridPane(rows: Int, cols: Int, tileWidth: Double, tileHeight: Double,myPane : Boolean = false): GridPane {
         // Setup stockage properties
         var currentPlateau =  arrayOf<ObjectProperty<Image>>()
         // Setup grid
@@ -560,6 +560,7 @@ class Game(nbJoueur: Int) : GridPane() {
             }
         }
         this.plateaux += currentPlateau
+        if(myPane)this.myCards = gridPane
         return gridPane
     }
 
