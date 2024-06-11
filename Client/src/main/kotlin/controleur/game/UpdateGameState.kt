@@ -1,9 +1,11 @@
 package controleur.game
 
+import javafx.application.Platform
 import javafx.scene.image.Image
 import modele.Jeu
 import vue.Game
 import java.io.FileInputStream
+import java.lang.NumberFormatException
 
 class UpdateGameState(private val vue: Game, private val model: Jeu) {
     fun update() {
@@ -20,19 +22,39 @@ class UpdateGameState(private val vue: Game, private val model: Jeu) {
             // Créer toutes les cartes à partir du state en partant de notre joueur
             var index = 0
             for (i in pos until state.plateaux.size) {
+                var scoreValue = 0.0
                 for (j in 0 until state.plateaux[i].colonnes.size) {
                     for (k in 0 until state.plateaux[i].colonnes[j].size) {
                         vue.plateaux[index][j+k*4].value = createCard(state.plateaux[i].colonnes[j][k].valeur)
+                        try {
+                            scoreValue += state.plateaux[i].colonnes[j][k].valeur.toDouble()
+                        } catch (e: NumberFormatException) {
+                            continue
+                        }
                     }
+                }
+                val scoreIndex = index
+                Platform.runLater {
+                    vue.scoreLabels[scoreIndex].value = "Score : $scoreValue"
                 }
                 index += 1
             }
             // Créer toutes les cartes à partir du state en complétant le reste des joueurs
             for (i in 0 until pos) {
+                var scoreValue = 0.0
                 for (j in 0 until state.plateaux[i].colonnes.size) {
                     for (k in 0 until state.plateaux[i].colonnes[j].size) {
                         vue.plateaux[index][j+k*4].value = createCard(state.plateaux[i].colonnes[j][k].valeur)
+                        try {
+                            scoreValue += state.plateaux[i].colonnes[j][k].valeur.toDouble()
+                        } catch (e: NumberFormatException) {
+                            continue
+                        }
                     }
+                }
+                val scoreIndex = index
+                Platform.runLater {
+                    vue.scoreLabels[scoreIndex].value = "Score : $scoreValue"
                 }
                 index += 1
             }
