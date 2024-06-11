@@ -371,9 +371,10 @@ class Game(nbJoueur: Int) : GridPane() {
             currentPlayerLabel.padding = Insets(100.0,0.0,0.0,0.0)
             HBox.setMargin(currentPlayerLabel, Insets(0.0, 0.0, 0.0, 30.0))
 
-            GridPane.setMargin(joueur3, Insets(10.0,0.0,10.0,0.0))
-            GridPane.setMargin(joueur1, Insets(0.0,0.0,20.0,0.0))
-            GridPane.setMargin(joueur6, Insets(0.0,0.0,20.0,0.0))
+            GridPane.setMargin(joueur3, Insets(0.0,0.0,10.0,0.0))
+            GridPane.setMargin(joueur4, Insets(0.0,0.0,10.0,0.0))
+            GridPane.setMargin(joueur1, Insets(0.0,0.0,50.0,0.0))
+            GridPane.setMargin(joueur6, Insets(0.0,0.0,50.0,0.0))
 
             GridPane.setMargin(PanneauPiocheDefausse, Insets(60.0,0.0,0.0,80.0))
             GridPane.setMargin(PanneauCentre, Insets(0.0,0.0,0.0,140.0))
