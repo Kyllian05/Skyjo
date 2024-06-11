@@ -23,11 +23,11 @@ class Actualiser(private val jeu: Jeu, private val vue: Rejoindre, private val s
                             return
                         }
                         val state = runBlocking { return@runBlocking this@Actualiser.server.getPartieState(p) }
-                        val max = state.nbJoueursMax
-                        val joined = state.plateaux.size
-                        if (max == joined) {
+                        if (state.etape != "AJOUT_DES_JOUEURS") {
                             continue
                         }
+                        val max = state.nbJoueursMax
+                        val joined = state.plateaux.size
                         try {
                             val createdBy = runBlocking { return@runBlocking this@Actualiser.server.getName(state.plateaux[0].idJoueur) }
                             Platform.runLater { jeu.partyListe.add(Party(max, p, joined, createdBy)) }
