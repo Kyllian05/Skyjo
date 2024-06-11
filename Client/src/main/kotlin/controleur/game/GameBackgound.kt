@@ -13,9 +13,7 @@ class GameBackgound(val jeu : Jeu,val game : Game) {
     fun startWaiting(){
         val task = object : Task<Unit>() {
             override fun call() {
-                // TEST : Modif carte
-                game.defausse[0].value = Image(FileInputStream("images/cartes/carte0.png"))
-                // ---
+                val gameState = UpdateGameState(game, jeu)
                 do{
                     var data : Plateau?
                     runBlocking {
@@ -26,6 +24,14 @@ class GameBackgound(val jeu : Jeu,val game : Game) {
                         }else{
                             UpdatePlaying(game,false)
                             jeu.myturnToPlay = false
+                        }
+                        /*for (i in 0..12) {
+                            game.plateaux[0][i].value = Image(FileInputStream("images/cartes/carte$i.png"))
+                        }*/
+                        try{
+                            gameState.update()
+                        } catch (e: Exception) {
+                            println(e)
                         }
                     }
                     Thread.sleep(3000)

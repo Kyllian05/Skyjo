@@ -66,7 +66,8 @@ class Jeu(private val server: Server) {
          Platform.runLater { this@Jeu.listeJoueur.addAll(result) }
     }
 
-    suspend fun getPartieState(): modele.serverData.Plateau{
-        return server.getPartieState()
+    suspend fun getPartieState(): modele.serverData.Plateau? {
+        this.currentState = server.getPartieState()
+        return this.currentState
     }
 }
