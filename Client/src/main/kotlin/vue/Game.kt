@@ -21,6 +21,7 @@ class Game(nbJoueur: Int) : GridPane() {
     private val param : Array<String>
     var plateaux = arrayOf<Array<ObjectProperty<Image>>>()
     var defausse = arrayOf<ObjectProperty<Image>>()
+    var pioche = arrayOf<ObjectProperty<Image>>()
     var playersName = arrayOf<StringProperty>()
     var scoreLabels = arrayOf<StringProperty>()
     var playerCount = 0
@@ -592,6 +593,8 @@ class Game(nbJoueur: Int) : GridPane() {
         // Stockage éventuel
         if (isDefausse) {
             this.defausse = tmpPile
+        } else {
+            this.pioche = tmpPile
         }
         // Positionnement
         rect1.relocate(50.0, 50.0)

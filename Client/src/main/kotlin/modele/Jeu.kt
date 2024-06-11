@@ -7,6 +7,7 @@ import javafx.collections.FXCollections
 import javafx.collections.ObservableList
 import kotlinx.coroutines.runBlocking
 import modele.data.Party
+import modele.serverData.Carte
 import modele.serverData.Plateau
 
 class Jeu(private val server: Server) {
@@ -25,14 +26,6 @@ class Jeu(private val server: Server) {
 
     fun createPlayer(name: String) {
         this.myPlayer = Joueur(name, this.server, this.pioche, this.defausse)
-    }
-
-    fun start() {
-        if (joined && this.id != null) {
-            this.currentState = runBlocking { return@runBlocking this@Jeu.server.getPartieState() }
-        } else {
-            throw Exception("No party joined")
-        }
     }
 
     fun creerPartie(nbJoueur: Int) {
@@ -84,5 +77,9 @@ class Jeu(private val server: Server) {
         }else{
             playingText.value = "C'est à vous de jouer"
         }
+    }
+
+    suspend fun piocher(): modele.Carte {
+        return this.server.pioche()
     }
 }

@@ -25,11 +25,7 @@ class GameBackgound(val jeu : Jeu,val game : Game) {
                             javafx.application.Platform.runLater { UpdatePlaying(game, false, jeu) }
                             jeu.myturnToPlay = false
                         }
-                        try{
-                            gameState.update()
-                        } catch (e: Exception) {
-                            println(e)
-                        }
+                        gameState.update()
                     }
                     Thread.sleep(3000)
                 } while (data!!.etape != "PARTIE_TERMINEE")

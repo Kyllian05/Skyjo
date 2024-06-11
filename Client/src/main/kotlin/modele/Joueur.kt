@@ -24,10 +24,6 @@ class Joueur(nom: String, server: Server, pioche:Pioche, defausse: Defausse) {
         this.plateau = Plateau(server,this.id)
     }
 
-    fun startGame(): Int {
-        TODO()
-    }
-
     fun echangePioche(colonne : Int,ligne : Int){
         runBlocking {
             var card = pioche.piocher()
