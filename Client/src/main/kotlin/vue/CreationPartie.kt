@@ -3,13 +3,16 @@ package vue
 import javafx.geometry.Insets
 import javafx.geometry.Pos
 import javafx.scene.control.*
+import javafx.scene.image.Image
+import javafx.scene.image.ImageView
 import javafx.scene.layout.*
+import java.io.FileInputStream
 
 class CreationPartie : BorderPane() {
     private val panneauCentre: VBox = VBox(15.0)
 
     val boutonCree: Button = Button("Crée la Partie")
-    val boutonRetour : Button = Button("<")
+    val boutonRetour : Button = Button("")
     val labelTop2 : Label
     val labelTop3 : Label
     val labelTop1 : Label
@@ -54,7 +57,10 @@ class CreationPartie : BorderPane() {
         stackPaneTop.alignment = Pos.TOP_LEFT
 
         //Paramètrage Boutton Retour
-        boutonRetour.setPrefSize(50.0, 50.0)
+        val img_retour = ImageView(Image(FileInputStream("images/icone-fleche-gauche-noir.png")))
+        img_retour.fitWidth = 40.0
+        img_retour.fitHeight = 40.0
+        boutonRetour.setGraphic(img_retour)
         boutonRetour.setMaxSize(40.0, 40.0)
         stackPaneTop.children.add(boutonRetour)
         this.boutonRetour.styleClass.add("ButtonAccueil")
