@@ -57,12 +57,12 @@ class Jeu(private val server: Server) {
     }
 
     suspend fun updateListeJoueur(){
-         var list = server.getAllPlayersInPartie()
-         var result = FXCollections.observableArrayList<String>()
-         for(i in 0..list.size-1){
-             result.add(server.getName(list[i]))
+         val list = server.getAllPlayersInPartie()
+         var result = arrayOf<String>()
+         for(element in list){
+             result += server.getName(element)
          }
-         this@Jeu.listeJoueur.clear()
+         Platform.runLater { this@Jeu.listeJoueur.clear() }
          Platform.runLater { this@Jeu.listeJoueur.addAll(result) }
     }
 
