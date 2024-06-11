@@ -6,18 +6,21 @@ import javafx.scene.control.*
 import javafx.scene.layout.*
 import javafx.scene.control.ListView
 import javafx.scene.control.Label
+import javafx.scene.image.Image
+import javafx.scene.image.ImageView
 import javafx.scene.paint.Color
 import javafx.scene.text.Font
 import javafx.scene.text.FontPosture
 import javafx.scene.text.FontWeight
 import modele.data.Party
+import java.io.FileInputStream
 
 class Rejoindre : BorderPane() {
     private val panneauCentre: VBox = VBox(15.0)
     private val panneauDroite: AnchorPane = AnchorPane()
 
     val boutonRejoindre: Button = Button("Rejoindre la Partie")
-    val boutonRetour : Button = Button("<")
+    val boutonRetour : Button = Button("")
     val loader: ProgressIndicator = ProgressIndicator()
     val labelTop2 : Label
     val labelTop3 : Label
@@ -60,7 +63,10 @@ class Rejoindre : BorderPane() {
         stackPaneTop.alignment = Pos.TOP_LEFT
 
         //Paramètrage Boutton Retour
-        boutonRetour.setPrefSize(50.0, 50.0)
+        val img_retour = ImageView(Image(FileInputStream("images/icone-fleche-gauche-noir.png")))
+        img_retour.fitWidth = 40.0
+        img_retour.fitHeight = 40.0
+        boutonRetour.setGraphic(img_retour)
         boutonRetour.setMaxSize(40.0, 40.0)
         stackPaneTop.children.add(boutonRetour)
         this.boutonRetour.styleClass.add("ButtonAccueil")
