@@ -10,7 +10,9 @@ class TestVue(): Application() {
     override fun start(primaryStage: Stage) {
 
         // Vues
-        val salon = Game(2)
+        val salon = Game(7)
+
+
 
         // Scène
         val scene = Scene(salon, 2000.0, 1000.0)

@@ -62,37 +62,6 @@ class Game(nbJoueur: Int) : GridPane() {
             posAccueil += 15.0
         }
 
-        /**
-         * Vue pour 0 joueurs (test)
-         */
-        if (nbJoueur == 0) {
-            val cartes: Array<Button> = Array(12) { Button() }
-
-            val innerGrid = GridPane()
-            innerGrid.hgap = 10.0
-            innerGrid.vgap = 10.0
-
-            var index = 0
-
-            for (i in 0 until 3) {
-                for (j in 0 until 4) {
-                    val carte = Button("")
-                    innerGrid.add(carte, j, i)
-                    carte.maxWidth = 30.0
-                    carte.maxHeight = 50.0
-                    carte.styleClass.add("carteBouton")
-
-                    cartes[index] = carte
-                    index++
-                }
-            }
-
-
-            this.add(innerGrid, 0, 0)
-
-
-            this.padding = Insets(10.0)
-        }
 
         /**
          * Vue pour 2 joueurs
@@ -104,7 +73,7 @@ class Game(nbJoueur: Int) : GridPane() {
 
             val PanneauPiocheDefausse = HBox()
             PanneauPiocheDefausse.children.addAll(Titre, pilePioche, currentPlayerLabel, pileDefausse, Titre1)
-            PanneauPiocheDefausse.spacing = 300.0
+            PanneauPiocheDefausse.spacing = 150.0
             PanneauPiocheDefausse.alignment = Pos.CENTER
 
             GridPane.setMargin(PanneauOpponnent, Insets(0.0, 0.0, 0.0, -60.0))
@@ -146,15 +115,18 @@ class Game(nbJoueur: Int) : GridPane() {
 
             val PanneauPiocheDefausse = HBox()
             PanneauPiocheDefausse.children.addAll(pilePioche, currentPlayerLabel, pileDefausse)
-            PanneauPiocheDefausse.spacing = 100.0
+            PanneauPiocheDefausse.spacing = 75.0
 
             this.add(joueur1, 0, 1, 1, 1)
             this.add(joueur2, 2, 1, 1, 1)
             this.add(PanneauPiocheDefausse, 1, 1, 1, 1)
             this.add(PanneauCentre, 1, 2, 1, 1)
 
-            GridPane.setMargin(PanneauPiocheDefausse, Insets(100.0,0.0,0.0,170.0))
-            GridPane.setMargin(PanneauCentre, Insets(0.0,0.0,0.0,70.0))
+            currentPlayerLabel.padding = Insets(100.0,0.0,0.0,0.0)
+            HBox.setMargin(currentPlayerLabel, Insets(0.0, 0.0, 0.0, 30.0))
+
+            GridPane.setMargin(PanneauPiocheDefausse, Insets(100.0,0.0,0.0,60.0))
+            GridPane.setMargin(PanneauCentre, Insets(0.0,0.0,0.0,130.0))
 
             RowConstraints().apply {
                 vgrow = Priority.ALWAYS
@@ -195,13 +167,21 @@ class Game(nbJoueur: Int) : GridPane() {
 
             val PanneauPiocheDefausse = HBox()
             PanneauPiocheDefausse.children.addAll(pilePioche, currentPlayerLabel, pileDefausse)
-            PanneauPiocheDefausse.spacing = 100.0
+            PanneauPiocheDefausse.spacing = 75.0
 
-            this.add(joueur1, 1, 0, 1, 1)
-            this.add(joueur2, 0, 1, 1, 1)
+
+            this.add(joueur1, 0, 1, 1, 1)
+            this.add(joueur2, 1, 0, 1, 1)
             this.add(PanneauPiocheDefausse, 1, 1, 1, 1)
             this.add(joueur3, 2, 1, 1, 1)
             this.add(PanneauCentre, 1, 2, 1, 1)
+
+            currentPlayerLabel.padding = Insets(100.0,0.0,0.0,0.0)
+            HBox.setMargin(currentPlayerLabel, Insets(0.0, 0.0, 0.0, 30.0))
+
+            GridPane.setMargin(PanneauPiocheDefausse, Insets(50.0,0.0,0.0,50.0))
+            GridPane.setMargin(PanneauCentre, Insets(0.0,0.0,0.0,120.0))
+            GridPane.setMargin(joueur2, Insets(0.0,100.0,0.0,0.0))
 
             RowConstraints().apply {
                 vgrow = Priority.ALWAYS
@@ -236,28 +216,32 @@ class Game(nbJoueur: Int) : GridPane() {
         if (nbJoueur == 5) {
             setupCenterPanel()
 
-            val joueur1 = setupOpponentPanel("right")
-            val joueur2 = setupOpponentPanel("left")
-            val joueur3 = setupOpponentPanel("right")
-            val joueur4 = setupOpponentPanel("left")
+            val joueur1 = setupOpponentPanel("left")
+            val joueur2 = setupOpponentPanel("right")
+            val joueur3 = setupOpponentPanel("left")
+            val joueur4 = setupOpponentPanel("right")
 
             val PanneauPiocheDefausse = HBox()
             PanneauPiocheDefausse.children.addAll(pilePioche, currentPlayerLabel, pileDefausse)
             PanneauPiocheDefausse.spacing = 100.0
 
-            this.add(joueur1, 0, 0, 4, 1)
+
+
             this.add(joueur2, 0, 0, 4, 1)
+            this.add(joueur3, 0, 0, 4, 1)
             this.add(PanneauPiocheDefausse, 1, 1, 4, 1)
-            this.add(joueur3, 3, 2, 1, 1)
-            this.add(joueur4, 0, 2, 1, 1)
+            this.add(joueur4, 3, 2, 1, 1)
+            this.add(joueur1, 0, 2, 1, 1)
             this.add(PanneauCentre, 2, 2, 1, 1)
 
-            GridPane.setMargin(joueur1, Insets(0.0, 800.0,0.0,0.0))
-            GridPane.setMargin(joueur2, Insets(0.0, 0.0,0.0,800.0))
-            GridPane.setMargin(PanneauPiocheDefausse, Insets(0.0, 0.0,0.0,170.0))
+            currentPlayerLabel.padding = Insets(100.0,0.0,0.0,0.0)
+            HBox.setMargin(currentPlayerLabel, Insets(0.0, 0.0, 0.0, 30.0))
+
+            GridPane.setMargin(joueur2, Insets(0.0, 800.0,0.0,0.0))
+            GridPane.setMargin(joueur3, Insets(0.0, 0.0,0.0,800.0))
             GridPane.setMargin(PanneauCentre, Insets(0.0,50.0,0.0,0.0))
 
-            PanneauPiocheDefausse.spacing = 200.0
+            PanneauPiocheDefausse.spacing = 75.0
 
             // Ajoutez les contraintes de ligne
             RowConstraints().apply {
@@ -306,19 +290,25 @@ class Game(nbJoueur: Int) : GridPane() {
 
             val PanneauPiocheDefausse = HBox()
             PanneauPiocheDefausse.children.addAll(pilePioche, currentPlayerLabel, pileDefausse)
-            PanneauPiocheDefausse.spacing = 100.0
+            PanneauPiocheDefausse.spacing = 75.0
 
-            this.add(joueur1, 0, 0)
+
+            this.add(joueur2, 0, 0)
             this.add(joueur3, 1, 0)
             this.add(joueur4, 2, 0)
-            this.add(joueur2, 0, 2)
+            this.add(joueur1, 0, 2)
+
+
             this.add(joueur5, 2, 2)
             this.add(PanneauPiocheDefausse, 1, 1)
             this.add(PanneauCentre, 1, 2)
 
+            currentPlayerLabel.padding = Insets(100.0,0.0,0.0,0.0)
+            HBox.setMargin(currentPlayerLabel, Insets(0.0, 0.0, 0.0, 30.0))
+
             GridPane.setMargin(joueur3, Insets(0.0,110.0,0.0,0.0))
-            GridPane.setMargin(PanneauCentre, Insets(0.0,0.0,0.0,70.0))
-            GridPane.setMargin(PanneauPiocheDefausse, Insets(40.0,0.0,0.0,170.0))
+            GridPane.setMargin(PanneauCentre, Insets(0.0,0.0,0.0,120.0))
+            GridPane.setMargin(PanneauPiocheDefausse, Insets(40.0,0.0,0.0,50.0))
 
             // Ajoutez les contraintes de ligne
             RowConstraints().apply {
@@ -364,25 +354,31 @@ class Game(nbJoueur: Int) : GridPane() {
 
             val PanneauPiocheDefausse = HBox()
             PanneauPiocheDefausse.children.addAll(pilePioche, currentPlayerLabel, pileDefausse)
-            PanneauPiocheDefausse.spacing = 100.0
+            PanneauPiocheDefausse.spacing = 50.0
 
-            this.add(joueur1, 0, 0)
+
+            this.add(joueur3, 0, 0)
             this.add(joueur4, 2, 0)
             this.add(joueur2, 0, 1)
             this.add(joueur5, 2, 1)
-            this.add(joueur3, 0, 2)
+            this.add(joueur1, 0, 2)
+
             this.add(joueur6, 2, 2)
             this.add(PanneauPiocheDefausse, 1, 1)
             this.add(PanneauCentre, 1, 2)
 
-            GridPane.setMargin(joueur1, Insets(10.0,0.0,10.0,0.0))
-            GridPane.setMargin(joueur2, Insets(10.0,0.0,10.0,0.0))
-            GridPane.setMargin(joueur3, Insets(0.0,0.0,20.0,0.0))
-            GridPane.setMargin(joueur6, Insets(0.0,0.0,20.0,0.0))
 
-            GridPane.setMargin(PanneauPiocheDefausse, Insets(60.0,0.0,0.0,110.0))
+            currentPlayerLabel.padding = Insets(100.0,0.0,0.0,0.0)
+            HBox.setMargin(currentPlayerLabel, Insets(0.0, 0.0, 0.0, 30.0))
 
-            // Ajoutez les contraintes de ligne
+            GridPane.setMargin(joueur3, Insets(0.0,0.0,10.0,0.0))
+            GridPane.setMargin(joueur4, Insets(0.0,0.0,10.0,0.0))
+            GridPane.setMargin(joueur1, Insets(0.0,0.0,50.0,0.0))
+            GridPane.setMargin(joueur6, Insets(0.0,0.0,50.0,0.0))
+
+            GridPane.setMargin(PanneauPiocheDefausse, Insets(60.0,0.0,0.0,80.0))
+            GridPane.setMargin(PanneauCentre, Insets(0.0,0.0,0.0,140.0))
+
             RowConstraints().apply {
                 vgrow = Priority.ALWAYS
                 this@Game.rowConstraints.add(this)
@@ -396,7 +392,7 @@ class Game(nbJoueur: Int) : GridPane() {
                 this@Game.rowConstraints.add(this)
             }
 
-            // Ajoutez les contraintes de colonne
+
             ColumnConstraints().apply {
                 hgrow = Priority.ALWAYS
                 this@Game.columnConstraints.add(this)
@@ -415,7 +411,72 @@ class Game(nbJoueur: Int) : GridPane() {
          * Vue pour 8 joueurs
          */
         if (nbJoueur == 8) {
-            TODO()
+            isGridLinesVisible = true
+            setupCenterPanel()
+
+            val joueur1 = setupOpponentPanel("left")
+            val joueur2 = setupOpponentPanel("left")
+            val joueur3 = setupOpponentPanel("left")
+            val joueur4 = setupOpponentPanel("right")
+            val joueur5 = setupOpponentPanel("right")
+            val joueur6 = setupOpponentPanel("right")
+            val joueur7 = setupOpponentPanel("right")
+
+            val PanneauPiocheDefausse = HBox()
+            PanneauPiocheDefausse.children.addAll(pilePioche, currentPlayerLabel, pileDefausse)
+            PanneauPiocheDefausse.spacing = 100.0
+
+            this.add(joueur1, 0, 2)
+            this.add(joueur4, 1, 0)
+            this.add(joueur2, 0, 1)
+            this.add(joueur5, 2, 0)
+            this.add(joueur3, 0, 0)
+            this.add(joueur6, 2, 1)
+            this.add(joueur7, 2, 2)
+            this.add(PanneauPiocheDefausse, 1, 1)
+            this.add(PanneauCentre, 1, 2)
+
+            GridPane.setMargin(joueur1, Insets(20.0,0.0,50.0,0.0))
+            GridPane.setMargin(joueur3, Insets(10.0,0.0,30.0,0.0))
+
+            GridPane.setMargin(joueur4, Insets(10.0,120.0,30.0,0.0))
+
+            GridPane.setMargin(joueur5, Insets(10.0,0.0,30.0,0.0))
+            GridPane.setMargin(joueur7, Insets(20.0,0.0,50.0,0.0))
+
+            GridPane.setMargin(PanneauCentre,  Insets(0.0,0.0,0.0,120.0 ))
+
+            GridPane.setMargin(PanneauPiocheDefausse, Insets(70.0,0.0,0.0,60.0))
+
+
+            RowConstraints().apply {
+                vgrow = Priority.ALWAYS
+                this@Game.rowConstraints.add(this)
+            }
+            RowConstraints().apply {
+                vgrow = Priority.ALWAYS
+                this@Game.rowConstraints.add(this)
+            }
+            RowConstraints().apply {
+                vgrow = Priority.ALWAYS
+                this@Game.rowConstraints.add(this)
+            }
+
+
+            ColumnConstraints().apply {
+                hgrow = Priority.ALWAYS
+                this@Game.columnConstraints.add(this)
+            }
+            ColumnConstraints().apply {
+                hgrow = Priority.ALWAYS
+                this@Game.columnConstraints.add(this)
+            }
+            ColumnConstraints().apply {
+                hgrow = Priority.ALWAYS
+                this@Game.columnConstraints.add(this)
+            }
+
+
         }
 
     }
@@ -514,9 +575,9 @@ class Game(nbJoueur: Int) : GridPane() {
             tmpPile += SimpleObjectProperty(this.defaultImg)
         }
         // Création des cartes
-        val rect1 = createRectangleWithImage(45.0, 70.0, tmpPile[0])
-        val rect2 = createRectangleWithImage(45.0, 70.0, tmpPile[1])
-        val rect3 = createRectangleWithImage(45.0, 70.0, tmpPile[2])
+        val rect1 = createRectangleWithImage(80.0, 115.0, tmpPile[0])
+        val rect2 = createRectangleWithImage(80.0, 115.0, tmpPile[1])
+        val rect3 = createRectangleWithImage(80.0, 115.0, tmpPile[2])
         // Stockage éventuel
         if (isDefausse) {
             this.defausse = tmpPile
