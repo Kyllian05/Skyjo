@@ -10,7 +10,7 @@ class TestVue2(): Application() {
     override fun start(primaryStage: Stage) {
 
 
-        val Accueil = Game(2)
+        val Accueil = Game(8)
 
         val scene = Scene(Accueil, 2000.0, 1000.0)
 
@@ -22,5 +22,5 @@ class TestVue2(): Application() {
     }
 }
 fun main(args: Array<String>) {
-    Application.launch(TestVue::class.java)
+    Application.launch(TestVue2::class.java)
 }
