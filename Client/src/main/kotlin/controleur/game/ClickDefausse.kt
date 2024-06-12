@@ -14,6 +14,8 @@ class ClickDefausse (val game : Game, val jeu : Jeu) : EventHandler<MouseEvent> 
             if(jeu.playingChoice == null){
                 jeu.playingChoice = "Defausse"
                 return
+            }else if(jeu.playingChoice == "Pioche"){
+                jeu.playingChoice = "DefaussePioche"
             }
         }
     }

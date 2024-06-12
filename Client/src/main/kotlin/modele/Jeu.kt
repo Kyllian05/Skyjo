@@ -82,4 +82,8 @@ class Jeu(private val server: Server) {
     suspend fun piocher(): modele.Carte {
         return this.server.pioche()
     }
+
+    suspend fun defaussePioche(colonne : Int,ligne : Int){
+        server.defaussePioche(colonne,ligne)
+    }
 }
