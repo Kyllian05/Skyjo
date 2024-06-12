@@ -15,8 +15,6 @@ class Jeu(private val server: Server) {
     var myPlayer: Joueur? = null
     var joined: Boolean = false
     val partyListe = FXCollections.observableArrayList<Party>()
-    val pioche: Pioche = Pioche(this.server)
-    val defausse: Defausse = Defausse(this.server)
     var listeJoueur = FXCollections.observableArrayList<String>()
     var maxPlayerPartie : Int? = null
     var currentState: Plateau? = null
@@ -25,7 +23,7 @@ class Jeu(private val server: Server) {
     var playingText : StringProperty = SimpleStringProperty("Ce n'est pas à vous de jouer")
 
     fun createPlayer(name: String) {
-        this.myPlayer = Joueur(name, this.server, this.pioche, this.defausse)
+        this.myPlayer = Joueur(name, this.server)
     }
 
     fun creerPartie(nbJoueur: Int) {
