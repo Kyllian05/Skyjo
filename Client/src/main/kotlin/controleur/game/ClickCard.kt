@@ -28,15 +28,16 @@ class ControleurClickCard(val img : ImageView,val jeu : Jeu,val game : Game):Eve
         var column = GridPane.getColumnIndex(img) + 1
         if(jeu.playingChoice == "Defausse"){
             runBlocking { jeu.echangedefausse(column,row) }
-            val gameState = UpdateGameState(game, jeu)
-            runBlocking { jeu.getPartieState() }
-            gameState.update()
         }else if(jeu.playingChoice == "DefaussePioche"){
             runBlocking { jeu.defaussePioche(column,row) }
             game.pioche[0].value = Image(FileInputStream("images/cartes/carteSKYJO.png"))
-            val gameState = UpdateGameState(game, jeu)
-            runBlocking { jeu.getPartieState() }
-            gameState.update()
+        }else if(jeu.playingChoice == "Pioche"){
+            runBlocking { jeu.echangePioche(column,row) }
+            game.pioche[0].value = Image(FileInputStream("images/cartes/carteSKYJO.png"))
         }
+        val gameState = UpdateGameState(game, jeu)
+        runBlocking { jeu.getPartieState() }
+        gameState.update()
+        jeu.playingChoice = null
     }
 }

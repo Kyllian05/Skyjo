@@ -78,4 +78,8 @@ class Jeu(private val server: Server) {
     suspend fun defaussePioche(colonne : Int,ligne : Int){
         server.defaussePioche(colonne,ligne)
     }
+
+    suspend fun echangePioche(colonne: Int,ligne : Int){
+        server.echangePioche(colonne,ligne)
+    }
 }
