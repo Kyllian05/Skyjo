@@ -71,14 +71,6 @@ class Jeu(private val server: Server) {
         return server.echangedefausse(colonne,row)
     }
 
-    fun changePlayingText(){
-        if(playingText.value == "C'est à vous de jouer"){
-            playingText.value = "Ce n'est pas à vous de jouer"
-        }else{
-            playingText.value = "C'est à vous de jouer"
-        }
-    }
-
     suspend fun piocher(): modele.Carte {
         return this.server.pioche()
     }

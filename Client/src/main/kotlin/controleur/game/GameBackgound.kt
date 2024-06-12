@@ -14,15 +14,16 @@ class GameBackgound(val jeu : Jeu,val game : Game) {
         val task = object : Task<Unit>() {
             override fun call() {
                 val gameState = UpdateGameState(game, jeu)
+                val updatePlaying = UpdatePlaying(jeu)
                 do{
                     var data : Plateau?
                     runBlocking {
                         data = jeu.getPartieState()
                         if(data!!.plateaux[data!!.indexJoueurCourant].idJoueur == jeu.myPlayer!!.id){
-                            javafx.application.Platform.runLater { UpdatePlaying(game, true, jeu) }
+                            javafx.application.Platform.runLater { updatePlaying.update(data!!.etape, true) }
                             jeu.myturnToPlay = true
                         }else{
-                            javafx.application.Platform.runLater { UpdatePlaying(game, false, jeu) }
+                            javafx.application.Platform.runLater { updatePlaying.update(data!!.etape, false) }
                             jeu.myturnToPlay = false
                         }
                         gameState.update()
