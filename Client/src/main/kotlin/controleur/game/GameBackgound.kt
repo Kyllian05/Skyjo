@@ -1,15 +1,18 @@
 package controleur.game
 
+import controleur.accueil.ControleurFermerAppli
 import javafx.beans.property.SimpleObjectProperty
 import javafx.concurrent.Task
 import javafx.scene.image.Image
+import javafx.stage.Stage
 import kotlinx.coroutines.runBlocking
 import modele.Jeu
 import modele.serverData.Plateau
+import vue.Classement
 import vue.Game
 import java.io.FileInputStream
 
-class GameBackgound(val jeu : Jeu,val game : Game) {
+class GameBackgound(val jeu : Jeu,val game : Game, val stage: Stage) {
     fun startWaiting(){
         val task = object : Task<Unit>() {
             override fun call() {
@@ -32,6 +35,25 @@ class GameBackgound(val jeu : Jeu,val game : Game) {
                 } while (data!!.etape != "PARTIE_TERMINEE")
             }
         }
+
+        task.setOnSucceeded {
+            val state = runBlocking {
+                return@runBlocking jeu.getPartieState()
+            }
+            if (state != null) {
+                if (state.etape == "PARTIE_TERMINEE") {
+                    runBlocking { jeu.scores() }
+                    val localScore = jeu.scores
+                    if (localScore != null) {
+                        val classement = localScore.toList().sortedBy { (_, score) -> score }.toMap(LinkedHashMap())
+                        val vue = Classement(classement, jeu.playerListMap)
+                        vue.fixeListener(ControleurFermerAppli(stage))
+                        stage.scene.root = vue
+                    }
+                }
+            }
+        }
+
         game.currentPlayerLabel.textProperty().bind(jeu.playingText)
         val thread = Thread(task)
         thread.isDaemon = true

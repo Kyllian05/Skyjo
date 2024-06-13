@@ -151,14 +151,23 @@ class Server(IP: String) {
         return Json.decodeFromString<Plateau>(response.body<String>())
     }
 
-    suspend fun getScore(): Int {
+    suspend fun getScore(): HashMap<Int, Int> {
         if (this.idPartie == null) {
             throw Exception("No party joined")
         }
+        @Serializable
+        class Result(val idJoueur: Int, val score: Int)
+
         val response = client.get("$IP/partie/$idPartie/score")
         verifyResponse(response)
+        val result: List<Result> = Json.decodeFromString(response.body<String>())
 
-        TODO("je ne connais pas la forme des réponses")
+        // Convertir la liste de résultats en HashMap
+        val scoresMap = hashMapOf<Int, Int>()
+        for (res in result) {
+            scoresMap[res.idJoueur] = res.score
+        }
+        return scoresMap
     }
 
     suspend fun getCard(idPlayer: Int,colonne : Int,line : Int):Carte{

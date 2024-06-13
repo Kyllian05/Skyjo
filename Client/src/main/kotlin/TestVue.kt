@@ -11,7 +11,7 @@ class TestVue(): Application() {
     override fun start(primaryStage: Stage) {
 
         // Vues
-        val salon = Classement()
+        val salon = Classement(linkedMapOf(1 to -3, 2 to 57, 4 to 89), hashMapOf(1 to "foo", 2 to "bar", 4 to "boo"))
 
 
 

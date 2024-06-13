@@ -1,8 +1,11 @@
 package vue
 
+import javafx.event.ActionEvent
+import javafx.event.EventHandler
 import javafx.geometry.HPos
 import javafx.geometry.Insets
 import javafx.geometry.VPos
+import javafx.scene.control.Button
 import javafx.scene.control.Label
 import javafx.scene.control.ListView
 import javafx.scene.control.ProgressIndicator
@@ -16,10 +19,14 @@ import javafx.scene.paint.LinearGradient
 import javafx.scene.paint.Stop
 import javafx.scene.shape.Rectangle
 
-class Classement : GridPane() {
+class Classement(val scores: LinkedHashMap<Int, Int>, val names: HashMap<Int, String>): GridPane() {
     val Param : Array<String>
+    val exit: Button
     init {
         this.style = "-fx-background-color : linear-gradient(from 0% 0% to 100% 100%, #6600CC, #3366FF);"
+        this.exit = Button("Quitter")
+        exit.setPrefSize(300.0, 80.0)
+        exit.styleClass.add("ButtonAccueil")
 
         this.Param = arrayOf("Titre", "Titre1", "Titre2", "Titre3", "Titre4", "Titre5", "Titre6")
 
@@ -35,8 +42,8 @@ class Classement : GridPane() {
         }
 
         val recWinner = Rectangle()
-        recWinner.width = 600.0
-        recWinner.height = 200.0
+        recWinner.width = 500.0
+        recWinner.height = 100.0
         recWinner.fill = Color.TRANSPARENT
         recWinner.stroke = Color.WHITE
         recWinner.strokeWidth = 3.0
@@ -44,39 +51,38 @@ class Classement : GridPane() {
         recWinner.arcWidth = 20.0
 
         val stackPane = StackPane()
-        var gagnant = Label("1. Winner")
-        var j2 = Label("2. . . .")
-        var j3 = Label("3. . . .")
-        var j4 = Label("4. . . .")
-        var j5 = Label("5. . . .")
-
-        gagnant.style = "-fx-font-size: 60px; -fx-text-fill: white;"
-        j2.style = "-fx-text-fill: white;"
-        j3.style = "-fx-text-fill: white;"
-        j4.style = "-fx-text-fill: white;"
-        j5.style = "-fx-text-fill: white;"
-
-        stackPane.children.addAll(recWinner, gagnant)
-
+        var first = true
+        var i = 1
+        for (el in scores) {
+            if (first) {
+                val lab = Label("$i. ${names[el.key]} ${el.value} points")
+                lab.style = "-fx-font-size: 40px; -fx-text-fill: white; -fx-font-weight: bolder;"
+                stackPane.children.addAll(recWinner, lab)
+                first = false
+                i++
+            } else {
+                val lab = Label("$i. ${names[el.key]} ${el.value} points")
+                lab.style = "-fx-font-size: 24px; -fx-text-fill: white; -fx-font-weight: bolder;"
+                GridPane.setHalignment(lab, HPos.CENTER)
+                this.add(lab, 0,i+1)
+                i++
+            }
+        }
 
         GridPane.setHalignment(stackPane, HPos.CENTER)
-        GridPane.setHalignment(j2, HPos.CENTER)
-        GridPane.setHalignment(j3, HPos.CENTER)
-        GridPane.setHalignment(j4, HPos.CENTER)
-        GridPane.setHalignment(j5, HPos.CENTER)
+        GridPane.setHalignment(exit, HPos.CENTER)
+        GridPane.setValignment(exit, VPos.BOTTOM)
 
         val columnConstraints = ColumnConstraints()
         columnConstraints.hgrow = Priority.ALWAYS
         this.columnConstraints.add(columnConstraints)
 
         this.add(stackPane, 0, 1)
-        this.add(j2, 0,3)
-        this.add(j3, 0,4)
-        this.add(j4, 0,5)
-        this.add(j5, 0,6)
-
-
+        this.add(exit, 0, i+4)
 
     }
 
+    fun fixeListener(handler: EventHandler<ActionEvent>) {
+        this.exit.addEventHandler(ActionEvent.ACTION, handler)
+    }
 }
