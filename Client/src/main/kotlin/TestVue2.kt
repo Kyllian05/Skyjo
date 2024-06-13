@@ -10,14 +10,14 @@ class TestVue2(): Application() {
     override fun start(primaryStage: Stage) {
 
 
-        val Accueil = Game(4,primaryStage.height,primaryStage.width)
+        val Accueil = Game(8)
 
         val scene = Scene(Accueil, 2000.0, 1000.0)
 
         scene.stylesheets.add(javaClass.getResource("style.css").toExternalForm())
         primaryStage.title="Skyjo"
         primaryStage.scene=scene
-        primaryStage.isMaximized =true
+        primaryStage.isMaximized = true
         primaryStage.show()
     }
 }
