@@ -38,6 +38,7 @@ class FetchingPlayer(val jeu : Jeu,val vue : vue.Salon,var game : Game?,val stag
         }
 
         val thread = Thread(task)
+        thread.isDaemon = true
         thread.start()
     }
 }
