@@ -16,6 +16,7 @@ class Salon : GridPane() {
     val ListeJoueurs = ListView<String>()
     var maxPlayer : Int = 0
     var playerCountLabel = Label(ListeJoueurs.items.size.toString()+" / "+maxPlayer.toString())
+    var idPartie = Label("ID :")
 
     init {
         this.style = "-fx-background-color : linear-gradient(from 0% 0% to 100% 100%, #6600CC, #3366FF);"
@@ -63,6 +64,10 @@ class Salon : GridPane() {
         this.add(labelAttente, 0, 4)
         GridPane.setHalignment(labelAttente, HPos.CENTER)
 
+        idPartie.styleClass.add("labelAccueil")
+        this.add(idPartie,0,5)
+        GridPane.setHalignment(idPartie, HPos.CENTER)
+
         //Mise en place du ListView
 
         val stackPane = StackPane()
@@ -72,7 +77,7 @@ class Salon : GridPane() {
         stackPane.children.add(ListeJoueurs)
         StackPane.setAlignment(ListeJoueurs, Pos.CENTER)
 
-        this.add(stackPane, 0, 5)
+        this.add(stackPane, 0, 6)
         GridPane.setHalignment(stackPane, HPos.CENTER)
         GridPane.setMargin(stackPane, Insets(75.0,0.0,0.0,0.0))
 

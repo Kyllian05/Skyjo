@@ -11,7 +11,7 @@ import modele.serverData.Carte
 import modele.serverData.Plateau
 
 class Jeu(private val server: Server) {
-    private var id: Int? = null
+    var id: Int? = null
     var myPlayer: Joueur? = null
     var joined: Boolean = false
     val partyListe = FXCollections.observableArrayList<Party>()

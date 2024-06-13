@@ -1,18 +1,15 @@
 import javafx.application.Application
 import javafx.scene.Scene
 import javafx.stage.Stage
-import vue.Accueil
-import vue.Classement
-import vue.Game
-import vue.Salon
+import vue.*
 
 
 class TestVue(): Application() {
     override fun start(primaryStage: Stage) {
 
         // Vues
-        val salon = Classement(linkedMapOf(1 to -3, 2 to 57, 4 to 89), hashMapOf(1 to "foo", 2 to "bar", 4 to "boo"))
 
+        val salon = Rejoindre()
 
 
         // Scène

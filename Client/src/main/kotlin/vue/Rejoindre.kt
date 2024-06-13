@@ -1,5 +1,6 @@
 package vue
 
+import javafx.geometry.HPos
 import javafx.geometry.Insets
 import javafx.geometry.Pos
 import javafx.scene.control.*
@@ -32,7 +33,13 @@ class Rejoindre : BorderPane() {
     val labelPartie:Label
     val ListePartie = ListView<Party>()
     val vbox1: VBox
+    //modif pol
     var IDTextField = TextField()
+    //modif kyllian
+    val searchLabel = Label("Rechercher une partie :")
+    val searchGame = TextField("")
+    val validerBtn = Button("Valider")
+    val chargeBtn = Button("Charger")
 
 
     init {
@@ -42,12 +49,28 @@ class Rejoindre : BorderPane() {
 
         this.labelPartie = Label("Parties:")
 
+        searchGame.promptText = "Entrée un ID"
+        searchGame.prefHeight = 40.0
+        searchGame.maxWidth = 110.0
+
+        val search = HBox()
+        search.children.addAll(searchGame, validerBtn)
+        search.spacing = 10.0
+        validerBtn.styleClass.add("ButtonAccueil")
+        validerBtn.setPrefSize(110.0, 40.0)
+        validerBtn.style = "-fx-font-size: 20px"
+        chargeBtn.styleClass.add("ButtonAccueil")
+        chargeBtn.setPrefSize(150.0, 40.0)
+        chargeBtn.style = "-fx-font-size: 20px"
+
         loader.styleClass.add("Progress")
         boutonRejoindre.setPrefSize(300.0, 50.0)
-        this.vbox1 = VBox(5.0, labelPartie, ListePartie, loader)
+        this.vbox1 = VBox(10.0, searchLabel, search, labelPartie, ListePartie, chargeBtn,loader)
         vbox1.alignment = Pos.CENTER_LEFT
 
+
         this.labelPartie.styleClass.add("labelAccueil")
+        this.searchLabel.styleClass.add("labelAccueil")
         ListePartie.styleClass.add("ButtonAccueil")
 
         panneauCentre.children.addAll(vbox1)

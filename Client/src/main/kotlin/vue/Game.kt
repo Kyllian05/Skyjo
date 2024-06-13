@@ -52,6 +52,7 @@ class Game(nbJoueur: Int) : GridPane() {
 
         currentPlayerLabel.style = "-fx-font-size: 20px; -fx-font-weight: bolder; -fx-text-fill: #ffffff;"
         currentPlayerLabel.isWrapText = true
+        currentPlayerLabel.maxWidth = 300.0
         currentPlayerLabel.textAlignment = TextAlignment.CENTER
 
         // Titres

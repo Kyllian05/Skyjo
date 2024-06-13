@@ -18,6 +18,7 @@ class ControleurCreerPartie(val vue : CreationPartie, val jeu : Jeu,val stage : 
         try {
             jeu.creerPartie(vue.comboBox.value)
             stage.scene.root = salon
+            salon.idPartie.text = "Id : ${jeu.id}"
             FetchingPlayer(jeu,salon,game,stage).startWaiting()
         } catch (e: ServerException) {
             error.title = "Erreur serveur"

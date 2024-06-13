@@ -22,6 +22,7 @@ class ControleurBoutonRejoindrePartie(val stage : Stage, val salon : Salon, val 
         }
         jeu.rejoindrePartie(id)
         stage.scene.root = salon
+        salon.idPartie.text = "Id : ${jeu.id}"
         var classe = FetchingPlayer(jeu,this.salon,game,stage)
         classe.startWaiting()
     }
