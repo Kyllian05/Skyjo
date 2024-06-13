@@ -51,7 +51,7 @@ class Main(): Application() {
         primaryStage.title="Skyjo"
         primaryStage.scene = scene
         primaryStage.isMaximized = true
-        primaryStage.icons.add(Image(FileInputStream("images/cartes/carteSKYJO.png")))
+        primaryStage.icons.add(Image(FileInputStream("images/logo.png")))
         primaryStage.show()
     }
 }

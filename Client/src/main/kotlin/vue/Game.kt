@@ -23,6 +23,7 @@ class Game(nbJoueur: Int) : GridPane() {
     var defausse = arrayOf<ObjectProperty<Image>>()
     var pioche = arrayOf<ObjectProperty<Image>>()
     var playersName = arrayOf<StringProperty>()
+    var playersLabel = arrayOf<Label>()
     var scoreLabels = arrayOf<StringProperty>()
     var playerCount = 0
     var scoreCount = 0
@@ -495,10 +496,11 @@ class Game(nbJoueur: Int) : GridPane() {
         // Player label
         val playerLabelVous = Label("Vous")
         playerLabelVous.style = "-fx-font-size: 20px; -fx-font-weight: bolder; -fx-text-fill: #ffffff;"
+        this.playersLabel += playerLabelVous
         // Score label
-        val scoreLabel = Label("Score:")
+        val scoreLabel = Label("Points :")
         scoreLabel.textProperty().bind(scoreLabels[scoreCount])
-        scoreLabel.style = "-fx-font-size: 30px; -fx-font-weight: bolder; -fx-text-fill: #ffffff;"
+        scoreLabel.style = "-fx-font-size: 24px; -fx-font-weight: bolder; -fx-text-fill: #ffffff;"
         scoreCount++
         // Box des labels
         val labelVBox = VBox(10.0, playerLabelVous, scoreLabel)
@@ -523,11 +525,12 @@ class Game(nbJoueur: Int) : GridPane() {
         val playerLabel = Label("")
         playerLabel.textProperty().bind(playersName[playerCount])
         playerLabel.style = "-fx-font-size: 20px; -fx-font-weight: bolder; -fx-text-fill: #ffffff;"
+        this.playersLabel += playerLabel
         playerCount += 1
         // Score label
-        val scoreLabel = Label("Score:")
+        val scoreLabel = Label("Points :")
         scoreLabel.textProperty().bind(scoreLabels[scoreCount])
-        scoreLabel.style = "-fx-font-size: 30px; -fx-font-weight: bolder; -fx-text-fill: #ffffff;"
+        scoreLabel.style = "-fx-font-size: 24px; -fx-font-weight: bolder; -fx-text-fill: #ffffff;"
         scoreCount++
 
         if (coté == "right") {

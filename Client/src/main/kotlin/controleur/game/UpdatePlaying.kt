@@ -15,22 +15,23 @@ class UpdatePlaying(private val jeu: Jeu) {
         if(!isMyTurn && jeu.playingText.value != "Ce n'est pas à vous de jouer"){
             jeu.playingText.value = "Ce n'est pas à vous de jouer"
             return
-        }
-        when (state) {
-            ALL_ACTIONS[0] ->  {
-                return
-            }
-            ALL_ACTIONS[1] ->  {
-                jeu.playingText.value = "Piocher une carte ou prenez la carte de la défausse"
-                return
-            }
-            ALL_ACTIONS[2] ->  {
-                jeu.playingText.value = "Défaussez la carte piochée ou échangez-là avec une de vos cartes"
-                return
-            }
-            ALL_ACTIONS[3] ->  {
-                jeu.playingText.value = "La partie est terminée"
-                return
+        } else if (isMyTurn) {
+            when (state) {
+                ALL_ACTIONS[0] ->  {
+                    return
+                }
+                ALL_ACTIONS[1] ->  {
+                    jeu.playingText.value = "Piocher une carte ou remplacer une carte par la carte de la défausse"
+                    return
+                }
+                ALL_ACTIONS[2] ->  {
+                    jeu.playingText.value = "Défaussez la carte piochée ou échangez-là avec une de vos cartes"
+                    return
+                }
+                ALL_ACTIONS[3] ->  {
+                    jeu.playingText.value = "La partie est terminée"
+                    return
+                }
             }
         }
     }

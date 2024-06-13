@@ -21,6 +21,7 @@ class ClickPioche (val game : Game,val jeu : Jeu) : EventHandler<MouseEvent>{
                 runBlocking {
                     game.pioche[0].value = Image(jeu.piocher().file)
                 }
+                UpdatePlaying(jeu).update("DEFAUSSE_OU_ECHANGE_CARTE_PIOCHEE", true)
                 return
             }
             //TODO

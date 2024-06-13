@@ -16,6 +16,7 @@ class Jeu(private val server: Server) {
     var joined: Boolean = false
     val partyListe = FXCollections.observableArrayList<Party>()
     var listeJoueur = FXCollections.observableArrayList<String>()
+    var playerListMap = HashMap<Int, String>()
     var maxPlayerPartie : Int? = null
     var currentState: Plateau? = null
     var myturnToPlay : Boolean = false
@@ -54,7 +55,9 @@ class Jeu(private val server: Server) {
          val list = server.getAllPlayersInPartie()
          var result = arrayOf<String>()
          for(element in list){
-             result += server.getName(element)
+             val tmp = server.getName(element)
+             result += tmp
+             this.playerListMap[element] = tmp
          }
          Platform.runLater { this@Jeu.listeJoueur.clear() }
          Platform.runLater { this@Jeu.listeJoueur.addAll(result) }

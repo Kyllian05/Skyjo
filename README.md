@@ -22,9 +22,10 @@ __TODO:__
 - [ ] Responsive ?
 - [ ] Tests ?
 - [ ] Rejoindre une partie directement avec l'id
-- [ ] Afficher le joueur en train de jouer dans la partie
+- [x] Afficher le joueur en train de jouer dans la partie
 - [ ] Prévenir du déclenchement d'un phase de fin de partie
 - [ ] Pouvoir rejoindre une autre partie à la fin d'une partie
+- [ ] Stopper le thread quand l'application est fermée
 - [ ] ...
 
 
