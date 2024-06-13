@@ -16,7 +16,6 @@ class Salon : GridPane() {
     val ListeJoueurs = ListView<String>()
     var maxPlayer : Int = 0
     var playerCountLabel = Label(ListeJoueurs.items.size.toString()+" / "+maxPlayer.toString())
-    var labelId = Label("")
 
     init {
         this.style = "-fx-background-color : linear-gradient(from 0% 0% to 100% 100%, #6600CC, #3366FF);"
@@ -62,7 +61,6 @@ class Salon : GridPane() {
         val labelAttente = Label("En attente de joueurs")
         labelAttente.style = "-fx-text-fill: white; -fx-font-size: 20px;"
         this.add(labelAttente, 0, 4)
-        this.add(labelId,0,5)
         GridPane.setHalignment(labelAttente, HPos.CENTER)
 
         //Mise en place du ListView

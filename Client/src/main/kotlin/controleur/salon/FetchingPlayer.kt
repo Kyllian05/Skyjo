@@ -23,7 +23,7 @@ class FetchingPlayer(val jeu : Jeu,val vue : vue.Salon,var game : Game?,val stag
         task.setOnSucceeded {
             game = Game(jeu.maxPlayerPartie!!)
             LinkName(game!!,jeu)
-            GameBackgound(jeu, game!!).startWaiting()
+            GameBackgound(jeu, game!!, stage).startWaiting()
             ClickCard(game!!.myCards!!,jeu,game!!)
             game!!.pileDefausse.onMouseClicked = ClickDefausse(game!!,jeu)
             game!!.pilePioche.onMouseClicked = ClickPioche(game!!,jeu)
@@ -38,6 +38,7 @@ class FetchingPlayer(val jeu : Jeu,val vue : vue.Salon,var game : Game?,val stag
         }
 
         val thread = Thread(task)
+        thread.isDaemon = true
         thread.start()
     }
 }

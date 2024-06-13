@@ -17,7 +17,6 @@ class ControleurCreerPartie(val vue : CreationPartie, val jeu : Jeu,val stage : 
         val error = Alert(Alert.AlertType.ERROR)
         try {
             jeu.creerPartie(vue.comboBox.value)
-            salon.labelId.text = jeu.getPartyID()!!.toString()
             stage.scene.root = salon
             FetchingPlayer(jeu,salon,game,stage).startWaiting()
         } catch (e: ServerException) {

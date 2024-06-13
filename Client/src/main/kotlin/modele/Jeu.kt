@@ -22,6 +22,7 @@ class Jeu(private val server: Server) {
     var myturnToPlay : Boolean = false
     var playingChoice : String? = null
     var playingText : StringProperty = SimpleStringProperty("Ce n'est pas à vous de jouer")
+    var scores: HashMap<Int, Int>? = null
 
     fun createPlayer(name: String) {
         this.myPlayer = Joueur(name, this.server)
@@ -87,5 +88,9 @@ class Jeu(private val server: Server) {
 
     fun getPartyID():Int?{
         return server.idPartie
+    }
+
+    suspend fun scores() {
+        this.scores = server.getScore()
     }
 }
