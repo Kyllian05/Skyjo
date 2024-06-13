@@ -26,13 +26,17 @@ class UpdateGameState(private val vue: Game, private val model: Jeu) {
             var index = 0
             for (i in pos until state.plateaux.size) {
                 var scoreValue = 0
-                for (j in 0 until state.plateaux[i].colonnes.size) {
-                    for (k in 0 until state.plateaux[i].colonnes[j].size) {
-                        vue.plateaux[index][j+k*4].value = createCard(state.plateaux[i].colonnes[j][k].valeur)
-                        try {
-                            scoreValue += state.plateaux[i].colonnes[j][k].valeur.toInt()
-                        } catch (e: NumberFormatException) {
-                            continue
+                for (j in 0 until 4) {
+                    for (k in 0 until 3) {
+                        try{
+                            vue.plateaux[index][j+k*4].value = createCard(state.plateaux[i].colonnes[j][k].valeur)
+                            try {
+                                scoreValue += state.plateaux[i].colonnes[j][k].valeur.toInt()
+                            } catch (e: NumberFormatException) {
+                                continue
+                            }
+                        }catch (e:Throwable){
+                            vue.plateaux[index][j+k*4].value = Image(FileInputStream("images/cartes/blank.jpg"))
                         }
                     }
                 }
@@ -46,13 +50,17 @@ class UpdateGameState(private val vue: Game, private val model: Jeu) {
             // Créer toutes les cartes à partir du state en complétant le reste des joueurs
             for (i in 0 until pos) {
                 var scoreValue = 0
-                for (j in 0 until state.plateaux[i].colonnes.size) {
-                    for (k in 0 until state.plateaux[i].colonnes[j].size) {
-                        vue.plateaux[index][j+k*4].value = createCard(state.plateaux[i].colonnes[j][k].valeur)
-                        try {
-                            scoreValue += state.plateaux[i].colonnes[j][k].valeur.toInt()
-                        } catch (e: NumberFormatException) {
-                            continue
+                for (j in 0 until 4) {
+                    for (k in 0 until 3) {
+                        try{
+                            vue.plateaux[index][j+k*4].value = createCard(state.plateaux[i].colonnes[j][k].valeur)
+                            try {
+                                scoreValue += state.plateaux[i].colonnes[j][k].valeur.toInt()
+                            } catch (e: NumberFormatException) {
+                                continue
+                            }
+                        }catch (e:Throwable){
+                            vue.plateaux[index][j+k*4].value = Image(FileInputStream("images/cartes/blank.jpg"))
                         }
                     }
                 }
