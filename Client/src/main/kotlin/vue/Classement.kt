@@ -41,27 +41,27 @@ class Classement(val scores: LinkedHashMap<Int, Int>, val names: HashMap<Int, St
             posSalon += 15.0
         }
 
-        val recWinner = Rectangle()
+        /*val recWinner = Rectangle()
         recWinner.width = 500.0
         recWinner.height = 100.0
         recWinner.fill = Color.TRANSPARENT
         recWinner.stroke = Color.WHITE
         recWinner.strokeWidth = 3.0
         recWinner.arcHeight = 20.0
-        recWinner.arcWidth = 20.0
+        recWinner.arcWidth = 20.0*/
 
         val stackPane = StackPane()
         var first = true
         var i = 1
         for (el in scores) {
             if (first) {
-                val lab = Label("$i. ${names[el.key]} ${el.value} points")
-                lab.style = "-fx-font-size: 40px; -fx-text-fill: white; -fx-font-weight: bolder;"
-                stackPane.children.addAll(recWinner, lab)
+                val lab = Label("$i. ${names[el.key]} : ${el.value} points")
+                lab.styleClass.add("winner")
+                stackPane.children.add(lab)
                 first = false
                 i++
             } else {
-                val lab = Label("$i. ${names[el.key]} ${el.value} points")
+                val lab = Label("$i. ${names[el.key]} : ${el.value} points")
                 lab.style = "-fx-font-size: 24px; -fx-text-fill: white; -fx-font-weight: bolder;"
                 GridPane.setHalignment(lab, HPos.CENTER)
                 this.add(lab, 0,i+1)

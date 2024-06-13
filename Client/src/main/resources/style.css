@@ -86,5 +86,15 @@
     -fx-pref-height: 50px;
 }
 
+.winner {
+    -fx-font-size: 40px;
+    -fx-text-fill: white;
+    -fx-font-weight: bolder;
+    -fx-border-color: linear-gradient(to right bottom, #ff0000, #ff5b00, #ff8700, #ffad00, #ffd000, #f7e000, #ebef00, #dcff00, #bfff00, #9dff00, #72ff00, #22ff00);
+    -fx-border-style: solid;
+    -fx-border-width: 7.0;
+    -fx-border-radius: 15.0;
+    -fx-padding: 20.0 40.0;
+}
 
 
