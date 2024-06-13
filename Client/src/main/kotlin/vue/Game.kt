@@ -38,7 +38,7 @@ class Game(nbJoueur: Int) : GridPane() {
 
     init {
         // Background
-        this.style = "-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #6600CC, #3366FF);"
+        this.styleClass.add("fondGeneral")
 
         // Players name
         for(i in 0..<this.nbJoueur){

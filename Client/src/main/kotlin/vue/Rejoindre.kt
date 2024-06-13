@@ -23,13 +23,7 @@ class Rejoindre : BorderPane() {
     val boutonRejoindre: Button = Button("Rejoindre la Partie")
     val boutonRetour : Button = Button("")
     val loader: ProgressIndicator = ProgressIndicator()
-    val labelTop2 : Label
-    val labelTop3 : Label
-    val labelTop1 : Label
-    val labelTop4 : Label
-    val labelTop5 : Label
-    val labelTop6 : Label
-    val labelTop7 : Label
+    val Param : Array<String>
     val labelPartie:Label
     val ListePartie = ListView<Party>()
     val vbox1: VBox
@@ -91,40 +85,24 @@ class Rejoindre : BorderPane() {
         this.boutonRetour.styleClass.add("ButtonAccueil")
         StackPane.setMargin(boutonRetour, Insets(10.0, 0.0, 0.0, 10.0))
 
-        //Parmètrage Titre
+        //Mise en place du Label "Rejoindre une partie" de la vue
+        this.Param = arrayOf("Titre", "Titre1", "Titre2", "Titre3", "Titre4", "Titre5", "Titre6")
+        var posJoin = 150.0
+        for (i in 0 until 7) {
+            val label = Label("Rejoindre une partie")
+            stackPaneTop.children.addAll(label)
+            label.padding = Insets(50.0, 0.0, 0.0, posJoin)
+            label.styleClass.add(Param[i])
+            posJoin += 5.0
+        }
 
-        this.labelTop1 = Label("Rejoindre une partie")
-        this.labelTop2 = Label("Rejoindre une partie")
-        this.labelTop3 = Label("Rejoindre une partie")
-        this.labelTop4 = Label("Rejoindre une partie")
-        this.labelTop5 = Label("Rejoindre une partie")
-        this.labelTop6 = Label("Rejoindre une partie")
-        this.labelTop7 = Label("Rejoindre une partie")
 
-
-        this.labelTop1.styleClass.add("Titre")
-        this.labelTop2.styleClass.add("Titre1")
-        this.labelTop3.styleClass.add("Titre2")
-        this.labelTop4.styleClass.add("Titre3")
-        this.labelTop5.styleClass.add("Titre4")
-        this.labelTop6.styleClass.add("Titre5")
-        this.labelTop7.styleClass.add("Titre6")
-
-        StackPane.setMargin(labelTop1, Insets(50.0, 0.0, 0.0, 150.0))
-        StackPane.setMargin(labelTop2, Insets(50.0, 0.0, 0.0, 155.0))
-        StackPane.setMargin(labelTop3, Insets(50.0, 0.0, 0.0, 160.0))
-        StackPane.setMargin(labelTop4, Insets(50.0, 0.0, 0.0, 165.0))
-        StackPane.setMargin(labelTop5, Insets(50.0, 0.0, 0.0, 170.0))
-        StackPane.setMargin(labelTop6, Insets(50.0, 0.0, 0.0, 175.0))
-        StackPane.setMargin(labelTop7, Insets(50.0, 0.0, 0.0, 180.0))
-
-        stackPaneTop.children.addAll(labelTop1, labelTop2, labelTop3, labelTop4, labelTop5, labelTop6, labelTop7)
 
         this.top = stackPaneTop
         this.center = panneauCentre
         this.right = panneauDroite
 
-        this.style = "-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #6600CC, #3366FF);"
+        this.styleClass.add("fondGeneral")
     }
 
     fun hideLoader() {

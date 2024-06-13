@@ -23,7 +23,7 @@ class Classement(val scores: LinkedHashMap<Int, Int>, val names: HashMap<Int, St
     val Param : Array<String>
     val exit: Button
     init {
-        this.style = "-fx-background-color : linear-gradient(from 0% 0% to 100% 100%, #6600CC, #3366FF);"
+        this.styleClass.add("fondGeneral")
         this.exit = Button("Quitter")
         exit.setPrefSize(300.0, 80.0)
         exit.styleClass.add("ButtonAccueil")
@@ -56,13 +56,13 @@ class Classement(val scores: LinkedHashMap<Int, Int>, val names: HashMap<Int, St
         for (el in scores) {
             if (first) {
                 val lab = Label("$i. ${names[el.key]} ${el.value} points")
-                lab.style = "-fx-font-size: 40px; -fx-text-fill: white; -fx-font-weight: bolder;"
+                lab.styleClass.add("classementName")
                 stackPane.children.addAll(recWinner, lab)
                 first = false
                 i++
             } else {
                 val lab = Label("$i. ${names[el.key]} ${el.value} points")
-                lab.style = "-fx-font-size: 24px; -fx-text-fill: white; -fx-font-weight: bolder;"
+                lab.styleClass.add("classementName")
                 GridPane.setHalignment(lab, HPos.CENTER)
                 this.add(lab, 0,i+1)
                 i++

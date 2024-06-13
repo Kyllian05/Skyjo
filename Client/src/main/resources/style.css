@@ -1,4 +1,6 @@
-
+.fondGeneral {
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #6600CC, #3366FF);
+}
 .Titre {
     -fx-font-family: Public;
     -fx-font-size: 75px;
@@ -86,5 +88,15 @@
     -fx-pref-height: 50px;
 }
 
+.classementName {
+    -fx-font-size: 24px;
+    -fx-text-fill: white;
+    -fx-font-weight: bolder;
+}
+
+.labelSalon {
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+}
 
 

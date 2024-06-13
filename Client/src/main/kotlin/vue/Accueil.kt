@@ -19,7 +19,6 @@ class Accueil : GridPane() {
     private val PanneauRight : AnchorPane
     val CreateBtn : Button
     val JoinBtn : Button
-    //val SettingsBtn : Button
     val ExitBtn : Button
     val Param : Array<String>
     val UpdateArea : TextArea
@@ -35,7 +34,6 @@ class Accueil : GridPane() {
         this.PanneauRight = AnchorPane()
         this.CreateBtn = Button("Crée une partie")
         this.JoinBtn = Button("Rejoindre une partie")
-        //this.SettingsBtn = Button("Paramètres")
         this.ExitBtn = Button("Quitter")
         this.UpdateArea = TextArea("Infos sur les dernières nouveautés")
         this.VersionLab = Label("V1.2.1")
@@ -68,7 +66,7 @@ class Accueil : GridPane() {
         col2.percentWidth = 40.0
         this.columnConstraints.addAll(col1, col2)
 
-        this.style = "-fx-background-color : linear-gradient(from 0% 0% to 100% 100%, #6600CC, #3366FF);"
+        this.styleClass.add("fondGeneral")
 
         this.add(PanneauLeft, 0, 1)
         this.add(PanneauRight, 1, 1)
@@ -85,13 +83,10 @@ class Accueil : GridPane() {
         JoinBtn.setPrefSize(400.0, 100.0)
         this.JoinBtn.styleClass.add("ButtonAccueil")
 
-        //SettingsBtn.setPrefSize(400.0, 100.0)
-        //this.SettingsBtn.styleClass.add("ButtonAccueil")
-
         ExitBtn.setPrefSize(400.0, 100.0)
         this.ExitBtn.styleClass.add("ButtonAccueil")
 
-        // Intput for named
+        // Intput pour le Pseudo
         this.inputName.setMaxSize(400.0, 100.0)
         this.inputName.setPrefSize(400.0, 80.0)
         this.inputName.styleClass.add("input")

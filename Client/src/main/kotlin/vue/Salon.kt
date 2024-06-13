@@ -19,7 +19,7 @@ class Salon : GridPane() {
     var idPartie = Label("ID :")
 
     init {
-        this.style = "-fx-background-color : linear-gradient(from 0% 0% to 100% 100%, #6600CC, #3366FF);"
+        this.styleClass.add("fondGeneral")
 
         this.vgap = 10.0
         
@@ -41,7 +41,7 @@ class Salon : GridPane() {
         PanneauProgress.children.add(Loader)
         VBox.setVgrow(Loader, Priority.ALWAYS)
         this.add(playerCountLabel, 0,3)
-        playerCountLabel.style = "-fx-text-fill: white; -fx-font-size: 20px;"
+        playerCountLabel.styleClass.add("labelSalon")
         PanneauProgress.alignment = Pos.CENTER
         GridPane.setHalignment(playerCountLabel, HPos.CENTER)
         GridPane.setMargin(playerCountLabel, Insets(40.0,0.0,0.0,0.0))
@@ -60,7 +60,7 @@ class Salon : GridPane() {
         Loader.styleClass.add("ProgressSalon")
 
         val labelAttente = Label("En attente de joueurs")
-        labelAttente.style = "-fx-text-fill: white; -fx-font-size: 20px;"
+        labelAttente.styleClass.add("labelSalon")
         this.add(labelAttente, 0, 4)
         GridPane.setHalignment(labelAttente, HPos.CENTER)
 
