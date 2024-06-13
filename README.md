@@ -16,9 +16,9 @@ Les différentes vues de la maquette sont dans le fichier `maquette.pdf` et la v
 
 __TODO:__
 
-- [ ] Afficher l'id partie dans le salon
-- [ ] Suppression des colonnes dans le jeu -> Pol
-- [ ] Vue fin de partie avec affichage des scores -> Thomas et Kyllian
+- [x] Afficher l'id partie dans le salon
+- [x] Suppression des colonnes dans le jeu
+- [x] Vue fin de partie avec affichage des scores
 - [ ] Responsive -> Brieuc
 - [ ] Tests ?
 - [ ] Rejoindre une partie directement avec l'id

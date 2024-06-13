@@ -16,7 +16,11 @@ class ControleurBoutonRejoindrePartie(val stage : Stage, val salon : Salon, val 
         if(partieChoice == null){
             return
         }
-        jeu.rejoindrePartie(partieChoice.id)
+        var id = partieChoice.id
+        if(vue.IDTextField.text != ""){
+            id = vue.IDTextField.text.toInt()
+        }
+        jeu.rejoindrePartie(id)
         stage.scene.root = salon
         var classe = FetchingPlayer(jeu,this.salon,game,stage)
         classe.startWaiting()

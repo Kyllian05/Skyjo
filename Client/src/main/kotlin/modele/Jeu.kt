@@ -66,6 +66,7 @@ class Jeu(private val server: Server) {
 
     suspend fun getPartieState(): modele.serverData.Plateau? {
         this.currentState = server.getPartieState()
+        println(this.currentState!!.plateaux[0].colonnes.size)
         return this.currentState
     }
 
@@ -83,6 +84,10 @@ class Jeu(private val server: Server) {
 
     suspend fun echangePioche(colonne: Int,ligne : Int){
         server.echangePioche(colonne,ligne)
+    }
+
+    fun getPartyID():Int?{
+        return server.idPartie
     }
 
     suspend fun scores() {
