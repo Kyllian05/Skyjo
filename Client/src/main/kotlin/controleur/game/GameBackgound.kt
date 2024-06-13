@@ -34,6 +34,7 @@ class GameBackgound(val jeu : Jeu,val game : Game) {
         }
         game.currentPlayerLabel.textProperty().bind(jeu.playingText)
         val thread = Thread(task)
+        thread.isDaemon = true
         thread.start()
     }
 }
