@@ -21,7 +21,9 @@ class ControleurRejoindre(val vue: Rejoindre, val stage: Stage, private val jeu:
         stage.scene.root = vue
         vue.ListePartie.items = jeu.partyListe
         if (!fetch.isRunning) {
-            Thread(fetch).start()
+            val t = Thread(fetch)
+            t.isDaemon = true
+            t.start()
         }
     }
 }
