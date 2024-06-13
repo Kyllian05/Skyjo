@@ -11,7 +11,6 @@ import javafx.scene.layout.*
 
 
 class Salon : GridPane() {
-    val Salons: Array<Label>
     val Param : Array<String>
     val Loader : ProgressIndicator
     val ListeJoueurs = ListView<String>()
@@ -22,8 +21,7 @@ class Salon : GridPane() {
         this.style = "-fx-background-color : linear-gradient(from 0% 0% to 100% 100%, #6600CC, #3366FF);"
 
         this.vgap = 10.0
-
-        this.Salons = arrayOf()
+        
         this.Param = arrayOf("Titre", "Titre1", "Titre2", "Titre3", "Titre4", "Titre5", "Titre6")
 
         var posSalon = 95.0
@@ -32,7 +30,6 @@ class Salon : GridPane() {
             this.add(label, 0, 0, 2, 1)
             label.padding = Insets(posSalon, 0.0, 0.0, 300.0)
             label.styleClass.add(Param[i])
-            this.Salons.plus(label)
             posSalon -= 15.0
         }
 

@@ -2,6 +2,7 @@ import javafx.application.Application
 import javafx.scene.Scene
 import javafx.stage.Stage
 import vue.Accueil
+import vue.Classement
 import vue.Game
 import vue.Salon
 
@@ -10,7 +11,7 @@ class TestVue(): Application() {
     override fun start(primaryStage: Stage) {
 
         // Vues
-        val salon = Accueil()
+        val salon = Classement()
 
 
 
