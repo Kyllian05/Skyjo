@@ -16,11 +16,11 @@ Les différentes vues de la maquette sont dans le fichier `maquette.pdf` et la v
 
 __TODO:__
 
-- [ ] Afficher l'id partie dans le salon -> Kyllian
+- [x] Afficher l'id partie dans le salon
 - [x] Suppression des colonnes dans le jeu
 - [x] Vue fin de partie avec affichage des scores
 - [ ] Responsive -> Brieuc
-- [ ] Tests ?
+- [~] Tests
 - [ ] Rejoindre une partie directement avec l'id -> *En cours* Thomas
 - [x] Afficher le joueur en train de jouer dans la partie
 - [ ] Prévenir du déclenchement d'une phase de fin de partie
@@ -28,6 +28,4 @@ __TODO:__
 - [x] Stopper le thread quand l'application est fermée
 - [ ] Ajouter des effets de hover
 - [ ] Afficher la carte dans la défausse quand on défausse la pioche
-- [ ] ...
-
 
