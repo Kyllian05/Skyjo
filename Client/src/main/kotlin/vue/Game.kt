@@ -421,7 +421,6 @@ class Game(nbJoueur: Int) : GridPane() {
          * Vue pour 8 joueurs
          */
         if (nbJoueur == 8) {
-            isGridLinesVisible = true
             setupCenterPanel()
 
             val joueur1 = setupOpponentPanel("left")
@@ -508,7 +507,7 @@ class Game(nbJoueur: Int) : GridPane() {
         val labelVBox = VBox(10.0, playerLabelVous, scoreLabel)
         labelVBox.alignment = Pos.BOTTOM_LEFT
         // GridPane pour les cartes
-        val gridPane = createGridPane(3, 4, 80.0, 115.0, myPane = true)
+        val gridPane = createGridPane(3, 4, 80.0, 115.0, myPane = true, hoverEffect = true)
 
         val hBox = HBox(10.0, gridPane, labelVBox)
         hBox.alignment = Pos.CENTER
@@ -559,7 +558,7 @@ class Game(nbJoueur: Int) : GridPane() {
      * Permet de créer le plateau d'un joueur avec toutes ses cartes
      * @return GridPane
      */
-    private fun createGridPane(rows: Int, cols: Int, tileWidth: Double, tileHeight: Double,myPane : Boolean = false): GridPane {
+    private fun createGridPane(rows: Int, cols: Int, tileWidth: Double, tileHeight: Double,myPane : Boolean = false, hoverEffect: Boolean = false): GridPane {
         // Setup stockage properties
         var currentPlateau =  arrayOf<ObjectProperty<Image>>()
         // Setup grid
@@ -571,7 +570,7 @@ class Game(nbJoueur: Int) : GridPane() {
         for (row in 0 until rows) {
             for (col in 0 until cols) {
                 val p = SimpleObjectProperty(this.defaultImg)
-                gridPane.add(createRectangleWithImage(tileWidth, tileHeight, p), col, row)
+                gridPane.add(createRectangleWithImage(tileWidth, tileHeight, p, hoverEffect = hoverEffect), col, row)
                 currentPlateau += p
             }
         }
@@ -593,6 +592,7 @@ class Game(nbJoueur: Int) : GridPane() {
         }
         // Création des cartes
         val rect1 = createRectangleWithImage(80.0, 115.0, tmpPile[0])
+        rect1.styleClass.add("pileHover")
         val rect2 = createRectangleWithImage(80.0, 115.0, tmpPile[1])
         val rect3 = createRectangleWithImage(80.0, 115.0, tmpPile[2])
         // Stockage éventuel
@@ -614,11 +614,14 @@ class Game(nbJoueur: Int) : GridPane() {
      * La carte de base est la carte face cachée.
      * @return ImageView
      */
-    private fun createRectangleWithImage(width: Double, height: Double, p: ObjectProperty<Image>): ImageView {
+    private fun createRectangleWithImage(width: Double, height: Double, p: ObjectProperty<Image>, hoverEffect: Boolean = false): ImageView {
         val tile = ImageView()
         tile.imageProperty().bind(p)
         tile.fitWidth = width
         tile.fitHeight = height
+        if (hoverEffect) {
+            tile.styleClass.add("cardHover")
+        }
         return tile
     }
 }

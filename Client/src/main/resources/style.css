@@ -109,4 +109,17 @@
     -fx-font-size: 20px;
 }
 
+.cardHover:hover {
+    -fx-cursor: hand;
+    -fx-scale-x:  1.1;
+    -fx-scale-y: 1.1;
+    -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.25), 32.0, 0.5, 0.0, 0.0);
+}
+
+.pileHover:hover {
+    -fx-cursor: hand;
+    -fx-translate-x: -4.0;
+    -fx-translate-y: 4.0;
+}
+
 
