@@ -28,6 +28,7 @@ class Game(nbJoueur: Int) : GridPane() {
     var playerCount = 0
     var scoreCount = 0
     val currentPlayerLabel = Label("")
+    var coef:Double = (height /1920)*(width/1080)
 
     // UI
     val PanneauCentre = VBox(10.0)
@@ -513,7 +514,7 @@ class Game(nbJoueur: Int) : GridPane() {
         PanneauCentre.children.add(hBox)
     }
 
-    private fun setupOpponentPanel(coté : String): VBox {
+    private fun setupOpponentPanel(cote : String): VBox {
         // Setup Vbox
         val panneau = VBox(10.0)
         panneau.alignment = Pos.CENTER
@@ -533,7 +534,7 @@ class Game(nbJoueur: Int) : GridPane() {
         scoreLabel.style = "-fx-font-size: 24px; -fx-font-weight: bolder; -fx-text-fill: #ffffff;"
         scoreCount++
 
-        if (coté == "right") {
+        if (cote == "right") {
             val labelVBox = VBox(10.0, playerLabel, scoreLabel)
             labelVBox.alignment = Pos.CENTER_RIGHT
 
@@ -542,7 +543,7 @@ class Game(nbJoueur: Int) : GridPane() {
             panneau.children.add(hBox)
         }
 
-        if (coté == "left") {
+        if (cote == "left") {
             val labelVBox = VBox(10.0, playerLabel, scoreLabel)
             labelVBox.alignment = Pos.CENTER_LEFT
 
