@@ -21,7 +21,7 @@ class FetchingPlayer(val jeu : Jeu,val vue : vue.Salon,var game : Game?,val stag
         }
 
         task.setOnSucceeded {
-            game = Game(jeu.maxPlayerPartie!!)
+            game = Game(jeu.maxPlayerPartie!!,stage.height, stage.width)
             LinkName(game!!,jeu)
             GameBackgound(jeu, game!!, stage).startWaiting()
             ClickCard(game!!.myCards!!,jeu,game!!)
