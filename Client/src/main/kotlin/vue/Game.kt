@@ -28,6 +28,7 @@ class Game(nbJoueur: Int) : GridPane() {
     var playerCount = 0
     var scoreCount = 0
     val currentPlayerLabel = Label("")
+    var coef:Double = (height /1920)*(width/1080)
 
     // UI
     val PanneauCentre = VBox(10.0)
