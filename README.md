@@ -14,3 +14,17 @@ Les différentes vues de la maquette sont dans le fichier `maquette.pdf` et la v
 
 *En cours*
 
+__TODO:__
+
+- [] Afficher l'id partie dans le salon
+- [] Suppression des colonnes dans le jeu
+- [] Vue fin de partie avec affichage des scores
+- [] Responsive ?
+- [] Tests ?
+- [] Rejoindre une partie directement avec l'id
+- [] Afficher le joueur en train de jouer dans la partie
+- [] Prévenir du déclenchement d'un phase de fin de partie
+- [] Pouvoir rejoindre une autre partie à la fin d'une partie
+- [] ...
+
+
