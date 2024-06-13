@@ -21,11 +21,12 @@ __TODO:__
 - [x] Vue fin de partie avec affichage des scores
 - [ ] Responsive -> Brieuc
 - [~] Tests
-- [ ] Rejoindre une partie directement avec l'id -> *En cours* Thomas
+- [x] Rejoindre une partie directement avec l'id
 - [x] Afficher le joueur en train de jouer dans la partie
 - [ ] Prévenir du déclenchement d'une phase de fin de partie
 - [~] Pouvoir rejoindre une autre partie à la fin d'une partie
 - [x] Stopper le thread quand l'application est fermée
 - [ ] Ajouter des effets de hover
 - [ ] Afficher la carte dans la défausse quand on défausse la pioche
+- [ ] Meilleur affichage des actions des joueurs
 

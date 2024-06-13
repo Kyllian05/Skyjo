@@ -15,15 +15,10 @@ import modele.data.Party
 import modele.serverData.ServerException
 import vue.Rejoindre
 
-class ControleurRejoindre(val vue: Rejoindre, val stage: Stage, private val jeu: Jeu, private val fetch: Task<Unit>): EventHandler<ActionEvent> {
+class ControleurRejoindre(val vue: Rejoindre, val stage: Stage, private val jeu: Jeu): EventHandler<ActionEvent> {
 
     override fun handle(event: ActionEvent?) {
         stage.scene.root = vue
         vue.ListePartie.items = jeu.partyListe
-        if (!fetch.isRunning) {
-            val t = Thread(fetch)
-            t.isDaemon = true
-            t.start()
-        }
     }
 }

@@ -33,39 +33,33 @@ class Rejoindre : BorderPane() {
     val labelPartie:Label
     val ListePartie = ListView<Party>()
     val vbox1: VBox
-    //modif pol
-    var IDTextField = TextField()
     //modif kyllian
-    val searchLabel = Label("Rechercher une partie :")
+    val searchLabel = Label("Rejoindre avec un ID :")
     val searchGame = TextField("")
-    val validerBtn = Button("Valider")
-    val chargeBtn = Button("Charger")
+    val chargeBtn = Button("Rechercher des parties")
 
 
     init {
         panneauCentre.padding = Insets(30.0)
         panneauCentre.alignment = Pos.CENTER_LEFT
-        panneauCentre.children.add(IDTextField)
 
         this.labelPartie = Label("Parties:")
 
         searchGame.promptText = "Entrée un ID"
-        searchGame.prefHeight = 40.0
-        searchGame.maxWidth = 110.0
+        searchGame.style = "-fx-font-size: 20px; -fx-font-weight: bolder;"
+        searchGame.prefHeight = 50.0
+        searchGame.maxWidth = 200.0
 
         val search = HBox()
-        search.children.addAll(searchGame, validerBtn)
-        search.spacing = 10.0
-        validerBtn.styleClass.add("ButtonAccueil")
-        validerBtn.setPrefSize(110.0, 40.0)
-        validerBtn.style = "-fx-font-size: 20px"
+        search.children.add(searchGame)
         chargeBtn.styleClass.add("ButtonAccueil")
-        chargeBtn.setPrefSize(150.0, 40.0)
+        chargeBtn.prefHeight = 50.0
         chargeBtn.style = "-fx-font-size: 20px"
 
         loader.styleClass.add("Progress")
         boutonRejoindre.setPrefSize(300.0, 50.0)
-        this.vbox1 = VBox(10.0, searchLabel, search, labelPartie, ListePartie, chargeBtn,loader)
+        this.ListePartie.opacity = 0.5
+        this.vbox1 = VBox(30.0, searchLabel, search, labelPartie, ListePartie, chargeBtn)
         vbox1.alignment = Pos.CENTER_LEFT
 
 
@@ -135,6 +129,11 @@ class Rejoindre : BorderPane() {
 
     fun hideLoader() {
         this.vbox1.children.remove(this.loader)
+    }
+
+    fun showLoader() {
+        this.vbox1.children.remove(this.chargeBtn)
+        this.vbox1.children.add(this.loader)
     }
 }
 

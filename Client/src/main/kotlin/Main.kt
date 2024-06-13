@@ -1,6 +1,7 @@
 import controleur.accueil.*
 import controleur.rejoindrePartie.Actualiser
 import controleur.rejoindrePartie.ControleurBoutonRejoindrePartie
+import controleur.rejoindrePartie.ControleurChargerParties
 import javafx.application.Application
 import javafx.scene.Scene
 import javafx.scene.image.Image
@@ -35,7 +36,7 @@ class Main(): Application() {
         // Controllers
         accueil.fixeListener(accueil.submitBtn, ControleurBouttonNom(accueil, jeu))
         accueil.fixeListener(accueil.ExitBtn, ControleurFermerAppli(primaryStage))
-        accueil.fixeListener(accueil.JoinBtn, ControleurRejoindre(rejoindre, primaryStage, jeu, fetchGames))
+        accueil.fixeListener(accueil.JoinBtn, ControleurRejoindre(rejoindre, primaryStage, jeu))
         accueil.fixeListener(accueil.CreateBtn, controleur.accueil.ControleurCreerPartie(creer, primaryStage))
 
         creer.boutonCree.onAction = controleur.creationPartie.ControleurCreerPartie(creer,jeu,primaryStage,salon,game)
@@ -43,6 +44,7 @@ class Main(): Application() {
 
         rejoindre.boutonRetour.onAction = BoutonRetour(primaryStage,accueil)
         rejoindre.boutonRejoindre.onAction = ControleurBoutonRejoindrePartie(primaryStage,salon,jeu,game,rejoindre)
+        rejoindre.chargeBtn.onAction = ControleurChargerParties(rejoindre, fetchGames)
 
         // Scène
         val scene = Scene(accueil, 2000.0, 1000.0)
