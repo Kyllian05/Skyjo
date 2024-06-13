@@ -18,7 +18,7 @@ import modele.serverData.ServerException
 class Server(IP: String) {
     private val client = HttpClient(CIO)
     private val IP = IP
-    private var idPartie : Int? = null
+    var idPartie : Int? = null
     private var idPlayer : Int? = null
 
     fun verifyDef() {

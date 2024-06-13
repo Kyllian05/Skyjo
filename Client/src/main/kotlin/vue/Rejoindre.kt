@@ -32,11 +32,13 @@ class Rejoindre : BorderPane() {
     val labelPartie:Label
     val ListePartie = ListView<Party>()
     val vbox1: VBox
+    var IDTextField = TextField()
 
 
     init {
         panneauCentre.padding = Insets(30.0)
         panneauCentre.alignment = Pos.CENTER_LEFT
+        panneauCentre.children.add(IDTextField)
 
         this.labelPartie = Label("Parties:")
 
