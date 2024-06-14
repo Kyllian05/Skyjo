@@ -24,7 +24,6 @@ class CreationPartie : BorderPane() {
         this.labelComboBox1 = Label("Nombre de joueurs :")
         comboBox.getItems().addAll(2,3, 4, 5, 6, 7, 8)
         comboBox.setValue(2);
-        comboBox.styleClass.add("textarea")
 
         val vbox1 = VBox(10.0, labelComboBox1, comboBox)
         vbox1.alignment = Pos.CENTER

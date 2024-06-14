@@ -29,11 +29,16 @@ class Accueil : GridPane() {
     val inputName: TextField
     val submitBtn: Button
     val progress: ProgressIndicator
+    val serverChoiceLabel = Label("Choix du Serveur :")
     val serverChoice = ComboBox<String>()
 
 
     init {
         serverChoice.items = FXCollections.observableArrayList("Serveur 1","Serveur 2","Serveur 3")
+        serverChoice.setPrefSize(200.0, 50.0)
+        serverChoice.styleClass.add("ButtonAccueil")
+        serverChoice.style = "-fx-font-size: 20px"
+        serverChoice.selectionModel.selectFirst()
         this.PanneauLeft = VBox()
         this.PanneauRight = AnchorPane()
         this.CreateBtn = Button("Crée une partie")
@@ -99,7 +104,7 @@ class Accueil : GridPane() {
         this.submitBtn.styleClass.add("ButtonAccueil")
 
         this.nameLabel.styleClass.add("labelAccueil")
-
+        this.serverChoiceLabel.styleClass.add("labelAccueil")
 
         AnchorPane.setBottomAnchor(UpdateArea, 20.0)
         AnchorPane.setRightAnchor(UpdateArea, 10.0)
@@ -110,13 +115,13 @@ class Accueil : GridPane() {
         UpdateArea.isWrapText = true
         VersionLab.style = "-fx-text-fill: darkblue;"
 
-        PanneauLeft.children.addAll(nameLabel, inputName, submitBtn)
-        PanneauRight.children.addAll(UpdateArea, VersionLab,serverChoice)
+        PanneauLeft.children.addAll(serverChoiceLabel, serverChoice, nameLabel, inputName, submitBtn)
+        PanneauRight.children.addAll(UpdateArea, VersionLab)
 
     }
 
     fun addButtons() {
-        PanneauLeft.children.removeAll(nameLabel, inputName, submitBtn)
+        PanneauLeft.children.removeAll(serverChoiceLabel, serverChoice, nameLabel, inputName, submitBtn)
         PanneauLeft.children.addAll(CreateBtn, JoinBtn, ExitBtn)
     }
 
