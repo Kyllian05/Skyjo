@@ -66,7 +66,6 @@ class Jeu(private val server: Server) {
 
     suspend fun getPartieState(): modele.serverData.Plateau? {
         this.currentState = server.getPartieState()
-        println(this.currentState!!.plateaux[0].colonnes.size)
         return this.currentState
     }
 
