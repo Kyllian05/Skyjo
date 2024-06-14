@@ -1,6 +1,7 @@
 package controleur.accueil
 
 import io.ktor.client.plugins.*
+import io.ktor.http.*
 import javafx.concurrent.Task
 import javafx.event.ActionEvent
 import javafx.event.EventHandler
@@ -48,10 +49,18 @@ class ControleurBouttonNom(private val vue: Accueil, private val j: Jeu): EventH
                 vue.removeLoader()
                 val e = task.exception
                 if (e is ServerException) {
-                    error.title = "Erreur serveur"
-                    error.headerText = "Code : ${e.code}, ${e.message}"
-                    error.contentText = "Veuillez réssayer"
-                    error.show()
+                    if (e.code == HttpStatusCode.BadRequest) {
+                        error.alertType = Alert.AlertType.INFORMATION
+                        error.title = "Erreur"
+                        error.headerText = "Votre pseudo est invalide. Il ne doit pas contenir d'espace."
+                        error.contentText = "Veuillez réssayer"
+                        error.show()
+                    } else {
+                        error.title = "Erreur serveur"
+                        error.headerText = "Code : ${e.code}, ${e.message}"
+                        error.contentText = "Veuillez réssayer"
+                        error.show()
+                    }
                 } else if (e is HttpRequestTimeoutException) {
                     error.title = "Erreur serveur"
                     error.headerText = "Impossible de se connecter au serveur"
