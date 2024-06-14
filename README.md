@@ -10,23 +10,7 @@ Les diagrammes UML sont regroupés dans le fichier `modelesUML.pdf` et ils sont 
 
 Les différentes vues de la maquette sont dans le fichier `maquette.pdf` et la version cliquable de la maquette en HTML est disponible dans le dossier `Maquette`, cependant seul la vue avec la partie à 4 joueurs comporte les interactions avec la pioche et le bouton pour quitter la partie.
 
-### Etape n°2 : développement 
+### Etape n°2 : développement
 
-*En cours*
-
-__TODO:__
-
-- [x] Afficher l'id partie dans le salon
-- [x] Suppression des colonnes dans le jeu
-- [x] Vue fin de partie avec affichage des scores
-- [ ] Responsive -> Brieuc
-- [~] Tests
-- [x] Rejoindre une partie directement avec l'id
-- [x] Afficher le joueur en train de jouer dans la partie
-- [ ] Prévenir du déclenchement d'une phase de fin de partie
-- [~] Pouvoir rejoindre une autre partie à la fin d'une partie
-- [x] Stopper le thread quand l'application est fermée
-- [x] Ajouter des effets de hover
-- [ ] Afficher la carte dans la défausse quand on défausse la pioche
-- [ ] Meilleur affichage des actions des joueurs
-
+L'ensemble du projet se trouve dans le dossier `Client`. Pour lancer le jeu jeu,
+il suffit d'exécuter le fichier `Client/src/main/kotlin/main.kt`.
