@@ -1,10 +1,12 @@
 package vue
 
+import javafx.collections.FXCollections
 import javafx.event.ActionEvent
 import javafx.event.EventHandler
 import javafx.geometry.Insets
 import javafx.geometry.Pos
 import javafx.scene.control.Button
+import javafx.scene.control.ComboBox
 import javafx.scene.control.Label
 import javafx.scene.control.ProgressIndicator
 import javafx.scene.control.TextArea
@@ -27,9 +29,11 @@ class Accueil : GridPane() {
     val inputName: TextField
     val submitBtn: Button
     val progress: ProgressIndicator
+    val serverChoice = ComboBox<String>()
 
 
     init {
+        serverChoice.items = FXCollections.observableArrayList("Serveur 1","Serveur 2","Serveur 3")
         this.PanneauLeft = VBox()
         this.PanneauRight = AnchorPane()
         this.CreateBtn = Button("Crée une partie")
@@ -107,7 +111,7 @@ class Accueil : GridPane() {
         VersionLab.style = "-fx-text-fill: darkblue;"
 
         PanneauLeft.children.addAll(nameLabel, inputName, submitBtn)
-        PanneauRight.children.addAll(UpdateArea, VersionLab)
+        PanneauRight.children.addAll(UpdateArea, VersionLab,serverChoice)
 
     }
 

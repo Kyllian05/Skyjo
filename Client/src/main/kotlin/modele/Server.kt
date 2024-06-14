@@ -17,7 +17,7 @@ import modele.serverData.ServerException
 
 class Server(IP: String) {
     private val client = HttpClient(CIO)
-    private val IP = IP
+    private var IP = IP
     var idPartie : Int? = null
     private var idPlayer : Int? = null
 
@@ -191,5 +191,9 @@ class Server(IP: String) {
             result += state.plateaux[i].idJoueur
         }
         return result
+    }
+
+    fun changeIP(newIp : String){
+        this.IP = newIp
     }
 }

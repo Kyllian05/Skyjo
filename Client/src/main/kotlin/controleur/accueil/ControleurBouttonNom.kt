@@ -26,6 +26,11 @@ class ControleurBouttonNom(private val vue: Accueil, private val j: Jeu): EventH
             val task = object : Task<Unit>() {
                 override fun call() {
                     try {
+                        if(vue.serverChoice.value == "Serveur 2"){
+                            j.server.changeIP("http://172.26.82.18")
+                        }else if(vue.serverChoice.value == "Serveur 3"){
+                            j.server.changeIP("http://172.26.82.13")
+                        }
                         j.createPlayer(this@ControleurBouttonNom.vue.inputName.text)
                     } catch (e: Exception) {
                         throw e

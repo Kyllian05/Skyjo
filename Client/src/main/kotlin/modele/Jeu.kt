@@ -10,7 +10,7 @@ import modele.data.Party
 import modele.serverData.Carte
 import modele.serverData.Plateau
 
-class Jeu(private val server: Server) {
+class Jeu(val server: Server) {
     var id: Int? = null
     var myPlayer: Joueur? = null
     var joined: Boolean = false
