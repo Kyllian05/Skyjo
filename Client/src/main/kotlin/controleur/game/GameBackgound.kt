@@ -11,6 +11,7 @@ import modele.serverData.Plateau
 import vue.Classement
 import vue.Game
 import java.io.FileInputStream
+import java.lang.IndexOutOfBoundsException
 
 class GameBackgound(val jeu : Jeu,val game : Game, val stage: Stage) {
     fun startWaiting(){
@@ -23,16 +24,20 @@ class GameBackgound(val jeu : Jeu,val game : Game, val stage: Stage) {
                         return@runBlocking jeu.getPartieState()
                     }
                     val p = jeu.myPlayer
-                    if (data != null && p != null) {
-                        if(data.plateaux[data.indexJoueurCourant].idJoueur == p.id){
-                            javafx.application.Platform.runLater { updatePlaying.update(data.etape, true) }
-                            jeu.myturnToPlay = true
-                        }else{
-                            javafx.application.Platform.runLater { updatePlaying.update(data.etape, false) }
-                            jeu.myturnToPlay = false
+                    try {
+                        if (data != null && p != null) {
+                            if(data.plateaux[data.indexJoueurCourant].idJoueur == p.id){
+                                javafx.application.Platform.runLater { updatePlaying.update(data.etape, true) }
+                                jeu.myturnToPlay = true
+                            }else{
+                                javafx.application.Platform.runLater { updatePlaying.update(data.etape, false) }
+                                jeu.myturnToPlay = false
+                            }
                         }
+                        gameState.update()
+                    } catch (e: IndexOutOfBoundsException) {
+                        println(e)
                     }
-                    gameState.update()
                     Thread.sleep(3000)
                 } while (data?.etape != "PARTIE_TERMINEE")
             }
