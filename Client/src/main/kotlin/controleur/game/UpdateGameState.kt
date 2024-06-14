@@ -35,7 +35,7 @@ class UpdateGameState(private val vue: Game, private val model: Jeu) {
                             } catch (e: NumberFormatException) {
                                 continue
                             }
-                        }catch (e:Throwable){
+                        }catch (e: Exception){
                             vue.plateaux[index][j+k*4].value = Image(FileInputStream("images/cartes/blank.png"))
                         }
                     }
@@ -59,7 +59,7 @@ class UpdateGameState(private val vue: Game, private val model: Jeu) {
                             } catch (e: NumberFormatException) {
                                 continue
                             }
-                        }catch (e:Throwable){
+                        }catch (e: Exception) {
                             vue.plateaux[index][j+k*4].value = Image(FileInputStream("images/cartes/blank.png"))
                         }
                     }

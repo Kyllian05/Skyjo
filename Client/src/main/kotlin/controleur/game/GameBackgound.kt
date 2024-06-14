@@ -19,20 +19,22 @@ class GameBackgound(val jeu : Jeu,val game : Game, val stage: Stage) {
                 val gameState = UpdateGameState(game, jeu)
                 val updatePlaying = UpdatePlaying(jeu)
                 do{
-                    var data : Plateau?
-                    runBlocking {
-                        data = jeu.getPartieState()
-                        if(data!!.plateaux[data!!.indexJoueurCourant].idJoueur == jeu.myPlayer!!.id){
-                            javafx.application.Platform.runLater { updatePlaying.update(data!!.etape, true) }
+                    val data : Plateau? = runBlocking {
+                        return@runBlocking jeu.getPartieState()
+                    }
+                    val p = jeu.myPlayer
+                    if (data != null && p != null) {
+                        if(data.plateaux[data.indexJoueurCourant].idJoueur == p.id){
+                            javafx.application.Platform.runLater { updatePlaying.update(data.etape, true) }
                             jeu.myturnToPlay = true
                         }else{
-                            javafx.application.Platform.runLater { updatePlaying.update(data!!.etape, false) }
+                            javafx.application.Platform.runLater { updatePlaying.update(data.etape, false) }
                             jeu.myturnToPlay = false
                         }
-                        gameState.update()
                     }
+                    gameState.update()
                     Thread.sleep(3000)
-                } while (data!!.etape != "PARTIE_TERMINEE")
+                } while (data?.etape != "PARTIE_TERMINEE")
             }
         }
 
